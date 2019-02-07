@@ -1,0 +1,21 @@
+.game {
+    display: flex;
+    width: auto;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+
+    background: red;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 800px;
+        height: 600px;
+        max-height: 100vh;
+        max-width: 100%;
+
+        background: blue;
+    }
+}

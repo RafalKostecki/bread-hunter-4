@@ -1,0 +1,9 @@
+//Import global styles
+@import '_vars.scss';
+@import '_global.scss';
+@import '_mixins.scss';
+@import '_typography.scss';
+
+//Import components styles
+@import './components/_buttons.scss';
+@import './components/_game.scss';
