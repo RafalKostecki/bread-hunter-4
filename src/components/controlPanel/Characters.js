@@ -1,9 +1,13 @@
 import React from 'react';
 
+//Import other components
+import Char from './Char';
+
 //Import images
 import kostekChar from '../../assets/images/kostekCharIcon.png';
 import marekChar from '../../assets/images/marekCharIcon.png';
 import matiChar from '../../assets/images/matiCharIcon.png';
+
 
 const characters = [
     {
@@ -22,23 +26,19 @@ const characters = [
         name: "Piotr",
         pic: matiChar
     }
-]
+];
+
 
 const Characters = () => {
   return (
     <div role="presentation" className="characters">
-        <div className="characters__char">
-            <img src={kostekChar} alt="Kostek" />
-        </div>
-        <div className="characters__char">
-            <img src={kostekChar} alt="Kostek" />
-        </div>
-        <div className="characters__char">
-            <img src={kostekChar} alt="Kostek" />
-        </div>
-        <div className="characters__char">
-            <img src={kostekChar} alt="Kostek" />
-        </div>
+        {characters.map((char, index) => {
+            return <Char 
+                    name={char.name} 
+                    pic={char.pic}
+                    key={index}
+                    />
+        })}
     </div>
   )
 }
