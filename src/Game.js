@@ -5,7 +5,7 @@ import './assets/styles/index.scss';
 
 //Import other components
 import Board from './components/board/Board';
-import ConfigPanel from './components/configPanel/ControlPanel';
+import ConfigPanel from './components/controlPanel/ControlPanel';
 import GameInfo from './components/gameInfo/GameInfo';
 
 

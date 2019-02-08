@@ -1,0 +1,30 @@
+.credits {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 25px 15px;
+
+    &__logo {
+        flex: 1;
+        max-width: 35px;
+        padding: 5px 15px 5px 0;
+
+        & img {
+            width: 100%;
+        }
+    }
+
+    &__desc {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        & span {
+            color: $fontColor1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.7em;
+            font-weight: 700;
+        }
+    }
+}
