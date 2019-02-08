@@ -3,6 +3,8 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
+    margin: 25px 0;
+    padding: 0 15px;
 
     background: wheat;
 
@@ -12,5 +14,9 @@
         margin: 7px;
 
         background: lightcoral;
+
+        & img {
+            width: 100%;
+        }
     }
 }
