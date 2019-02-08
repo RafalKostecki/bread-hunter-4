@@ -5,7 +5,7 @@ import React from 'react';
 
 const GameInfo = () => {
   return (
-    <aside>
+    <aside className="gameInfo">
         GameInfo component works!
     </aside>
   )

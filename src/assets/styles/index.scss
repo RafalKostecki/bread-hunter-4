@@ -7,5 +7,11 @@
 //Import components styles
 @import './components/_buttons.scss';
 @import './components/_game.scss';
+
 @import './components/controlPanel/controlPanel.scss';
 @import './components/controlPanel/header.scss';
+
+@import './components/gameInfo/gameInfo.scss';
+
+@import './components/board/board.scss';
+@import './components/board/boardField.scss';
