@@ -10,13 +10,18 @@
 
     &__char {
         flex: 1;
-        max-width: 60px;
-        margin: 7px;
+        max-width: 55px;
+        margin: 4px;
 
         background: lightcoral;
 
         & img {
             width: 100%;
+        }
+
+        & span {
+            display: block;
+            text-align: center;
         }
     }
 }
