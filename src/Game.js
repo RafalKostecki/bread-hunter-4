@@ -5,7 +5,8 @@ import './assets/styles/index.scss';
 
 //Import other components
 import Board from './components/board/Board';
-import ConfigPanel from './components/ControlPanel';
+import ConfigPanel from './components/configPanel/ControlPanel';
+import GameInfo from './components/gameInfo/GameInfo';
 
 
 const Game = () => {
@@ -14,6 +15,7 @@ const Game = () => {
       <div className="game__wrapper">
         <ConfigPanel />
         <Board />
+        <GameInfo />
       </div>
     </main>
   )
