@@ -6,7 +6,7 @@ import Header from './Header';
 
 const ControlPanel = () => {
     return (
-        <aside>
+        <aside className="controlPanel">
             <Header />
             ControlPanel component works
         </aside>

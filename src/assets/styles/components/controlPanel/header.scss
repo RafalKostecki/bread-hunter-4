@@ -1,0 +1,13 @@
+.gameHeader {
+    flex: 1;
+
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.7em;
+    color: $fontColor1;
+    background: yellow;
+
+    & h1 {
+        margin: 15px 10px;
+    }
+}
