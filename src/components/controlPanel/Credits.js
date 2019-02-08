@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Import images
-import poytersLogo from '../../assets/images/majorIcon.png';
+import poytersLogo from '../../assets/images/poytersLogo.png';
 
 const Credits = () => {
   return (

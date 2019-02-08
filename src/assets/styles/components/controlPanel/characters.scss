@@ -1,0 +1,16 @@
+.characters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    background: wheat;
+
+    &__char {
+        flex: 1;
+        max-width: 60px;
+        margin: 7px;
+
+        background: lightcoral;
+    }
+}
