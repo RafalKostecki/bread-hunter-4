@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 //Import other components
 import Char from './Char';
@@ -28,19 +28,38 @@ const characters = [
     }
 ];
 
+const game = false; //get this data from redux store
+
 
 const Characters = () => {
-  return (
-    <div role="presentation" className="characters">
-        {characters.map((char, index) => {
-            return <Char 
-                    name={char.name} 
-                    pic={char.pic}
-                    key={index}
+    const [currentChar, setCurrentChar] = useState(characters[0]);
+
+    const chooseChar = char => {
+        if (game || char.name === currentChar.name) return; 
+        //cannot change char during the game || cannot change char at the same
+
+        setCurrentChar(char);
+    }
+
+    useEffect(() => {
+        //change current char in redux
+        console.log(`U chose ${currentChar.name}`);
+     });
+
+    return (
+        <div role="presentation" className="characters">
+            {characters.map((char, index) => {
+                return (
+                    <Char 
+                        name={char.name} 
+                        pic={char.pic}
+                        key={index}
+                        chooseChar={chooseChar}
                     />
-        })}
-    </div>
-  )
+                )
+            })}
+        </div>
+    )
 }
 
 
