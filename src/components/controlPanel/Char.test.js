@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Char from './Char';
 
 
-it('Char acomponent renders without crashing', () => {
+it('Char component renders without crashing', () => {
   const div = document.createElement('div');
   const exampleCharData = {
       name: "Forrest Gump",
