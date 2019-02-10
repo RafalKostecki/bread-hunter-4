@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
-const Item = () => {
+const Item = ({pic, name, id, value}) => {
 
     return (
         <div>
@@ -10,5 +11,11 @@ const Item = () => {
     )
 }
 
+Item.propTypes = {
+    pic: PropTypes.string,
+    name: PropTypes.string,
+    id: PropTypes.string,
+    value: PropTypes.number
+}
 
 export default Item;
