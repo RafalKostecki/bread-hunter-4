@@ -11,6 +11,11 @@
         max-width: 55px;
         margin: 4px;
 
+        &:hover {
+            cursor: pointer;
+            color: $fontColor1Hover;
+        }
+
         & img {
             width: 100%;
         }
@@ -20,6 +25,7 @@
             text-align: center;
             text-overflow: ellipsis;
             overflow: hidden;
+            transition: 0.3s;
         }
     }
 }

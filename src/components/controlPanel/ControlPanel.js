@@ -11,7 +11,6 @@ const ControlPanel = () => {
         <aside className="controlPanel">
             <Header />
             <Characters />
-            ControlPanel component works
             <Credits />
         </aside>
     )

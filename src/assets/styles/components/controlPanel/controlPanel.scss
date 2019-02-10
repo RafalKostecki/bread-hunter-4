@@ -5,5 +5,7 @@
     max-width: 290px;
     min-width: 240px;
     position: relative;
-    background: pink;
+    
+    background-color: $bgColor1;
+    border-right: 7px solid $decColor1;    
 }

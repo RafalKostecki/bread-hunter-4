@@ -5,8 +5,6 @@
     align-items: center;
     justify-content: center;
 
-    background: red;
-
     &__wrapper {
         display: flex;
         flex-direction: row;
@@ -15,8 +13,6 @@
         height: 100vh;
         max-height: 600px;
         max-width: 900px;
-
-        background: blue;
     }
 }
  
