@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Char = ({name, pic, chooseChar}) => {
+const Char = ({name, pic, chooseChar, selected}) => {
     const char = {
         name, 
         pic
     }
+    console.log("selected", selected);
 
     return (
         <div className="characters__char" onClick={() => chooseChar(char)}>
             <img src={pic} alt={name} />
-            <span>{name}</span>
+            <span>{selected === name ? 'selected' : name}</span>
         </div>
     )
 }
@@ -19,7 +20,9 @@ const Char = ({name, pic, chooseChar}) => {
 
 Char.propTypes = {
     name: PropTypes.string.isRequired,
-    pic: PropTypes.string.isRequired
+    pic: PropTypes.string.isRequired,
+    selected: PropTypes.string.isRequired,
+    chooseChar: PropTypes.func.isRequired
 };
 
 

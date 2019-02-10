@@ -6,14 +6,10 @@
     margin: 25px 0;
     padding: 0 15px;
 
-    background: wheat;
-
     &__char {
         flex: 1;
         max-width: 55px;
         margin: 4px;
-
-        background: lightcoral;
 
         & img {
             width: 100%;
@@ -22,6 +18,8 @@
         & span {
             display: block;
             text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 }

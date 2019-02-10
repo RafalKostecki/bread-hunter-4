@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Characters from './Characters';
+import Item from './Item';
 
 
-it('Characters component renders without crashing', () => {
+it('Item component renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Characters />, div);
+  ReactDOM.render(<Item />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
-

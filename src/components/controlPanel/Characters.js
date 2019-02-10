@@ -44,6 +44,7 @@ const Characters = () => {
     useEffect(() => {
         //change current char in redux
         console.log(`U chose ${currentChar.name}`);
+
      });
 
     return (
@@ -53,6 +54,7 @@ const Characters = () => {
                     <Char 
                         name={char.name} 
                         pic={char.pic}
+                        selected={currentChar.name}
                         key={index}
                         chooseChar={chooseChar}
                     />
