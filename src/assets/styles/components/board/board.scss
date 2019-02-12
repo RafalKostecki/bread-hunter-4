@@ -2,5 +2,7 @@
     flex: 1;
     height: calc(100% - 60px);
 
+    border-top: 7px solid $decColor1;
+    border-right: 7px solid $decColor1;
     background: violet;
 }

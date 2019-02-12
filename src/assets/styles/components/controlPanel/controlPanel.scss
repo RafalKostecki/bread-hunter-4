@@ -7,5 +7,7 @@
     position: relative;
     
     background-color: $bgColor1;
-    border-right: 7px solid $decColor1;    
+    border-top: 7px solid $decColor1;   
+    border-right: 7px solid $decColor1;
+    border-left: 7px solid $decColor1; 
 }

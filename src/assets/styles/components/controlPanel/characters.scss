@@ -13,7 +13,7 @@
 
         &:hover {
             cursor: pointer;
-            color: $fontColor1Hover;
+            color: $fontColor1Hover !important;
         }
 
         & img {
@@ -26,6 +26,7 @@
             text-overflow: ellipsis;
             overflow: hidden;
             transition: 0.3s;
+            color: inherit;
         }
     }
 }
