@@ -25,7 +25,7 @@ GameInfo.propTypes = {
 
 const mapStateToProps = state => {
   return {
-      uiBgPic: state.uiDetails.background
+    uiBgPic: state.uiDetails.panelBg
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -9,12 +9,28 @@ import Characters from './Characters';
 
 
 const ControlPanel = ({uiBgPic}) => {
+    const [cpIsActive, setCpIsActive] = useState(false);
+    const [showCpBtn, setShowCpBtn] = useState(false);
+
     const styles = {
         backgroundImage: `url(${uiBgPic})`
     }
 
+    const showButton = () => {
+        if (!showCpBtn) setShowCpBtn(true);
+    }
+
+    const hideButton = () => {
+        if (showCpBtn) setShowCpBtn(false);
+    }
+
     return (
-        <aside className="controlPanel" style={styles}>
+        <aside className="controlPanel" style={styles} onMouseOver={showButton} onMouseLeave={hideButton}>
+            {
+                showCpBtn ? (
+                    <div className="controlPanel__showCpBtn"></div>
+                ) : null
+            }
             <Header />
             <Characters />
             <Credits />
@@ -30,7 +46,7 @@ ControlPanel.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        uiBgPic: state.uiDetails.background
+        uiBgPic: state.uiDetails.panelBg
     }
 }
 

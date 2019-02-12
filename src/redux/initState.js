@@ -11,7 +11,7 @@ const initState = {
         pic: kostekCharPic
     },
     uiDetails: {
-        background: uiBgPic,
+        panelBg: uiBgPic,
         characters: [
             {
                 name: "Kostek",
