@@ -9,32 +9,33 @@ import Characters from './Characters';
 
 
 const ControlPanel = ({uiBgPic}) => {
-    const [cpIsActive, setCpIsActive] = useState(false);
-    const [showCpBtn, setShowCpBtn] = useState(false);
+    const [cpIsActive, setCpIsActive] = useState(true);
 
-    const styles = {
+    const bgStyle = {
         backgroundImage: `url(${uiBgPic})`
     }
 
-    const showButton = () => {
-        if (!showCpBtn) setShowCpBtn(true);
-    }
+    const hideShowCp = () => {
+        setCpIsActive(!cpIsActive);
 
-    const hideButton = () => {
-        if (showCpBtn) setShowCpBtn(false);
     }
 
     return (
-        <aside className="controlPanel" style={styles} onMouseOver={showButton} onMouseLeave={hideButton}>
+        <React.Fragment>
             {
-                showCpBtn ? (
-                    <div className="controlPanel__showCpBtn"></div>
-                ) : null
+                cpIsActive ? (
+                    <aside className="controlPanel" style={bgStyle}>
+                        <div className="controlPanel__hidder" style={bgStyle}></div>
+                        <div className="controlPanel__hideCpBtn" onClick={hideShowCp}></div>
+                        <Header />
+                        <Characters />
+                        <Credits />
+                    </aside>
+                ) : (
+                    <div className="controlPanel__showCpBtn" onClick={hideShowCp}></div>
+                )
             }
-            <Header />
-            <Characters />
-            <Credits />
-        </aside>
+        </React.Fragment>
     )
 }
 

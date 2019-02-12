@@ -1,8 +1,10 @@
 .boardWindow {
     flex: 1;
     height: calc(100% - 60px);
+    z-index: 0;
 
     border-top: 7px solid $decColor1;
     border-right: 7px solid $decColor1;
+    border-left: 7px solid $decColor1;
     background: violet;
 }
