@@ -1,38 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 //Import other components
 import Char from './Char';
 
-//Import images
-import kostekChar from '../../assets/images/kostekCharIcon.png';
-import marekChar from '../../assets/images/marekCharIcon.png';
-import matiChar from '../../assets/images/matiCharIcon.png';
-
-
-const characters = [
-    {
-        name: "Kostek",
-        pic: kostekChar
-    },
-    {
-        name: "Marek",
-        pic: marekChar
-    },
-    {
-        name: "Mati",
-        pic: matiChar
-    },
-    {
-        name: "Piotr",
-        pic: matiChar
-    }
-];
 
 const game = false; //get this data from redux store
 
 
-const Characters = () => {
+const Characters = ({characters}) => {
     const [currentChar, setCurrentChar] = useState(characters[0]);
+    console.log(characters);
 
     const chooseChar = char => {
         if (game || char.name === currentChar.name) return; 
@@ -63,6 +41,10 @@ const Characters = () => {
         </div>
     )
 }
+const mapStateToProps = state => {
+    return {
+        characters: state.uiDetails.characters
+    }
+}
 
-
-export default Characters;
+export default connect(mapStateToProps)(Characters);
