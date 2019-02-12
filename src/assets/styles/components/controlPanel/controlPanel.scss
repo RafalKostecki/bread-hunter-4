@@ -29,13 +29,13 @@
 
     &__hideCpBtn, &__showCpBtn {
         position: absolute;
-        top: calc(50% - 38px);
+        top: calc(50% - 33px);
         right: 0;
         width: 30px;
-        height: 60px;
+        height: 50px;
         z-index: 1;
 
-        border-radius: 0 60px 60px 0;
+        border-radius: 0 50px 50px 0;
         border: 4px solid $decColor1;
         border-left: 7px solid transparent;
         background: $bgColor1;
@@ -74,6 +74,7 @@
     }
 
     &__showCpBtn {
+        top: calc(50% - 50px);
         right: auto;
         left: 0;
 
