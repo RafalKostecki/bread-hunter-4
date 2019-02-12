@@ -1,15 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 //Import other components
 
 
-const GameInfo = () => {
+const GameInfo = ({uiBgPic}) => {
+  const styles = {
+    backgroundImage: `url(${uiBgPic})`
+  }
+
   return (
-    <aside className="gameInfo">
+    <aside className="gameInfo" style={styles}>
         GameInfo component works!
     </aside>
   )
 }
 
 
-export default GameInfo;
+GameInfo.propTypes = {
+  uiBgPic: PropTypes.string.isRequired
+}
+
+
+const mapStateToProps = state => {
+  return {
+      uiBgPic: state.uiDetails.background
+  }
+}
+
+
+export default connect(mapStateToProps)(GameInfo);

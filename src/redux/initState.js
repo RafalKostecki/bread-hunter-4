@@ -1,32 +1,33 @@
 //Import images
-import kostekChar from '../assets/images/kostekCharIcon.png';
-import marekChar from '../assets/images/marekCharIcon.png';
-import matiChar from '../assets/images/matiCharIcon.png';
+import kostekCharPic from '../assets/images/kostekCharIcon.png';
+import marekCharPic from '../assets/images/marekCharIcon.png';
+import matiCharPic from '../assets/images/matiCharIcon.png';
+import uiBgPic from '../assets/images/settingsTexture.png';
 
 
 const initState = {
     currentChar: {
         name: "Kostek",
-        pic: "picPath"
+        pic: kostekCharPic
     },
     uiDetails: {
-        background: "bgPicPath",
+        background: uiBgPic,
         characters: [
             {
                 name: "Kostek",
-                pic: kostekChar
+                pic: kostekCharPic
             },
             {
                 name: "Marek",
-                pic: marekChar
+                pic: marekCharPic
             },
             {
                 name: "Mati",
-                pic: matiChar
+                pic: matiCharPic
             },
             {
                 name: "Piotr",
-                pic: matiChar
+                pic: matiCharPic
             }
         ]
     }

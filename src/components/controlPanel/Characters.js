@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 //Import other components
@@ -41,10 +42,18 @@ const Characters = ({characters}) => {
         </div>
     )
 }
+
+
+Characters.propTypes = {
+    characters: PropTypes.array.isRequired
+}
+
+
 const mapStateToProps = state => {
     return {
         characters: state.uiDetails.characters
     }
 }
+
 
 export default connect(mapStateToProps)(Characters);
