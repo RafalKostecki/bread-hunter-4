@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import Credits from './Credits';
 import Characters from './Characters';
+import Button from '../button.js';
 
 
 const ControlPanel = ({uiBgPic}) => {
@@ -20,6 +21,10 @@ const ControlPanel = ({uiBgPic}) => {
 
     }
 
+    const runGame = () => {
+        console.log("xd")
+    }
+
     return (
         <React.Fragment>
             {
@@ -29,6 +34,7 @@ const ControlPanel = ({uiBgPic}) => {
                         <div className="controlPanel__hideCpBtn" onClick={hideShowCp}></div>
                         <Header />
                         <Characters />
+                        <Button text='start' modifier='start' click={runGame}></Button>
                         <Credits />
                     </aside>
                 ) : (

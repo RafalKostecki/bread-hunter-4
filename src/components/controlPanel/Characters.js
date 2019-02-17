@@ -9,12 +9,9 @@ import { setCurrentCharacter } from '../../redux/actions/gameActions';
 import Char from './Char';
 
 
-const game = false; //get this data from redux store
-
-
-const Characters = ({currentChar, characters, setCurrentChar}) => {
+const Characters = ({currentChar, characters, setCurrentChar, isRunGame}) => {
     const chooseChar = char => {
-        if (game || char.name === currentChar.name) return; 
+        if (isRunGame || char.name === currentChar.name) return; 
         //cannot change char during the game || cannot change char at the same
 
         setCurrentChar(char);
@@ -46,6 +43,7 @@ Characters.propTypes = {
 
 const mapStateToProps = state => {
     return {
+        isRunGame: state.game.isRunGame,
         currentChar: state.game.currentChar,
         characters: state.ui.characters
     }
