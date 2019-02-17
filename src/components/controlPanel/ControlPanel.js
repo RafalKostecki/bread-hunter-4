@@ -8,8 +8,11 @@ import Credits from './Credits';
 import Characters from './Characters';
 import Button from '../button.js';
 
+//Import actions
+import { runGame } from '../../redux/actions/gameActions';
 
-const ControlPanel = ({uiBgPic}) => {
+
+const ControlPanel = ({uiBgPic, isRunGame, runGame}) => {
     const [cpIsActive, setCpIsActive] = useState(true);
 
     const bgStyle = {
@@ -21,8 +24,10 @@ const ControlPanel = ({uiBgPic}) => {
 
     }
 
-    const runGame = () => {
-        console.log("xd")
+    const runGameHandler = () => {
+        console.log('isRunGame', isRunGame);
+        if (isRunGame) return; //Cannot run game twice or more times
+        runGame();
     }
 
     return (
@@ -34,7 +39,7 @@ const ControlPanel = ({uiBgPic}) => {
                         <div className="controlPanel__hideCpBtn" onClick={hideShowCp}></div>
                         <Header />
                         <Characters />
-                        <Button text='start' modifier='start' click={runGame}></Button>
+                        <Button text='start' modifier='start' click={runGameHandler}></Button>
                         <Credits />
                     </aside>
                 ) : (
@@ -53,9 +58,16 @@ ControlPanel.propTypes = {
 
 const mapStateToProps = state => {
     return {
+        isRunGame: state.game.isRunGame,
         uiBgPic: state.ui.panelBg
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        runGame: () => {dispatch(runGame())}
+    }
+}
 
-export default connect(mapStateToProps)(ControlPanel);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ControlPanel);
