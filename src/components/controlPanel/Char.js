@@ -7,7 +7,6 @@ const Char = ({name, pic, chooseChar, selected}) => {
         name, 
         pic
     }
-    console.log("selected", selected);
 
     return (
         <div className="characters__char" onClick={() => chooseChar(char)}>
