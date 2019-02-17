@@ -47,7 +47,7 @@ ControlPanel.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        uiBgPic: state.game.uiDetails.panelBg
+        uiBgPic: state.ui.panelBg
     }
 }
 

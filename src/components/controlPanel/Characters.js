@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 //Import actions 
-import setCurrentCharacter from '../../redux/actions/gameActions';
+import { setCurrentCharacter } from '../../redux/actions/gameActions';
 
 //Import other components
 import Char from './Char';
@@ -47,7 +47,7 @@ Characters.propTypes = {
 const mapStateToProps = state => {
     return {
         currentChar: state.game.currentChar,
-        characters: state.game.uiDetails.characters
+        characters: state.ui.characters
     }
 }
 

@@ -1,4 +1,4 @@
-import initState from '../initState';
+const initState = {};
 
 
 const authReducer = (state = initState, action) => {
