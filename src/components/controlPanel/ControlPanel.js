@@ -39,7 +39,7 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame}) => {
                         <div className="controlPanel__hideCpBtn" onClick={hideShowCp}></div>
                         <Header />
                         <Characters />
-                        <Button text='start' modifier='start' click={runGameHandler}></Button>
+                        <Button text='start' modifier='start' click={runGameHandler} disable={isRunGame}></Button>
                         <Credits />
                     </aside>
                 ) : (
