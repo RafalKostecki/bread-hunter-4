@@ -2,14 +2,32 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    margin: 0 20px;
+
+    &__pic, &__value {
+        padding: 8px;
+    }
 
     &__pic {
         flex: 1;
-        background: red;
+        max-height: 100%;
+
+        & img {
+            display: block;
+            height: 100%;
+        }
     }
 
     &__value {
-        flex: 1;
-        background: blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & span {
+            display: block;
+
+            font-size: 1.2em;
+            font-weight: 400;
+        }
     }
 }

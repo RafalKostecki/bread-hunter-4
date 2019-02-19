@@ -2,7 +2,15 @@
 import kostekCharPic from '../../assets/images/kostekCharIcon.png';
 import marekCharPic from '../../assets/images/marekCharIcon.png';
 import matiCharPic from '../../assets/images/matiCharIcon.png';
+
 import uiBgPic from '../../assets/images/settingsTexture.png';
+
+import timeIcon from '../../assets/images/timeIcon.png';
+import healthIcon from '../../assets/images/healthIcon.png';
+import accuracyIcon from '../../assets/images/accuracyIcon.png';
+import breadStatIcon from '../../assets/images/breadStatIcon.png';
+import greekyKosteIcon from '../../assets/images/greekyKosteIcon.png';
+import slowDownBuffIcon from '../../assets/images/slowDownBuffIcon.png';
 
 
 const initState = {
@@ -29,32 +37,32 @@ const initState = {
         {
             name: "Time",
             value: "0:00",
-            pic: "picpath"
+            pic: timeIcon
         },
         {
             name: "Lifes",
             value: 5,
-            pic: "picpath"
+            pic: healthIcon
         },
         {
             name: "Breads",
             value: 0,
-            pic: "picPath"
+            pic: breadStatIcon
         },
         {
             name: "Juice",
             value: 3,
-            pic: "picpath"
+            pic: slowDownBuffIcon
         },
         {
             name: "Rusks",
             value: 2,
-            pic: "picpath"
+            pic: greekyKosteIcon
         },
         {
             name: "Accuracy",
             value: 0,
-            pic: "picpath"
+            pic: accuracyIcon
         }
     ]
 }

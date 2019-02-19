@@ -6,8 +6,12 @@ const Item = ({name, value, pic}) => {
 
     return (
         <div className="item" id={`gi-${name}`}>
-            <div className="item__pic">{pic}</div>
-            <div className="item__value">{value}</div>
+            <div className="item__pic">
+                <img src={pic} alt={name} />
+            </div>
+            <div className="item__value">
+                <span>{value}</span>
+            </div>
         </div>
     )
 }

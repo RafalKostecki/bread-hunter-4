@@ -5,6 +5,7 @@
     box-sizing: border-box;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-between;
     
     background-color: $bgColor1;
     border: 7px solid $decColor1;
