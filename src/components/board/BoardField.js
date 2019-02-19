@@ -1,9 +1,9 @@
 import React from 'react';
 
-const BoardField = () => {
+const BoardField = ({id}) => {
     return (
-        <div>
-            BoardField component works!
+        <div className="boardField">
+            {id}
         </div>
     )
 }
