@@ -1,0 +1,15 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    &__pic {
+        flex: 1;
+        background: red;
+    }
+
+    &__value {
+        flex: 1;
+        background: blue;
+    }
+}

@@ -1,8 +1,10 @@
 .gameInfo {
-    flex: 1;
+    display: flex;
     min-width: 100%;
     height: 60px;
     box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: nowrap;
     
     background-color: $bgColor1;
     border: 7px solid $decColor1;

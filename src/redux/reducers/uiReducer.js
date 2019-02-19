@@ -24,6 +24,38 @@ const initState = {
             name: "Piotr",
             pic: matiCharPic
         }
+    ],
+    gameInfoItems: [
+        {
+            name: "Time",
+            value: "0:00",
+            pic: "picpath"
+        },
+        {
+            name: "Lifes",
+            value: 5,
+            pic: "picpath"
+        },
+        {
+            name: "Breads",
+            value: 0,
+            pic: "picPath"
+        },
+        {
+            name: "Juice",
+            value: 3,
+            pic: "picpath"
+        },
+        {
+            name: "Rusks",
+            value: 2,
+            pic: "picpath"
+        },
+        {
+            name: "Accuracy",
+            value: 0,
+            pic: "picpath"
+        }
     ]
 }
 
