@@ -25,6 +25,7 @@
 
     &--disable {
         color: $fontColor2;
+        cursor: default;
 
         &:hover {
             color: $fontColor2;
