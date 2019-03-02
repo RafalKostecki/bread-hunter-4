@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 //Import other components
 import BoardField from './BoardField';
 
-const Board = () => {
+
+const Board = ({ boardPosition }) => {
     const boardConfig = {
         x: 20,
         y: 15,
@@ -13,8 +16,8 @@ const Board = () => {
     const boardStyles = {
         width: `${boardConfig.x*boardConfig.fieldSize}px`,
         height: `${boardConfig.y*boardConfig.fieldSize}px`,
-        top: "0",
-        left: "0"
+        top: `${boardPosition.top}`,
+        left: `${boardPosition.left}`
     }
 
     const boardMatrix = [];
@@ -28,7 +31,6 @@ const Board = () => {
             boardMatrix.push(yAxis);
         }
 
-        console.log(boardMatrix);
     });
 
     const boardFields = [...Array(boardConfig.x*boardConfig.y)].map((element, id) => {
@@ -51,4 +53,14 @@ const Board = () => {
     )
 }
 
-export default Board;
+Board.propTypes = {
+    boardPosition: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => {
+    return {
+        boardPosition: state.game.board.position,
+    }
+}
+
+export default connect(mapStateToProps)(Board);

@@ -6,6 +6,12 @@ const initState = {
     currentChar: {
         name: "Kostek",
         pic: kostekCharPic
+    },
+    board: {
+        position: {
+            top: 0,
+            left: 0
+        }
     }
 };
 
