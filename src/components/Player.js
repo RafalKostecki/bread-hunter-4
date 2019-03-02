@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 
-
-const Player= ({ playerPosition }) => {
+const Player = ({ playerPosition }) => {
     const playerStyles = {
-        top: `${playerPosition.x*50}px`,
-        left: `${playerPosition.y*50}px`
+        top: `${playerPosition.y*50}px`,
+        left: `${playerPosition.x*50}px`
     }
 
 
