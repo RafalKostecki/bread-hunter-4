@@ -7,7 +7,7 @@ import BoardField from './BoardField';
 import Player from '../Player';
 
 
-const Board = ({ boardPosition }) => {
+const Board = ({ boardPosition , isRunGame }) => {
     const boardConfig = {
         x: 20,
         y: 15,
@@ -48,7 +48,7 @@ const Board = ({ boardPosition }) => {
     return (
         <div className="boardWindow">
             <div className="board" style={boardStyles}>
-                <Player />
+                { isRunGame ? <Player /> : null }
                 {boardFields}
             </div>
         </div>
@@ -56,12 +56,14 @@ const Board = ({ boardPosition }) => {
 }
 
 Board.propTypes = {
-    boardPosition: PropTypes.object.isRequired
+    boardPosition: PropTypes.object.isRequired,
+    isRunGame: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => {
     return {
         boardPosition: state.game.board.position,
+        isRunGame: state.game.isRunGame
     }
 }
 
