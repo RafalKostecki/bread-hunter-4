@@ -29,13 +29,20 @@ const Board = () => {
         }
 
         console.log(boardMatrix);
+    });
+
+    const boardFields = [...Array(boardConfig.x*boardConfig.y)].map((element, id) => {
+        return <BoardField 
+            key={id}
+            id={id}
+        />
     })
 
 
     return (
         <div className="boardWindow">
             <div className="board" style={boardStyles}>
-                xdd
+                {boardFields}
             </div>
         </div>
     )
