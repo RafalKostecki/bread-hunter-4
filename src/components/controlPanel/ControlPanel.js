@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import Credits from './Credits';
 import Characters from './Characters';
-import Button from '../button.js';
+import Button from '../Button.js';
 
 //Import actions
 import { runGame } from '../../redux/actions/gameActions';

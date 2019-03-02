@@ -5,13 +5,39 @@ import { connect } from 'react-redux';
 //Import configs
 import gameConfig from '../assets/configs/gameConfig.json';
 
+//Import images
+import charKostek from '../assets/images/charKostek.png';
+import charMarek from '../assets/images/charMarek.png';
+import charMati from '../assets/images/charMati.png';
 
-const Player = ({ playerPosition }) => {
+
+const Player = ({ currentChar, playerPosition }) => {
+    let currentCharPic;
+
+    switch(currentChar.name) {
+        case 'Kostek':
+            currentCharPic = charKostek;
+        break;
+        case 'Marek':
+            currentCharPic = charMarek;
+        break;
+        case 'Mati':
+            currentCharPic = charMati;
+        break;
+        case 'Piotr':
+            currentCharPic = charMati;
+        break;
+        default:
+            currentCharPic = charKostek;
+    }
+
     const playerStyles = {
         top: `${playerPosition.y*gameConfig.boardFieldSize}px`,
         left: `${playerPosition.x*gameConfig.boardFieldSize}px`,
         width: `${gameConfig.boardFieldSize}px`,
-        height: `${gameConfig.boardFieldSize}px`
+        height: `${gameConfig.boardFieldSize}px`,
+        backgroundImage: `url(${currentCharPic})`,
+        backgroundPosition: "-50px 0"
     }
 
 
@@ -23,12 +49,14 @@ const Player = ({ playerPosition }) => {
 }
 
 Player.propTypes = {
-    playerPosition: PropTypes.object.isRequired
+    playerPosition: PropTypes.object.isRequired,
+    currentChar: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {
     return {
         playerPosition: state.game.player.position,
+        currentChar: state.game.currentChar
     }
 }
 
