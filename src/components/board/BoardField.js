@@ -2,7 +2,7 @@ import React from 'react';
 
 const BoardField = ({id}) => {
     return (
-        <div className="boardField">
+        <div className="boardField" id={id}>
             {id}
         </div>
     )

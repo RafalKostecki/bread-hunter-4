@@ -32,9 +32,12 @@ const Board = () => {
     });
 
     const boardFields = [...Array(boardConfig.x*boardConfig.y)].map((element, id) => {
+        const row = Math.floor(id/boardConfig.x);
+        const column = id - (row*boardConfig.x);
+
         return <BoardField 
             key={id}
-            id={id}
+            id={`${row}.${column}`}
         />
     })
 
