@@ -12,6 +12,12 @@ const initState = {
             top: 0,
             left: 0
         }
+    },
+    player: {
+        position: {
+            x: 10,
+            y: 7
+        }
     }
 };
 

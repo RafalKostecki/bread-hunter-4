@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 //Import other components
 import BoardField from './BoardField';
+import Player from '../Player';
 
 
 const Board = ({ boardPosition }) => {
@@ -47,6 +48,7 @@ const Board = ({ boardPosition }) => {
     return (
         <div className="boardWindow">
             <div className="board" style={boardStyles}>
+                <Player />
                 {boardFields}
             </div>
         </div>
