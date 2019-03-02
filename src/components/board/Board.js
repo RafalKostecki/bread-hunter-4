@@ -6,17 +6,14 @@ import { connect } from 'react-redux';
 import BoardField from './BoardField';
 import Player from '../Player';
 
+//Import configs
+import gameConfig from '../../assets/configs/gameConfig.json';
+
 
 const Board = ({ boardPosition , isRunGame }) => {
-    const boardConfig = {
-        x: 20,
-        y: 15,
-        fieldSize: 50
-    }
-
     const boardStyles = {
-        width: `${boardConfig.x*boardConfig.fieldSize}px`,
-        height: `${boardConfig.y*boardConfig.fieldSize}px`,
+        width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
+        height: `${gameConfig.boardSize.y*gameConfig.boardFieldSize}px`,
         top: `${boardPosition.top}`,
         left: `${boardPosition.left}`
     }
@@ -24,9 +21,9 @@ const Board = ({ boardPosition , isRunGame }) => {
     const boardMatrix = [];
 
     useEffect(()=> { //create boardMatrix
-        for (let y=0; y<boardConfig.y; y++) {
+        for (let y=0; y<gameConfig.boardSize.y; y++) {
             const yAxis = [];
-            for (let x=0; x<boardConfig.x; x++) {
+            for (let x=0; x<gameConfig.boardSize.y; x++) {
                 yAxis.push(0)
             }
             boardMatrix.push(yAxis);
@@ -34,9 +31,9 @@ const Board = ({ boardPosition , isRunGame }) => {
 
     });
 
-    const boardFields = [...Array(boardConfig.x*boardConfig.y)].map((element, id) => {
-        const row = Math.floor(id/boardConfig.x);
-        const column = id - (row*boardConfig.x);
+    const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {
+        const row = Math.floor(id/gameConfig.boardSize.x);
+        const column = id - (row*gameConfig.boardSize.x);
 
         return <BoardField 
             key={id}

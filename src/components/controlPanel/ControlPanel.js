@@ -25,7 +25,6 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame}) => {
     }
 
     const runGameHandler = () => {
-        console.log('isRunGame', isRunGame);
         if (isRunGame) return; //Cannot run game twice or more times
         runGame();
     }
