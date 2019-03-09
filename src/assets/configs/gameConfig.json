@@ -3,5 +3,6 @@
         "x": 20,
         "y": 15
     },
-    "boardFieldSize": 50
+    "boardFieldSize": 50,
+    "playerStepTime": 500
 }

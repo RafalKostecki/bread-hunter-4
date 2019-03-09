@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 //Import configs
 import gameConfig from '../assets/configs/gameConfig.json';
+
+//Import scripts
+import { keyDownHandler, keyUpHandler } from '../assets/scripts/playerMovement';
 
 //Import images
 import charKostek from '../assets/images/charKostek.png';
@@ -39,6 +42,13 @@ const Player = ({ currentChar, playerPosition }) => {
         backgroundImage: `url(${currentCharPic})`,
         backgroundPosition: "-50px 0"
     }
+
+    useEffect(() => {
+        const body = document.getElementsByTagName("body");
+
+        if (body[0]) body[0].addEventListener("keydown", keyDownHandler);
+        if (body[0]) body[0].addEventListener("keyup", keyUpHandler);
+    })
 
 
     return (
