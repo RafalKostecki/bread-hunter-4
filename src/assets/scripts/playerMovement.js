@@ -15,8 +15,9 @@ export const keyDownHandler = key => {
 
     if (!firstIteration) {
         stepInterval = setInterval(() => {
-            if (wasPressed) console.log("move", key.keyCode);
-            // here i need to recoginze keyCode and change Player position at game board
+            if (!wasPressed) return;
+            
+            changePlayerPosition(key.keyCode);
         }, playerStepTime);
     }
 
@@ -31,4 +32,24 @@ export const keyUpHandler = key => {
     clearInterval(stepInterval);
 
     console.log("stop", key.keyCode);
+}
+
+
+const changePlayerPosition = keyCode => {
+    switch(keyCode) {
+        case 87: //up
+            console.log('up');
+        break;
+        case 68: //right
+            console.log('right');
+        break;
+        case 83: //down
+            console.log('down');
+        break;
+        case 65: //left
+            console.log('left');
+        break;
+        default:
+            console.log('default case')
+    }
 }
