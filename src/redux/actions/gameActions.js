@@ -16,3 +16,10 @@ export const stopGame = () => {
         type: 'STOP_GAME'
     }
 }
+
+export const setPlayerPos = position => {
+    return {
+        type: 'CHANGE_PLAYER_POSITION',
+        position
+    }
+}

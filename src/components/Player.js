@@ -34,6 +34,7 @@ const Player = ({ currentChar, playerPosition }) => {
             currentCharPic = charKostek;
     }
 
+    console.log("playerPositionRedux", playerPosition);
     const playerStyles = {
         top: `${playerPosition.y*gameConfig.boardFieldSize}px`,
         left: `${playerPosition.x*gameConfig.boardFieldSize}px`,
@@ -50,7 +51,7 @@ const Player = ({ currentChar, playerPosition }) => {
         if (body[0]) body[0].addEventListener("keyup", keyUpHandler);
     })
 
-
+    
     return (
         <div className="player" style={playerStyles}>
             P

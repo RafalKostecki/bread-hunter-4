@@ -4,5 +4,5 @@
         "y": 15
     },
     "boardFieldSize": 50,
-    "playerStepTime": 500
+    "playerStepTime": 200
 }

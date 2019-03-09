@@ -12,9 +12,9 @@ import ConfigPanel from './components/controlPanel/ControlPanel';
 import GameInfo from './components/gameInfo/GameInfo';
 
 
-const store = createStore(rootReducer);
+export const store = createStore(rootReducer);
 
-const Game = () => {
+export const Game = () => {
   return (
     <Provider store={store}>
       <main className="game">
@@ -27,6 +27,3 @@ const Game = () => {
     </Provider>
   )
 }
-
-
-export default Game;

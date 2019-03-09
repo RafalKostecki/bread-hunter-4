@@ -39,6 +39,16 @@ const gameReducer = (state = initState, action) => {
                 ...state,
                 currentChar: action.char
             }
+        case 'CHANGE_PLAYER_POSITION':
+            return {
+                ...state,
+                player: {
+                    position: {
+                        x: state.player.position.x + action.position.x,
+                        y: state.player.position.y + action.position.y
+                    }
+                }
+            }
         default:
             return state;
     }

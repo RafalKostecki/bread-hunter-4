@@ -1,3 +1,5 @@
+import { store } from '../../Game';
+import { setPlayerPos } from '../../redux/actions/gameActions';
 import gameConfig from '../configs/gameConfig';
 
 let currKeyDown = undefined;
@@ -16,7 +18,7 @@ export const keyDownHandler = key => {
     if (!firstIteration) {
         stepInterval = setInterval(() => {
             if (!wasPressed) return;
-            
+
             changePlayerPosition(key.keyCode);
         }, playerStepTime);
     }
@@ -36,20 +38,24 @@ export const keyUpHandler = key => {
 
 
 const changePlayerPosition = keyCode => {
+    let coordinateChange = {x: 0, y: 0};
+
     switch(keyCode) {
         case 87: //up
-            console.log('up');
+            coordinateChange = {x: 0, y: -1};
         break;
         case 68: //right
-            console.log('right');
+            coordinateChange = {x: 1, y: 0};
         break;
         case 83: //down
-            console.log('down');
+            coordinateChange = {x: 0, y: 1};
         break;
         case 65: //left
-            console.log('left');
+            coordinateChange = {x: -1, y: 0};
         break;
         default:
             console.log('default case')
     }
+
+    store.dispatch(setPlayerPos(coordinateChange))
 }
