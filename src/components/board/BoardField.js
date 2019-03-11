@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import gameConfig from '../../assets/configs/gameConfig.json';
 
 
-const BoardField = ({id}) => {
+export const BoardField = ({id}) => {
     const boardFieldStyle = {
         minHeight: `${gameConfig.boardFieldSize}px`,
         minWidth: `${gameConfig.boardFieldSize}px`

@@ -10,7 +10,7 @@ import Player from '../Player';
 import gameConfig from '../../assets/configs/gameConfig.json';
 
 
-const Board = ({ boardPosition , isRunGame }) => {
+export const Board = ({ boardPosition , isRunGame }) => {
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
         height: `${gameConfig.boardSize.y*gameConfig.boardFieldSize}px`,
@@ -29,6 +29,11 @@ const Board = ({ boardPosition , isRunGame }) => {
             boardMatrix.push(yAxis);
         }
 
+
+        const boardWindow = document.getElementById('boardWindow');
+        const boardWindowWidth = boardWindow.getComputedStyle;
+        const boardWindowHeight = boardWindow.style.height;
+        console.log(boardWindowWidth, boardWindowHeight)
     });
 
     const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {
@@ -43,7 +48,7 @@ const Board = ({ boardPosition , isRunGame }) => {
 
 
     return (
-        <div className="boardWindow">
+        <div id="boardWindow" className="boardWindow">
             <div className="board" style={boardStyles}>
                 { isRunGame ? <Player /> : null }
                 {boardFields}
