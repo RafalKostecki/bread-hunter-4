@@ -6,16 +6,21 @@ import { connect } from 'react-redux';
 import BoardField from './BoardField';
 import Player from '../Player';
 
+//Import actions
+import { setBoardPos } from '../../redux/actions/gameActions';
+
 //Import configs
 import gameConfig from '../../assets/configs/gameConfig.json';
 
 
-export const Board = ({ boardPosition , isRunGame }) => {
+let boardSwitch = true;
+
+export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos }) => {
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
         height: `${gameConfig.boardSize.y*gameConfig.boardFieldSize}px`,
-        top: `${boardPosition.top}`,
-        left: `${boardPosition.left}`
+        top: `${boardPosition.top}px`,
+        left: `${boardPosition.left}px`
     }
 
     const boardMatrix = [];
@@ -29,11 +34,10 @@ export const Board = ({ boardPosition , isRunGame }) => {
             boardMatrix.push(yAxis);
         }
 
-
-        const boardWindow = document.getElementById('boardWindow');
-        const boardWindowWidth = boardWindow.getComputedStyle;
-        const boardWindowHeight = boardWindow.style.height;
-        console.log(boardWindowWidth, boardWindowHeight)
+        const top = -Math.floor(playerPosition.y/2)*gameConfig.boardFieldSize;
+        const left = -Math.floor(playerPosition.x/2)*gameConfig.boardFieldSize;
+        if (boardSwitch) setBoardPos({top: top, left: left});
+        boardSwitch = false;
     });
 
     const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {
@@ -48,7 +52,7 @@ export const Board = ({ boardPosition , isRunGame }) => {
 
 
     return (
-        <div id="boardWindow" className="boardWindow">
+        <div className="boardWindow">
             <div className="board" style={boardStyles}>
                 { isRunGame ? <Player /> : null }
                 {boardFields}
@@ -59,14 +63,23 @@ export const Board = ({ boardPosition , isRunGame }) => {
 
 Board.propTypes = {
     boardPosition: PropTypes.object.isRequired,
-    isRunGame: PropTypes.bool.isRequired
+    isRunGame: PropTypes.bool.isRequired,
+    playerPosition: PropTypes.object.isRequired,
+    setBoardPos: PropTypes.function
 }
 
 const mapStateToProps = state => {
     return {
         boardPosition: state.game.board.position,
-        isRunGame: state.game.isRunGame
+        isRunGame: state.game.isRunGame,
+        playerPosition: state.game.player.position
     }
 }
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = dispatch => {
+    return {
+        setBoardPos: position => {dispatch(setBoardPos(position))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

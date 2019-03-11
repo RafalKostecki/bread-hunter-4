@@ -49,6 +49,17 @@ const gameReducer = (state = initState, action) => {
                     }
                 }
             }
+        case 'CHANGE_BOARD_POSITION':
+            console.log("here")
+            return {
+                ...state,
+                board: {
+                    position: {
+                        top: state.board.position.top + action.position.top,
+                        left: state.board.position.left + action.position.left
+                    }
+                }
+            }
         default:
             return state;
     }

@@ -23,3 +23,11 @@ export const setPlayerPos = position => {
         position
     }
 }
+
+export const setBoardPos = position => {
+    console.log(position)
+    return {
+        type: 'CHANGE_BOARD_POSITION',
+        position
+    }
+}
