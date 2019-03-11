@@ -11,7 +11,6 @@ let stepInterval = undefined;
 export const keyDownHandler = key => {
     const playerStepTime = gameConfig.playerStepTime;
 
-    if (!wasPressed) console.log("start", key.keyCode);
     if (!wasPressed) currKeyDown = key.keyCode;
     wasPressed = true;
 
@@ -32,8 +31,6 @@ export const keyUpHandler = key => {
     wasPressed = false;
     firstIteration = false;
     clearInterval(stepInterval);
-
-    console.log("stop", key.keyCode);
 }
 
 
@@ -53,8 +50,6 @@ const changePlayerPosition = keyCode => {
         case 65: //left
             coordinateChange = {x: -1, y: 0};
         break;
-        default:
-            console.log('default case')
     }
 
     store.dispatch(setPlayerPos(coordinateChange))
