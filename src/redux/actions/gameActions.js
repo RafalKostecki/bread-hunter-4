@@ -25,9 +25,15 @@ export const setPlayerPos = position => {
 }
 
 export const setBoardPos = position => {
-    console.log(position)
     return {
         type: 'CHANGE_BOARD_POSITION',
         position
+    }
+}
+
+export const setPlayerDirection = direction => {
+    return {
+        type: 'CHANGE_PLAYER_DIRECTION',
+        direction
     }
 }

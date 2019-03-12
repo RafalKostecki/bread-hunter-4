@@ -1,5 +1,9 @@
 import { store } from '../../Game';
-import { setPlayerPos } from '../../redux/actions/gameActions';
+
+//Import actions
+import { setPlayerPos, setPlayerDirection } from '../../redux/actions/gameActions';
+
+//Import configs
 import gameConfig from '../configs/gameConfig';
 
 let currKeyDown = undefined;
@@ -36,21 +40,29 @@ export const keyUpHandler = key => {
 
 const changePlayerPosition = keyCode => {
     let coordinateChange = {x: 0, y: 0};
+    let direction = 'down';
 
     switch(keyCode) {
         case 87: //up
             coordinateChange = {x: 0, y: -1};
+            direction = 'up';
         break;
         case 68: //right
             coordinateChange = {x: 1, y: 0};
+            direction = 'right';
         break;
         case 83: //down
             coordinateChange = {x: 0, y: 1};
+            direction = 'down';
         break;
         case 65: //left
             coordinateChange = {x: -1, y: 0};
+            direction = 'left'
         break;
+        default:
+            coordinateChange = {x: 0, y: 0};
     }
 
     store.dispatch(setPlayerPos(coordinateChange))
+    store.dispatch(setPlayerDirection(direction))
 }

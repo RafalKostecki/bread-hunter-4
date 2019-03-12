@@ -14,7 +14,7 @@ import charMarek from '../assets/images/charMarek.png';
 import charMati from '../assets/images/charMati.png';
 
 
-const Player = ({ currentChar, playerPosition }) => {
+const Player = ({ currentChar, playerPosition, playerDirection }) => {
     let currentCharPic;
 
     switch(currentChar.name) {
@@ -34,14 +34,15 @@ const Player = ({ currentChar, playerPosition }) => {
             currentCharPic = charKostek;
     }
 
-    console.log("playerPositionRedux", playerPosition);
+    console.log("direction", playerDirection);
     const playerStyles = {
         top: `${playerPosition.y*gameConfig.boardFieldSize}px`,
         left: `${playerPosition.x*gameConfig.boardFieldSize}px`,
         width: `${gameConfig.boardFieldSize}px`,
         height: `${gameConfig.boardFieldSize}px`,
         backgroundImage: `url(${currentCharPic})`,
-        backgroundPosition: "-50px 0"
+        backgroundPositionX: "-50px",
+        backgroundPositionY: "0"
     }
 
     useEffect(() => {
@@ -53,22 +54,24 @@ const Player = ({ currentChar, playerPosition }) => {
 
     
     return (
-        <div className="player" style={playerStyles}>
-            P
-        </div>
+        <div className="player" style={playerStyles}> </div>
     )
 }
 
 Player.propTypes = {
     playerPosition: PropTypes.object.isRequired,
-    currentChar: PropTypes.object.isRequired
+    currentChar: PropTypes.object.isRequired,
+    playerDirection: PropTypes.string.isRequired
 }
+
 
 const mapStateToProps = state => {
     return {
         playerPosition: state.game.player.position,
+        playerDirection: state.game.player.direction,
         currentChar: state.game.currentChar
     }
 }
+
 
 export default connect(mapStateToProps)(Player);

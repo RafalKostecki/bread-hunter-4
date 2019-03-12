@@ -17,7 +17,8 @@ const initState = {
         position: {
             x: 10,
             y: 7
-        }
+        },
+        direction: 'down'
     }
 };
 
@@ -43,6 +44,7 @@ const gameReducer = (state = initState, action) => {
             return {
                 ...state,
                 player: {
+                    ...state.player,
                     position: {
                         x: state.player.position.x + action.position.x,
                         y: state.player.position.y + action.position.y
@@ -50,7 +52,6 @@ const gameReducer = (state = initState, action) => {
                 }
             }
         case 'CHANGE_BOARD_POSITION':
-            console.log("here")
             return {
                 ...state,
                 board: {
@@ -58,6 +59,14 @@ const gameReducer = (state = initState, action) => {
                         top: state.board.position.top + action.position.top,
                         left: state.board.position.left + action.position.left
                     }
+                }
+            }
+        case 'CHANGE_PLAYER_DIRECTION':
+            return {
+                ...state,
+                player: {
+                    ...state.player,
+                    direction: action.direction
                 }
             }
         default:
