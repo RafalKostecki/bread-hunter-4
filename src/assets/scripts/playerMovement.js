@@ -40,6 +40,8 @@ export const keyUpHandler = key => {
 
 
 const changePlayerPosition = keyCode => {
+    if(checkCollisions(keyCode)) return;
+
     let coordinateChange = {x: 0, y: 0};
     let direction = 'down';
 
@@ -66,4 +68,31 @@ const changePlayerPosition = keyCode => {
 
     store.dispatch(setPlayerPos(coordinateChange))
     store.dispatch(setPlayerDirection(direction))
+}
+
+
+const checkCollisions = keyCode => {
+    const storeData = store.getState();
+    const playerPosition = storeData.game.player.position;
+    const boardSize = gameConfig.boardSize;
+
+    console.log(playerPosition);
+    console.log(boardSize);
+
+    switch(keyCode) {
+        case 87: //up
+            if (playerPosition.y === 0) return true;
+        break;
+        case 68: //right
+            if (playerPosition.x === boardSize.x-1) return true;
+        break;
+        case 83: //down
+            if (playerPosition.y === boardSize.y-1) return true;
+        break;
+        case 65: //left
+            if (playerPosition.x === 0) return true;
+        break;
+        default:
+            return;
+    }
 }

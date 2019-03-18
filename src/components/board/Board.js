@@ -36,7 +36,7 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos }
 
         const top = -Math.floor(playerPosition.y/2)*gameConfig.boardFieldSize;
         const left = -Math.floor(playerPosition.x/2)*gameConfig.boardFieldSize;
-        if (boardSwitch) setBoardPos({top: top, left: left});
+        //if (boardSwitch) setBoardPos({top: top, left: left});
         boardSwitch = false;
     });
 
