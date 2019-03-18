@@ -34,7 +34,6 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
             currentCharPic = charKostek;
     }
 
-    console.log("direction", playerDirection);
     const playerStyles = {
         top: `${playerPosition.y*gameConfig.boardFieldSize}px`,
         left: `${playerPosition.x*gameConfig.boardFieldSize}px`,

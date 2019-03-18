@@ -19,6 +19,7 @@ export const keyDownHandler = key => {
     wasPressed = true;
 
     if (!firstIteration) {
+        changePlayerPosition(key.keyCode);
         stepInterval = setInterval(() => {
             if (!wasPressed) return;
 
