@@ -37,3 +37,10 @@ export const setPlayerDirection = direction => {
         direction
     }
 }
+
+export const createBoardMatrix = matrix => {
+    return {
+        type: 'CREATE_BOARD_MATRIX',
+        matrix
+    }
+}

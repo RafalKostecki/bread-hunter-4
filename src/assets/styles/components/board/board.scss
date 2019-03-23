@@ -3,7 +3,7 @@
     height: calc(100% - 60px);
     position: relative;
     z-index: 0;
-    overflow: auto;
+    overflow: hidden;
 
     border-top: 7px solid $decColor1;
     border-right: 7px solid $decColor1;
@@ -17,4 +17,5 @@
     flex-wrap: wrap;
 
     background: palegoldenrod;
+    transition: all 200ms linear;
 }

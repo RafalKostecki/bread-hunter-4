@@ -5,17 +5,23 @@ import { connect } from 'react-redux';
 //Import other components
 import BoardField from './BoardField';
 import Player from '../Player';
+import Bread from '../Bread';
 
 //Import actions
-import { setBoardPos } from '../../redux/actions/gameActions';
+import { setBoardPos, createBoardMatrix } from '../../redux/actions/gameActions';
 
 //Import configs
 import gameConfig from '../../assets/configs/gameConfig.json';
 
+//Import scripts
+import { generateBreads, breadInterval } from '../../assets/scripts/breads';
+
+
 
 let boardSwitch = true;
 
-export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos }) => {
+export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, createBoardMatrix }) => {
+
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
         height: `${gameConfig.boardSize.y*gameConfig.boardFieldSize}px`,
@@ -23,22 +29,32 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos }
         left: `${boardPosition.left}px`
     }
 
-    const boardMatrix = [];
-
     useEffect(()=> { //create boardMatrix
+        generateBoardMatrix();
+
+        const top = -Math.floor(playerPosition.y/2)*gameConfig.boardFieldSize;
+        const left = -Math.floor(playerPosition.x/2)*gameConfig.boardFieldSize;
+        if (boardSwitch) setBoardPos({top: top, left: left});
+        boardSwitch = false;
+
+        if (!isRunGame) clearInterval(breadInterval);
+    });
+
+    
+    const generateBoardMatrix = () => {
+        const boardMatrix = [];
+
         for (let y=0; y<gameConfig.boardSize.y; y++) {
             const yAxis = [];
             for (let x=0; x<gameConfig.boardSize.y; x++) {
-                yAxis.push(0)
+                yAxis.push(0);
             }
             boardMatrix.push(yAxis);
         }
 
-        const top = -Math.floor(playerPosition.y/2)*gameConfig.boardFieldSize;
-        const left = -Math.floor(playerPosition.x/2)*gameConfig.boardFieldSize;
-        //if (boardSwitch) setBoardPos({top: top, left: left});
-        boardSwitch = false;
-    });
+        createBoardMatrix(boardMatrix)
+        generateBreads();
+    }
 
     const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {
         const row = Math.floor(id/gameConfig.boardSize.x);
@@ -46,10 +62,9 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos }
 
         return <BoardField 
             key={id}
-            id={`${row}.${column}`}
+            id={`${column}.${row}`}
         />
     })
-
 
     return (
         <div className="boardWindow">
@@ -65,7 +80,8 @@ Board.propTypes = {
     boardPosition: PropTypes.object.isRequired,
     isRunGame: PropTypes.bool.isRequired,
     playerPosition: PropTypes.object.isRequired,
-    setBoardPos: PropTypes.function
+    setBoardPos: PropTypes.function,
+    createBoardMatrix: PropTypes.function
 }
 
 const mapStateToProps = state => {
@@ -78,7 +94,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setBoardPos: position => {dispatch(setBoardPos(position))}
+        setBoardPos: position => { dispatch(setBoardPos(position)) },
+        createBoardMatrix: matrix => { dispatch(createBoardMatrix(matrix)) }
     }
 }
 

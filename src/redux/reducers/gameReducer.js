@@ -11,7 +11,8 @@ const initState = {
         position: {
             top: 0,
             left: 0
-        }
+        },
+        matrix: []
     },
     player: {
         position: {
@@ -55,6 +56,7 @@ const gameReducer = (state = initState, action) => {
             return {
                 ...state,
                 board: {
+                    ...state.board,
                     position: {
                         top: state.board.position.top + action.position.top,
                         left: state.board.position.left + action.position.left
@@ -67,6 +69,14 @@ const gameReducer = (state = initState, action) => {
                 player: {
                     ...state.player,
                     direction: action.direction
+                }
+            }
+        case 'CREATE_BOARD_MATRIX': 
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    matrix: action.matrix
                 }
             }
         default:

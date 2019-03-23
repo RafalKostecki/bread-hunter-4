@@ -1,7 +1,7 @@
 import { store } from '../../Game';
 
 //Import actions
-import { setPlayerPos, setPlayerDirection } from '../../redux/actions/gameActions';
+import { setPlayerPos, setPlayerDirection, setBoardPos } from '../../redux/actions/gameActions';
 
 //Import configs
 import gameConfig from '../configs/gameConfig';
@@ -43,23 +43,28 @@ const changePlayerPosition = keyCode => {
     if(checkCollisions(keyCode)) return;
 
     let coordinateChange = {x: 0, y: 0};
+    let boardMove = {top: 0, left: 0};
     let direction = 'down';
 
     switch(keyCode) {
         case 87: //up
             coordinateChange = {x: 0, y: -1};
+            boardMove = {top: 50, left: 0};
             direction = 'up';
         break;
         case 68: //right
             coordinateChange = {x: 1, y: 0};
+            boardMove = {top: 0, left: -50};
             direction = 'right';
         break;
         case 83: //down
             coordinateChange = {x: 0, y: 1};
+            boardMove = {top: -50, left: 0};
             direction = 'down';
         break;
         case 65: //left
             coordinateChange = {x: -1, y: 0};
+            boardMove = {top: 0, left: 50};
             direction = 'left'
         break;
         default:
@@ -68,6 +73,7 @@ const changePlayerPosition = keyCode => {
 
     store.dispatch(setPlayerPos(coordinateChange))
     store.dispatch(setPlayerDirection(direction))
+    store.dispatch(setBoardPos(boardMove))
 }
 
 
@@ -75,9 +81,6 @@ const checkCollisions = keyCode => {
     const storeData = store.getState();
     const playerPosition = storeData.game.player.position;
     const boardSize = gameConfig.boardSize;
-
-    console.log(playerPosition);
-    console.log(boardSize);
 
     switch(keyCode) {
         case 87: //up
