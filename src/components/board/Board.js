@@ -8,7 +8,7 @@ import Player from '../Player';
 import Bread from '../Bread';
 
 //Import actions
-import { setBoardPos, createBoardMatrix } from '../../redux/actions/gameActions';
+import { setBoardPos, changeBoardMatrix } from '../../redux/actions/gameActions';
 
 //Import configs
 import gameConfig from '../../assets/configs/gameConfig.json';
@@ -19,8 +19,9 @@ import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 
 
 let boardSwitch = true;
+let firstIteration = true;
 
-export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, createBoardMatrix }) => {
+export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, changeBoardMatrix }) => {
 
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
@@ -30,7 +31,7 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
     }
 
     useEffect(()=> { //create boardMatrix
-        generateBoardMatrix();
+        if (isRunGame) generateBoardMatrix();
 
         const top = -Math.floor(playerPosition.y/2)*gameConfig.boardFieldSize;
         const left = -Math.floor(playerPosition.x/2)*gameConfig.boardFieldSize;
@@ -42,6 +43,10 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
 
     
     const generateBoardMatrix = () => {
+        if (!firstIteration) return;
+
+        firstIteration = false;
+
         const boardMatrix = [];
 
         for (let y=0; y<gameConfig.boardSize.y; y++) {
@@ -52,7 +57,7 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
             boardMatrix.push(yAxis);
         }
 
-        createBoardMatrix(boardMatrix)
+        changeBoardMatrix(boardMatrix)
         generateBreads();
     }
 
@@ -95,7 +100,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setBoardPos: position => { dispatch(setBoardPos(position)) },
-        createBoardMatrix: matrix => { dispatch(createBoardMatrix(matrix)) }
+        changeBoardMatrix: matrix => { dispatch(changeBoardMatrix(matrix)) }
     }
 }
 

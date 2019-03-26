@@ -1,7 +1,7 @@
 {
     "boardSize": {
-        "x": 20,
-        "y": 15
+        "x": 12,
+        "y": 10
     },
     "boardFieldSize": 50,
     "playerStepTime": 200

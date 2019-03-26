@@ -7,6 +7,7 @@ import gameConfig from '../assets/configs/gameConfig.json';
 
 //Import scripts
 import { keyDownHandler, keyUpHandler } from '../assets/scripts/playerMovement';
+import { chooseBread } from '../assets/scripts/chooseBread';
 
 //Import images
 import charKostek from '../assets/images/charKostek.png';
@@ -48,6 +49,7 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
         const body = document.getElementsByTagName("body");
 
         if (body[0]) body[0].addEventListener("keydown", keyDownHandler);
+        if (body[0]) body[0].addEventListener("keydown", chooseBread);
         if (body[0]) body[0].addEventListener("keyup", keyUpHandler);
     })
 

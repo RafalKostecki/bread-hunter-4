@@ -71,7 +71,7 @@ const gameReducer = (state = initState, action) => {
                     direction: action.direction
                 }
             }
-        case 'CREATE_BOARD_MATRIX': 
+        case 'CHANGE_BOARD_MATRIX': 
             return {
                 ...state,
                 board: {
