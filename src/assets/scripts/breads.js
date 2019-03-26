@@ -9,6 +9,9 @@ import { changeBoardMatrix } from '../../redux/actions/gameActions';
 //Import images
 import breadPicPath from '../images/breadIcon.png';
 
+//Import scripts
+import { getRandomNum } from './maths';
+
 
 let firstIteration = false;
 export let breadInterval;
@@ -23,10 +26,12 @@ export const generateBreads = () => {
 
     firstIteration = true;
     breadInterval = window.setInterval(() => {
-        const idX = getRandomNum(boardX-1);
-        const idY = getRandomNum(boardY-1);
+        const idX = getRandomNum(0, boardX);
+        const idY = getRandomNum(0, boardY);
         const id = `${idX}.${idY}`;
         const boardField = document.getElementById(id);
+
+        if (boardMatrix[idY][idX] === 2) return; //cannot set bread at barrier
 
         boardMatrix[idY][idX] = 1;
         boardField.style.backgroundImage = `url(${breadPicPath})`;
@@ -34,8 +39,4 @@ export const generateBreads = () => {
     }, 1500);
 }
 
-const getRandomNum = max => {
-    const number = Math.floor(Math.random() * max);
 
-    return number;
-}

@@ -3,6 +3,10 @@
         "x": 12,
         "y": 10
     },
+    "barriersQuantity": {
+        "min": 5,
+        "max": 8
+    },
     "boardFieldSize": 50,
     "playerStepTime": 200
 }

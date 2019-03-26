@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 //Import other components
 import BoardField from './BoardField';
 import Player from '../Player';
-import Bread from '../Bread';
 
 //Import actions
 import { setBoardPos, changeBoardMatrix } from '../../redux/actions/gameActions';
@@ -15,7 +14,7 @@ import gameConfig from '../../assets/configs/gameConfig.json';
 
 //Import scripts
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
-
+import { generateBarriers } from '../../assets/scripts/barriers';
 
 
 let boardSwitch = true;
@@ -55,8 +54,9 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
             boardMatrix.push(yAxis);
         }
 
-        changeBoardMatrix(boardMatrix)
-        generateBreads();
+        changeBoardMatrix(boardMatrix); //0
+        generateBarriers(); //1
+        generateBreads(); //2
     }
 
     const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {
