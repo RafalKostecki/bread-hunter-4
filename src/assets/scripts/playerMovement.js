@@ -81,19 +81,20 @@ const checkCollisions = keyCode => {
     const storeData = store.getState();
     const playerPosition = storeData.game.player.position;
     const boardSize = gameConfig.boardSize;
+    const boardMatrix = storeData.game.board.matrix;
 
     switch(keyCode) {
         case 87: //up
-            if (playerPosition.y === 0) return true;
+            if (playerPosition.y === 0 || boardMatrix[playerPosition.y - 1][playerPosition.x] === 2) return true;
         break;
         case 68: //right
-            if (playerPosition.x === boardSize.x-1) return true;
+            if (playerPosition.x === boardSize.x-1 || boardMatrix[playerPosition.y][playerPosition.x + 1] === 2) return true;
         break;
         case 83: //down
-            if (playerPosition.y === boardSize.y-1) return true;
+            if (playerPosition.y === boardSize.y-1 || boardMatrix[playerPosition.y + 1][playerPosition.x] === 2) return true;
         break;
         case 65: //left
-            if (playerPosition.x === 0) return true;
+            if (playerPosition.x === 0 || boardMatrix[playerPosition.y][playerPosition.x - 1] === 2) return true;
         break;
         default:
             return;
