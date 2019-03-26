@@ -50,10 +50,8 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
         const boardMatrix = [];
 
         for (let y=0; y<gameConfig.boardSize.y; y++) {
-            const yAxis = [];
-            for (let x=0; x<gameConfig.boardSize.y; x++) {
-                yAxis.push(0);
-            }
+            const yAxis = Array(gameConfig.boardSize.x).fill(0);
+
             boardMatrix.push(yAxis);
         }
 
