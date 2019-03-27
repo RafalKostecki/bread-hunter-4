@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Item from './Item';
 
 
-const GameInfo = ({uiBgPic, gameInfoItems}) => {
+const GameInfo = ({ uiBgPic, gameInfoItems }) => {
   const styles = {
     backgroundImage: `url(${uiBgPic})`
   }
@@ -17,7 +17,7 @@ const GameInfo = ({uiBgPic, gameInfoItems}) => {
 
   return (
     <aside className="gameInfo" style={styles}>
-        {items}
+      {items}
     </aside>
   )
 }

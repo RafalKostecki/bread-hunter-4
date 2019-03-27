@@ -83,8 +83,8 @@ Board.propTypes = {
     boardPosition: PropTypes.object.isRequired,
     isRunGame: PropTypes.bool.isRequired,
     playerPosition: PropTypes.object.isRequired,
-    setBoardPos: PropTypes.function,
-    createBoardMatrix: PropTypes.function
+    setBoardPos: PropTypes.func,
+    createBoardMatrix: PropTypes.func
 }
 
 const mapStateToProps = state => {

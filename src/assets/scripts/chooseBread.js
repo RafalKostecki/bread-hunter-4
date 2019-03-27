@@ -5,6 +5,7 @@ import gameConfig from '../configs/gameConfig';
 
 //Import actions
 import { changeBoardMatrix } from '../../redux/actions/gameActions';
+import { setStat } from '../../redux/actions/uiActions';
 
 
 export const chooseBread = key => {
@@ -31,10 +32,15 @@ export const chooseBread = key => {
         if (boardMatrix[pos.y][pos.x] === 1) {
             const id = `${pos.x}.${pos.y}`;
             const boardField = document.getElementById(id);
+            let breadQuantity = storeData.ui.gameInfoItems[2].value;
+            const stats = [...storeData.ui.gameInfoItems];
+            stats[2].value = breadQuantity + 1;
 
             boardMatrix[pos.y][pos.x] = 0;            
             boardField.style.backgroundImage = 'none';
             store.dispatch(changeBoardMatrix(boardMatrix));
+            console.log(stats[2])
+            store.dispatch(setStat(stats));
 
             return; //prevent choose fewer loaf of breads at the same time
         }

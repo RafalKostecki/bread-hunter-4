@@ -19,7 +19,7 @@ const Button = ({text, modifier, click, disable=false}) => {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
 	modifier: PropTypes.string,
-  click: PropTypes.function,
+  click: PropTypes.func,
   disable: PropTypes.bool
 }
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 
 const Item = ({name, value, pic}) => {
-
     return (
         <div className="item" id={`gi-${name}`}>
             <div className="item__pic">
@@ -22,4 +21,5 @@ Item.propTypes = {
     value: PropTypes.any
 }
 
+  
 export default Item;

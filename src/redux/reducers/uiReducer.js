@@ -71,9 +71,10 @@ const initState = {
 
 const uiReducer = (state = initState, action) => {
     switch(action.type) {
-        case 'example':
+        case 'SET_STAT':
             return {
-                ...state
+                ...state,
+                gameInfoItems: [...action.payload]
             }
         default:
             return state;
