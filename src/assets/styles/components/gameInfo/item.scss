@@ -17,16 +17,20 @@
 
     &__value {
         display: flex;
-        width: 30px;
         justify-content: center;
         align-items: center;
         padding: 8px 4px;
 
         & span {
             display: block;
+            width: 40px;
 
             font-size: 1.2em;
             font-weight: 400;
+        }
+
+        &--timer {
+            min-width: 60px;
         }
     }
 }

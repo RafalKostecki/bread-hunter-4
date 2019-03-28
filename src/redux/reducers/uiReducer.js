@@ -4,8 +4,6 @@ import marekCharPic from '../../assets/images/marekCharIcon.png';
 import matiCharPic from '../../assets/images/matiCharIcon.png';
 
 import uiBgPic from '../../assets/images/settingsTexture.png';
-
-import timeIcon from '../../assets/images/timeIcon.png';
 import healthIcon from '../../assets/images/healthIcon.png';
 import accuracyIcon from '../../assets/images/accuracyIcon.png';
 import breadStatIcon from '../../assets/images/breadStatIcon.png';
@@ -34,11 +32,6 @@ const initState = {
         }
     ],
     gameInfoItems: [
-        {
-            name: "Time",
-            value: "0:00",
-            pic: timeIcon
-        },
         {
             name: "Lifes",
             value: 5,

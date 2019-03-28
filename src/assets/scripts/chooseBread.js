@@ -32,14 +32,13 @@ export const chooseBread = key => {
         if (boardMatrix[pos.y][pos.x] === 1) {
             const id = `${pos.x}.${pos.y}`;
             const boardField = document.getElementById(id);
-            let breadQuantity = storeData.ui.gameInfoItems[2].value;
+            let breadQuantity = storeData.ui.gameInfoItems[1].value;
             const stats = [...storeData.ui.gameInfoItems];
-            stats[2].value = breadQuantity + 1;
+            stats[1].value = breadQuantity + 1;
 
             boardMatrix[pos.y][pos.x] = 0;            
             boardField.style.backgroundImage = 'none';
             store.dispatch(changeBoardMatrix(boardMatrix));
-            console.log(stats[2])
             store.dispatch(setStat(stats));
 
             return; //prevent choose fewer loaf of breads at the same time
