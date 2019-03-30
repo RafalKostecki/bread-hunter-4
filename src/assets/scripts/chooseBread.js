@@ -5,6 +5,7 @@ import gameConfig from '../configs/gameConfig';
 
 //Import actions
 import { changeBoardMatrix } from '../../redux/actions/gameActions';
+import { stopGame } from '../../redux/actions/gameActions';
 import { setStat } from '../../redux/actions/uiActions';
 
 
@@ -32,14 +33,20 @@ export const chooseBread = key => {
         if (boardMatrix[pos.y][pos.x] === 1) {
             const id = `${pos.x}.${pos.y}`;
             const boardField = document.getElementById(id);
-            let breadQuantity = storeData.ui.gameInfoItems[1].value;
+            const breadQuantity = storeData.ui.gameInfoItems[1].value;
             const stats = [...storeData.ui.gameInfoItems];
-            stats[1].value = breadQuantity + 1;
+
+            stats[1].value = breadQuantity + storeData.game.pickingQuantity;
 
             boardMatrix[pos.y][pos.x] = 0;            
             boardField.style.backgroundImage = 'none';
             store.dispatch(changeBoardMatrix(boardMatrix));
             store.dispatch(setStat(stats));
+
+            if (stats[1].value >= gameConfig.requiredBreads) {
+                console.log('wygrales');
+                store.dispatch(stopGame());
+            }
 
             return; //prevent choose fewer loaf of breads at the same time
         }

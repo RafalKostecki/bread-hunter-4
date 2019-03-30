@@ -20,7 +20,8 @@ const initState = {
             y: 7
         },
         direction: 'down'
-    }
+    },
+    pickingQuantity: 1
 };
 
 
@@ -78,6 +79,11 @@ const gameReducer = (state = initState, action) => {
                     ...state.board,
                     matrix: action.matrix
                 }
+            }
+        case 'SET_PICKING_QUANTITY': 
+            return {
+                ...state,
+                pickingQuantity: action.value
             }
         default:
             return state;

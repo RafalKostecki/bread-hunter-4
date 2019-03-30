@@ -8,5 +8,11 @@
         "max": 8
     },
     "boardFieldSize": 50,
-    "playerStepTime": 200
+    "playerStepTime": 200,
+    "requiredBreads": 50,
+    "greekyKosteBuff": {
+        "time": 5000,
+        "increase": 3
+    },
+    "breadsAddingTime": 800
 }

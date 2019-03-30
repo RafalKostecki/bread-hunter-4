@@ -44,3 +44,10 @@ export const changeBoardMatrix = matrix => {
         matrix
     }
 }
+
+export const setPickingQuantity = value => {
+    return {
+        type: 'SET_PICKING_QUANTITY',
+        value
+    }
+}

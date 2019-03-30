@@ -9,7 +9,11 @@ let min = 0;
 let sec = 0;
 let msec = 0;
 
-const time = () => {
+const time = isRunGame => {
+  if (!isRunGame) {
+    return;
+  }
+
   const tmr = document.getElementById('tmr');
 
   timerInterval = window.setInterval(() => {
@@ -31,10 +35,9 @@ const time = () => {
 
 
 const Timer = ({ isRunGame }) => {
-  if (isRunGame) {
-    clearInterval(timerInterval)
-    time();
-  }
+  clearInterval(timerInterval)
+
+  if (isRunGame) time(isRunGame);
 
   return (
     <div className="item">

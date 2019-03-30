@@ -36,7 +36,7 @@ export const generateBreads = () => {
         boardMatrix[idY][idX] = 1;
         boardField.style.backgroundImage = `url(${breadPicPath})`;
         store.dispatch(changeBoardMatrix(boardMatrix))
-    }, 1500);
+    }, gameConfig.breadsAddingTime);
 }
 
 
