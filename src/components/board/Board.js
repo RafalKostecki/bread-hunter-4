@@ -32,13 +32,28 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();
 
-        const top = -Math.floor(playerPosition.y/2)*gameConfig.boardFieldSize;
-        const left = -Math.floor(playerPosition.x/2)*gameConfig.boardFieldSize;
-        if (boardSwitch) setBoardPos({top: top, left: left});
-        boardSwitch = false;
+        setStartPosition();
+        
+        
 
         if (!isRunGame) clearInterval(breadInterval);
     });
+
+    const setStartPosition = () => {
+        if (!boardSwitch) return;
+
+        const boardWindow = document.getElementById("boardWindow");
+        const boardWindowStyles = window.getComputedStyle(boardWindow);
+        const boardWindowWidth = parseInt(boardWindowStyles.getPropertyValue('width'));
+        const boardWindowHeight = parseInt(boardWindowStyles.getPropertyValue('height'));
+        const boardWidth = gameConfig.boardSize.x*gameConfig.boardFieldSize;
+        const boardHeight = gameConfig.boardSize.y*gameConfig.boardFieldSize;
+        const top = (boardWindowHeight - boardHeight) / 2;
+        const left = (boardWindowWidth - boardWidth) / 2;
+
+        setBoardPos({top: top, left: left});
+        boardSwitch = false;
+    }
 
     
     const generateBoardMatrix = () => {
@@ -70,7 +85,7 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
     })
 
     return (
-        <div className="boardWindow">
+        <div id="boardWindow" className="boardWindow">
             <div className="board" style={boardStyles}>
                 { isRunGame ? <Player /> : null }
                 {boardFields}

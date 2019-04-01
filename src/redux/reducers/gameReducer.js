@@ -16,8 +16,8 @@ const initState = {
     },
     player: {
         position: {
-            x: 10,
-            y: 7
+            x: 6,
+            y: 5
         },
         direction: 'down'
     },

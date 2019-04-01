@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-//Import other components
+//Import components
 import Header from './Header';
 import Credits from './Credits';
 import Characters from './Characters';
@@ -16,15 +16,11 @@ import config from '../../assets/configs/gameConfig';
 
 
 const ControlPanel = ({uiBgPic, isRunGame, runGame, breads }) => {
-    const [cpIsActive, setCpIsActive] = useState(true);
+    const cpVisibility = document.body.clientWidth < 750 ? false : true;
+    const [cpIsActive, setCpIsActive] = useState(cpVisibility);
 
     const bgStyle = {
         backgroundImage: `url(${uiBgPic})`
-    }
-
-    const hideShowCp = () => {
-        setCpIsActive(!cpIsActive);
-
     }
 
     const runGameHandler = () => {
@@ -39,14 +35,14 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, breads }) => {
                 cpIsActive ? (
                     <aside className="controlPanel" style={bgStyle}>
                         <div className="controlPanel__hidder" style={bgStyle}></div>
-                        <div className="controlPanel__hideCpBtn" onClick={hideShowCp}></div>
+                        <div className="controlPanel__hideCpBtn" onClick={() => setCpIsActive(!cpIsActive)}></div>
                         <Header />
                         <Characters />
                         <Button text='start' modifier='start' click={runGameHandler} disable={isRunGame}></Button>
                         <Credits />
                     </aside>
                 ) : (
-                    <div className="controlPanel__showCpBtn" onClick={hideShowCp}></div>
+                    <div className="controlPanel__showCpBtn" onClick={() => setCpIsActive(!cpIsActive)}></div>
                 )
             }
         </React.Fragment>
