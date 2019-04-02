@@ -21,7 +21,8 @@ const initState = {
         },
         direction: 'down'
     },
-    pickingQuantity: 1
+    pickingQuantity: 1,
+    "endStats": true
 };
 
 
@@ -84,6 +85,11 @@ const gameReducer = (state = initState, action) => {
             return {
                 ...state,
                 pickingQuantity: action.value
+            }
+        case 'SET_END_STATS_BOOL':
+            return {
+                ...state,
+                endStats: action.bool
             }
         default:
             return state;

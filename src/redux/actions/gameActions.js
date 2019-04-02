@@ -52,9 +52,9 @@ export const setPickingQuantity = value => {
     }
 }
 
-export const setEndStatsBool= value => {
+export const setEndStatsBool= bool => {
     return {
         type: 'SET_END_STATS_BOOL',
-        value
+        bool
     }
 }

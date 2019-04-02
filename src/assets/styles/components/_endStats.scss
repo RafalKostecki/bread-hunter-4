@@ -1,0 +1,54 @@
+.endStats {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    &__window {
+        flex: 1;
+        width: 60%;
+        max-height: 300px;
+
+        background: red;
+    }
+
+}
+
+.endStatsWindow {
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    &__content {
+        flex: 1;
+
+        & h2 {
+            margin-bottom: 15px;
+
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+
+    &__info {
+        flex: 1;
+        margin-top: 10px;
+        padding: 10px 15px;
+
+        text-align: right;
+        text-transform: uppercase;
+        font-size: 10px;
+    }
+}
