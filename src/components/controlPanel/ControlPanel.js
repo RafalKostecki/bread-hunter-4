@@ -40,6 +40,9 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, breads }) => {
                         <Characters />
                         <Button text='start' modifier='start' click={runGameHandler} disable={isRunGame}></Button>
                         <Credits />
+                        <aside className="controlPanel__version">
+                            <span>beta 1.0.0</span>
+                        </aside>
                     </aside>
                 ) : (
                     <div className="controlPanel__showCpBtn" onClick={() => setCpIsActive(!cpIsActive)}></div>

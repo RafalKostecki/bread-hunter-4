@@ -12,6 +12,9 @@ import { setBoardPos, changeBoardMatrix } from '../../redux/actions/gameActions'
 //Import configs
 import gameConfig from '../../assets/configs/gameConfig.json';
 
+//Import images
+import bgPicPath from '../../assets/images/concreteFloor.jpg';
+
 //Import scripts
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
@@ -26,7 +29,8 @@ export const Board = ({ boardPosition , isRunGame, playerPosition, setBoardPos, 
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
         height: `${gameConfig.boardSize.y*gameConfig.boardFieldSize}px`,
         top: `${boardPosition.top}px`,
-        left: `${boardPosition.left}px`
+        left: `${boardPosition.left}px`,
+        backgroundImage: `url(${bgPicPath})`
     }
 
     useEffect(()=> { //create boardMatrix

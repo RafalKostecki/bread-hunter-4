@@ -8,6 +8,7 @@
     border-top: 7px solid $decColor1;
     border-right: 7px solid $decColor1;
     border-left: 7px solid $decColor1;
+    background-color: #1d1d1e;
 }
 
 .board {
@@ -16,6 +17,6 @@
     flex-direction: row;
     flex-wrap: wrap;
 
-    background: palegoldenrod;
+    border: 3px solid $decColor2;
     transition: all 200ms linear;
 }

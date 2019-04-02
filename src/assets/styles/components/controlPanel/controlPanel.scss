@@ -89,4 +89,18 @@
             transform: rotate(45deg);
         }
     }
+
+    &__version {
+        position: absolute;
+        flex: 1;
+        padding: 10px 15px;
+        bottom: 0;
+        right: 0;
+        
+        color: $fontColor1;
+        letter-spacing: 2px;
+        font-size: 9px;
+        text-align: right;
+        font-weight: 700;
+    }
 }
