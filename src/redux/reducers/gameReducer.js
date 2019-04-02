@@ -22,7 +22,7 @@ const initState = {
         direction: 'down'
     },
     pickingQuantity: 1,
-    "endStats": true
+    "endStats": false
 };
 
 
@@ -90,6 +90,18 @@ const gameReducer = (state = initState, action) => {
             return {
                 ...state,
                 endStats: action.bool
+            }
+        case 'SET_BOARD_START_POS':
+            return {
+                ...state,
+                ...state,
+                board: {
+                    ...state.board,
+                    position: {
+                        top: action.position.top,
+                        left: action.position.left
+                    }
+                }
             }
         default:
             return state;

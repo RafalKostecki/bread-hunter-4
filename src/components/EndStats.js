@@ -11,7 +11,7 @@ const EndStats = ({ setEndStatsBool, stats }) => {
 	const generateStats = () => {
 		const statsToRender = stats.map((item, index) => {
 			return (
-				<li>{`${item.name}: ${item.value}`}</li>
+				<li key={index}>{`${item.name}: ${item.value}`}</li>
 			)
 		});
 

@@ -1,7 +1,7 @@
 import { store } from '../../Game';
 
 //Import actions
-import { setPlayerPos, setPlayerDirection, setBoardPos } from '../../redux/actions/gameActions';
+import { setPlayerPos, setPlayerDirection, setBoardPos, runGame } from '../../redux/actions/gameActions';
 
 //Import configs
 import gameConfig from '../configs/gameConfig';
@@ -13,6 +13,9 @@ let firstIteration = false;
 let stepInterval = undefined;
 
 export const keyDownHandler = key => {
+    const isRunGame = store.getState().game.isRunGame;
+
+    if (!isRunGame) return;
     const playerStepTime = gameConfig.playerStepTime;
 
     if (!wasPressed) currKeyDown = key.keyCode;

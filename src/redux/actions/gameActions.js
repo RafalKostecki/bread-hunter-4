@@ -31,6 +31,13 @@ export const setBoardPos = position => {
     }
 }
 
+export const setBoardStartPos = position => {
+    return {
+        type: 'SET_BOARD_START_POS',
+        position
+    }
+}
+
 export const setPlayerDirection = direction => {
     return {
         type: 'CHANGE_PLAYER_DIRECTION',

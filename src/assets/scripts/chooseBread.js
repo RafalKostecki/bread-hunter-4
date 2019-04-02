@@ -4,9 +4,11 @@ import { store } from '../../Game';
 import gameConfig from '../configs/gameConfig';
 
 //Import actions
-import { changeBoardMatrix } from '../../redux/actions/gameActions';
-import { stopGame } from '../../redux/actions/gameActions';
+import { changeBoardMatrix, setEndStatsBool, setPlayerPos, stopGame } from '../../redux/actions/gameActions';
 import { setStat } from '../../redux/actions/uiActions';
+
+//Import scripts
+import { setStartPosition } from './board';
 
 
 export const chooseBread = key => {
@@ -44,7 +46,8 @@ export const chooseBread = key => {
             store.dispatch(setStat(stats));
 
             if (stats[1].value >= gameConfig.requiredBreads) {
-                console.log('wygrales');
+                store.dispatch(setEndStatsBool(true));
+                setStartPosition(true);
                 store.dispatch(stopGame());
             }
 

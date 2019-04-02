@@ -20,9 +20,9 @@ import bgPicPath from '../../assets/images/concreteFloor.jpg';
 //Import scripts
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
+import { setStartPosition } from '../../assets/scripts/board';
 
 
-let boardSwitch = true;
 let firstIteration = true;
 
 export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, changeBoardMatrix }) => {
@@ -39,29 +39,9 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();
-
-        setStartPosition();
-        
-        
-
+        if (firstIteration) setStartPosition();   
         if (!isRunGame) clearInterval(breadInterval);
     });
-
-    const setStartPosition = () => {
-        if (!boardSwitch) return;
-
-        const boardWindow = document.getElementById("boardWindow");
-        const boardWindowStyles = window.getComputedStyle(boardWindow);
-        const boardWindowWidth = parseInt(boardWindowStyles.getPropertyValue('width'));
-        const boardWindowHeight = parseInt(boardWindowStyles.getPropertyValue('height'));
-        const boardWidth = gameConfig.boardSize.x*gameConfig.boardFieldSize;
-        const boardHeight = gameConfig.boardSize.y*gameConfig.boardFieldSize;
-        const top = (boardWindowHeight - boardHeight) / 2;
-        const left = (boardWindowWidth - boardWidth) / 2;
-
-        setBoardPos({top: top, left: left});
-        boardSwitch = false;
-    }
 
     
     const generateBoardMatrix = () => {
