@@ -1,7 +1,7 @@
 import { store } from '../../Game';
 
 //Import actions
-import { setPlayerPos, setPlayerDirection, setBoardPos, runGame } from '../../redux/actions/gameActions';
+import { changePlayerPos, setPlayerDirection, setBoardPos, runGame } from '../../redux/actions/gameActions';
 
 //Import configs
 import gameConfig from '../configs/gameConfig';
@@ -74,7 +74,7 @@ const changePlayerPosition = keyCode => {
             coordinateChange = {x: 0, y: 0};
     }
 
-    store.dispatch(setPlayerPos(coordinateChange))
+    store.dispatch(changePlayerPos(coordinateChange))
     store.dispatch(setPlayerDirection(direction))
     store.dispatch(setBoardPos(boardMove))
 }

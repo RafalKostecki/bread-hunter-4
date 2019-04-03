@@ -11,11 +11,9 @@ import Button from '../Button.js';
 //Import actions
 import { runGame } from '../../redux/actions/gameActions';
 
-//Import configs
-import config from '../../assets/configs/gameConfig';
 
-
-const ControlPanel = ({uiBgPic, isRunGame, runGame, breads }) => {
+const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
+    console.log(isRunGame);
     const cpVisibility = document.body.clientWidth < 750 ? false : true;
     const [cpIsActive, setCpIsActive] = useState(cpVisibility);
 
@@ -24,7 +22,7 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, breads }) => {
     }
 
     const runGameHandler = () => {
-        if (isRunGame || breads >= config.requiredBreads) return; //Cannot run game twice or more times
+        if (isRunGame || endStats) return; //Cannot run game twice or more times
 
         runGame();
     }
@@ -56,7 +54,6 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, breads }) => {
 ControlPanel.propTypes = {
     uiBgPic: PropTypes.string.isRequired,
     isRunGame: PropTypes.bool.isRequired,
-    breads: PropTypes.number.isRequired,
     runGame: PropTypes.func.isRequired
 }
 
@@ -65,7 +62,7 @@ const mapStateToProps = state => {
     return {
         isRunGame: state.game.isRunGame,
         uiBgPic: state.ui.panelBg,
-        breads: state.ui.gameInfoItems[1].value
+        endStats: state.game.endStats
     }
 }
 

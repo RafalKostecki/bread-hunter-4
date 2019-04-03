@@ -46,12 +46,27 @@ export const chooseBread = key => {
             store.dispatch(setStat(stats));
 
             if (stats[1].value >= gameConfig.requiredBreads) {
+                const clearStats = stats.map((stat, index) => {
+                    return {
+                        ...stat,
+                        "value": stats1[index]
+                    }
+                })
+
+    
                 store.dispatch(setEndStatsBool(true));
                 setStartPosition(true);
+                store.dispatch(setStat(clearStats))
+                store.dispatch(setPlayerPos({x: 6, y: 5}))
                 store.dispatch(stopGame());
+            
+
+                
             }
 
             return; //prevent choose fewer loaf of breads at the same time
         }
     }
 }
+
+const stats1 = [5, 0, 3, 2, 0]

@@ -54,6 +54,17 @@ const gameReducer = (state = initState, action) => {
                     }
                 }
             }
+        case 'SET_PLAYER_POSITION':
+            return {
+                ...state,
+                player: {
+                    ...state.player,
+                    position: {
+                        x: action.position.x,
+                        y: action.position.y
+                    }
+                }
+            }
         case 'CHANGE_BOARD_POSITION':
             return {
                 ...state,
