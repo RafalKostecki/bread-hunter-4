@@ -8,7 +8,6 @@ const Button = ({text, modifier, click, disable=false}) => {
 
   const clickHandler = disable ? ()=>{} : click;
 
-  console.log(clickHandler);
   return (
     <button className={`button ${mod} ${disableClass}`} onClick={() => clickHandler()}>
         <span>{text}</span>

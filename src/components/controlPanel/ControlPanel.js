@@ -13,7 +13,6 @@ import { runGame } from '../../redux/actions/gameActions';
 
 
 const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
-    console.log(isRunGame);
     const cpVisibility = document.body.clientWidth < 750 ? false : true;
     const [cpIsActive, setCpIsActive] = useState(cpVisibility);
 

@@ -4,7 +4,9 @@ import { store } from '../../Game';
 import gameConfig from '../configs/gameConfig';
 
 //Import actions
-import { setBoardStartPos } from '../../redux/actions/gameActions';
+import { setBoardStartPos, changeBoardMatrix } from '../../redux/actions/gameActions';
+
+
 
 let boardSwitch = true;
 export const setStartPosition = (clear=false) => {
@@ -19,8 +21,24 @@ export const setStartPosition = (clear=false) => {
     const boardHeight = gameConfig.boardSize.y*gameConfig.boardFieldSize;
     const top = (boardWindowHeight - boardHeight) / 2;
     const left = (boardWindowWidth - boardWidth) / 2;
-    console.log(top, left)
 
     store.dispatch(setBoardStartPos({top: top, left: left}));
     boardSwitch = false;
+}
+
+
+export const clearBoard = () => {
+    const boardMatrix = store.getState().game.board.matrix.map((row, rowIndex) => {
+        return row.map((field, fieldIndex) => {
+            const boardField = document.getElementById(`${fieldIndex}.${rowIndex}`);
+            boardField.style.backgroundImage = '';
+            return field = 0;
+        })
+    });
+
+
+
+    console.log(boardMatrix);
+
+    store.dispatch(changeBoardMatrix(boardMatrix))
 }
