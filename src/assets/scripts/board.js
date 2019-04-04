@@ -36,9 +36,5 @@ export const clearBoard = () => {
         })
     });
 
-
-
-    console.log(boardMatrix);
-
     store.dispatch(changeBoardMatrix(boardMatrix))
 }

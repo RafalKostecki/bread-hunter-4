@@ -41,6 +41,8 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
         if (isRunGame) generateBoardMatrix();
         if (firstIteration) setStartPosition();   
         if (!isRunGame) clearInterval(breadInterval);
+
+        if (!isRunGame) firstIteration = true;
     });
 
     
@@ -59,7 +61,7 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
 
         changeBoardMatrix(boardMatrix); //0
         generateBarriers(); //1
-        generateBreads(); //2
+        generateBreads(true); //2
     }
 
     const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {

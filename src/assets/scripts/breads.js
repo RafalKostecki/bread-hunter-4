@@ -13,18 +13,19 @@ import breadPicPath from '../images/breadIcon.png';
 import { getRandomNum } from './maths';
 
 
-let firstIteration = false;
+let firstIteration = true;
 export let breadInterval;
-export const generateBreads = () => {
+export const generateBreads = (clearFirstIteration) => {
+    if (clearFirstIteration) firstIteration = true;
     const storeData = store.getState();
     const isRunGame = storeData.game.isRunGame;
-    if (!isRunGame || firstIteration) return;
+    if (!isRunGame || !firstIteration) return;
 
     const boardMatrix = storeData.game.board.matrix;
     const boardX = gameConfig.boardSize.x;
     const boardY = gameConfig.boardSize.y;
 
-    firstIteration = true;
+    firstIteration = false;
     breadInterval = window.setInterval(() => {
         const idX = getRandomNum(0, boardX);
         const idY = getRandomNum(0, boardY);
