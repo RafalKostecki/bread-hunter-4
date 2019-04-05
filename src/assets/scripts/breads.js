@@ -17,8 +17,10 @@ let firstIteration = true;
 export let breadInterval;
 export const generateBreads = (clearFirstIteration) => {
     if (clearFirstIteration) firstIteration = true;
+
     const storeData = store.getState();
     const isRunGame = storeData.game.isRunGame;
+    
     if (!isRunGame || !firstIteration) return;
 
     const boardMatrix = storeData.game.board.matrix;

@@ -54,21 +54,13 @@ export const chooseBread = key => {
 
 
 const clearGame = () => {
-    const stats = [...store.getState().ui.gameInfoItems];
-    const statsBasicValues = [5, 0, 3, 2, 0];
-
-    const clearStats = stats.map((stat, index) => {
-        return {
-            ...stat,
-            "value": statsBasicValues[index]
-        }
-    })
-
-
     store.dispatch(setEndStatsBool(true));
     setStartPosition(true);
-    store.dispatch(setStat(clearStats))
     store.dispatch(setPlayerPos({x: 6, y: 5}))
     store.dispatch(stopGame());
     clearBoard();
+
+    setTimeout(() => {
+        
+    }, 500)
 }

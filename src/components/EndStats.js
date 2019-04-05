@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 
 //Import actions
 import { setEndStatsBool } from '../redux/actions/gameActions';
+import { setStat } from '../redux/actions/uiActions';
 
 
-const EndStats = ({ setEndStatsBool, stats }) => {
+const EndStats = ({ setEndStatsBool, stats, setStat }) => {
 
 	const generateStats = () => {
 		const statsToRender = stats.map((item, index) => {
@@ -16,17 +17,31 @@ const EndStats = ({ setEndStatsBool, stats }) => {
 		});
 
 		return statsToRender;
-	}
+    }
+    
+    const closeStats = () => {
+        const statsBasicValues = [5, 0, 3, 2, 0];
+
+        const clearStats = stats.map((stat, index) => {
+            return {
+                ...stat,
+                "value": statsBasicValues[index]
+            }
+        })
+        
+        setStat(clearStats);
+        setEndStatsBool(false);
+    }
 
 	return (
-    <div className="endStats" onClick={() => setEndStatsBool(false)}>
+    <div className="endStats" onClick={closeStats}>
         <div className="endStatsWindow">
             <div className="endStatsWindow__content">
-								<h2>stats</h2>
-								
-								<ul>
-									{ generateStats() }
-								</ul>
+                <h2>stats</h2>
+                
+                <ul>
+                    { generateStats() }
+                </ul>
             </div>
             <div className="endStatsWindow__info">
                 *To close the window, click anywhere.
@@ -52,7 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setEndStatsBool: () => {dispatch(setEndStatsBool())}
+        setEndStatsBool: bool => {dispatch(setEndStatsBool(bool))},
+        setStat: stat => {dispatch(setStat(stat))}
     }
 }
 
