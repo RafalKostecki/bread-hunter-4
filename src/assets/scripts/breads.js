@@ -16,6 +16,7 @@ import { getRandomNum } from './maths';
 let firstIteration = true;
 export let breadInterval;
 export const generateBreads = (clearFirstIteration) => {
+    return;
     if (clearFirstIteration) firstIteration = true;
 
     const storeData = store.getState();

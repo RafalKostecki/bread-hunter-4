@@ -22,14 +22,32 @@ export const generateBarriers = () => {
     
     for (let i = 0; i <= barriersQuantity; i++) {
         const coordinates = generatePlace();
-        const id = `${coordinates.x}.${coordinates.y}`;
-        const boardField = document.getElementById(id);
+        const board = document.getElementById("board");
 
-        boardField.style.backgroundImage = `url(${barrierPicPath})`;
+        const barrier = createBarrier(coordinates);
+        
+        board.appendChild(barrier);
+
+        barrier.style.backgroundImage = `url(${barrierPicPath})`;
         boardMatrix[coordinates.y][coordinates.x] = 2;
         store.dispatch(changeBoardMatrix(boardMatrix))
     }
 
+}
+
+const createBarrier = coordinates => {
+    const fieldSize = gameConfig.boardFieldSize;
+    const id = `barrier-${coordinates.x}.${coordinates.y}`;
+    const barrier = document.createElement('div');
+
+    barrier.style.top = `${coordinates.y*fieldSize}px`;
+    barrier.style.left = `${coordinates.x*fieldSize}px`;
+    barrier.style.position = 'absolute';
+    barrier.style.width = `${fieldSize}px`;
+    barrier.style.height = `${fieldSize}px`;
+    barrier.id = id;
+
+    return barrier;
 }
 
 

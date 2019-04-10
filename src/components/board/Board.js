@@ -80,9 +80,9 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
                 endStats ? ReactDOM.createPortal(<EndStats />, body) : null
             }
             <div id="boardWindow" className="boardWindow">
-                <div className="board" style={boardStyles}>
+                <div id="board" className="board" style={boardStyles}>
                     { isRunGame ? <Player /> : null }
-                    {boardFields}
+                    {/* boardFields*/}
                 </div>
             </div>
         </Fragment>
