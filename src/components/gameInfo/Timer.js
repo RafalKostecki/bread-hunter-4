@@ -38,6 +38,11 @@ const Timer = ({ isRunGame }) => {
   clearInterval(timerInterval)
 
   if (isRunGame) time(isRunGame);
+  else {
+    min = 0;
+    sec = 0;
+    msec = 0;
+  }
 
   return (
     <div className="item">
