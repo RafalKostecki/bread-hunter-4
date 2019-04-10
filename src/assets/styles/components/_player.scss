@@ -1,5 +1,6 @@
 .player {
     position: absolute;
+    z-index: 30;
 
     transition: all 200ms linear;
 }

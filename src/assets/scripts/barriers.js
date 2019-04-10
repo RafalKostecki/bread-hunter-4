@@ -28,7 +28,6 @@ export const generateBarriers = () => {
         
         board.appendChild(barrier);
 
-        barrier.style.backgroundImage = `url(${barrierPicPath})`;
         boardMatrix[coordinates.y][coordinates.x] = 2;
         store.dispatch(changeBoardMatrix(boardMatrix))
     }
@@ -45,8 +44,9 @@ const createBarrier = coordinates => {
     barrier.style.position = 'absolute';
     barrier.style.width = `${fieldSize}px`;
     barrier.style.height = `${fieldSize}px`;
+    barrier.style.backgroundImage = `url(${barrierPicPath})`;
     barrier.id = id;
-
+    
     return barrier;
 }
 

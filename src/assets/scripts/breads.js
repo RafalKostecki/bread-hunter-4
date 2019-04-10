@@ -16,7 +16,6 @@ import { getRandomNum } from './maths';
 let firstIteration = true;
 export let breadInterval;
 export const generateBreads = (clearFirstIteration) => {
-    return;
     if (clearFirstIteration) firstIteration = true;
 
     const storeData = store.getState();
@@ -32,15 +31,35 @@ export const generateBreads = (clearFirstIteration) => {
     breadInterval = window.setInterval(() => {
         const idX = getRandomNum(0, boardX);
         const idY = getRandomNum(0, boardY);
-        const id = `${idX}.${idY}`;
-        const boardField = document.getElementById(id);
+        const id = `bread-${idX}.${idY}`;
+        const board = document.getElementById("board");
 
         if (boardMatrix[idY][idX] === 2) return; //cannot set bread at barrier
 
+        const bread = createBread(id, {x: idX, y: idY});
+        board.appendChild(bread);
+
         boardMatrix[idY][idX] = 1;
-        boardField.style.backgroundImage = `url(${breadPicPath})`;
+        
         store.dispatch(changeBoardMatrix(boardMatrix))
     }, gameConfig.breadsAddingTime);
 }
 
+
+const createBread = (id, coordinates) => {
+    console.log(coordinates)
+    const fieldSize = gameConfig.boardFieldSize;
+    const bread = document.createElement('div');
+
+    bread.style.top = `${coordinates.y*fieldSize}px`;
+    bread.style.left = `${coordinates.x*fieldSize}px`;
+    bread.style.position = 'absolute';
+    bread.style.width = `${fieldSize}px`;
+    bread.style.height = `${fieldSize}px`;
+    bread.style.backgroundImage = `url(${breadPicPath})`;
+    bread.style.zIndex = "10";
+    bread.id = id;
+
+    return bread;
+}
 
