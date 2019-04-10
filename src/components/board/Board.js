@@ -64,15 +64,6 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
         generateBreads(true); //2
     }
 
-    const boardFields = [...Array(gameConfig.boardSize.x*gameConfig.boardSize.y)].map((element, id) => {
-        const row = Math.floor(id/gameConfig.boardSize.x);
-        const column = id - (row*gameConfig.boardSize.x);
-
-        return <BoardField 
-            key={id}
-            id={`${column}.${row}`}
-        />
-    })
 
     return (
         <Fragment>
@@ -82,7 +73,6 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
             <div id="boardWindow" className="boardWindow">
                 <div id="board" className="board" style={boardStyles}>
                     { isRunGame ? <Player /> : null }
-                    {/* boardFields*/}
                 </div>
             </div>
         </Fragment>

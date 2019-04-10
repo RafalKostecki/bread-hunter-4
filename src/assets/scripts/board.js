@@ -31,10 +31,13 @@ export const clearBoard = () => {
     const boardMatrix = store.getState().game.board.matrix.map((row, rowIndex) => {
         return row.map((field, fieldIndex) => {
             const boardField = document.getElementById(`${fieldIndex}.${rowIndex}`);
-            boardField.style.backgroundImage = '';
+           // boardField.style.backgroundImage = '';
             return field = 0;
         })
     });
+
+    const board = document.getElementById("board");
+    board.innerHTML = '';
 
     store.dispatch(changeBoardMatrix(boardMatrix))
 }
