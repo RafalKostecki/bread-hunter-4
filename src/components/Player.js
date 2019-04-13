@@ -20,7 +20,7 @@ import charPiotr from '../assets/images/charPiotr.png';
 let currDirection = 'down';
 const Player = ({ currentChar, playerPosition, playerDirection }) => {
     let currentCharPic;
-    let bgPos = {
+    const bgPos = {
         x: -50,
         y: 0
     }
@@ -46,10 +46,11 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
         top: `${playerPosition.y*gameConfig.boardFieldSize}px`,
         left: `${playerPosition.x*gameConfig.boardFieldSize}px`,
         width: `${gameConfig.boardFieldSize}px`,
-        height: `${gameConfig.boardFieldSize}px`,
-        backgroundImage: `url(${currentCharPic})`,
-        backgroundPositionX: `${bgPos.x}px`,
-        backgroundPositionY: `${bgPos.y}px`
+        height: `${gameConfig.boardFieldSize}px`
+    }
+
+    const playerBgStyles = {
+        backgroundImage: `url(${currentCharPic})`
     }
 
     useEffect(() => {
@@ -62,23 +63,11 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
         body.addEventListener("keyup", keyUpHandler);
     }, []);
 
-    useEffect(() => {
-        console.log('enter', currDirection, playerDirection);
-        if (currDirection !== playerDirection) {
-            console.log('return', currDirection, playerDirection);
-            currDirection = playerDirection;
-            return;
-        } 
-        else {
-            console.log(playerDirection)
-        }
-
-        
-    })
-
     
     return (
-        <div className="player" style={playerStyles}> </div>
+        <div className='player' style={playerStyles}> 
+            <div id='playerBg' className='player__bg' style={playerBgStyles}> </div>
+        </div>
     )
 }
 

@@ -77,6 +77,7 @@ const changePlayerPosition = keyCode => {
             coordinateChange = {x: 0, y: 0};
     }
 
+    movementAnimation(keyCode);
     store.dispatch(changePlayerPos(coordinateChange));
     store.dispatch(setPlayerDirection(direction));;
     store.dispatch(setBoardPos(boardMove));
@@ -105,4 +106,35 @@ const checkCollisions = keyCode => {
         default:
             return;
     }
+}
+
+
+const movementAnimation = keyCode => {
+    const player = document.getElementById('playerBg');
+
+    console.log(player);
+    switch(keyCode) {
+        case 87: //up
+            player.style.backgroundPositionY = '-150px';             
+        break;
+        case 68: //right
+            player.style.backgroundPositionY = '100px';   
+        break;
+        case 83: //down
+            player.style.backgroundPositionY = '0px';   
+        break;
+        case 65: //left
+            player.style.backgroundPositionY = '-50px';   
+        break;
+        default:
+            return;
+    }
+
+    player.style.backgroundPositionX = '0px';   
+    setTimeout(() => {
+        player.style.backgroundPositionX = '-100px'; 
+    }, 200 / 3);
+    setTimeout(() => {
+        player.style.backgroundPositionX = '-50px'; 
+    }, 200 / 2);
 }
