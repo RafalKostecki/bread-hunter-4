@@ -2,6 +2,7 @@
 import kostekCharPic from '../../assets/images/kostekCharIcon.png';
 import marekCharPic from '../../assets/images/marekCharIcon.png';
 import matiCharPic from '../../assets/images/matiCharIcon.png';
+import piotrCharPic from '../../assets/images/piotrCharIcon.png';
 
 import uiBgPic from '../../assets/images/settingsTexture.png';
 import healthIcon from '../../assets/images/healthIcon.png';
@@ -28,7 +29,7 @@ const initState = {
         },
         {
             name: "Piotr",
-            pic: matiCharPic
+            pic: piotrCharPic
         }
     ],
     gameInfoItems: [

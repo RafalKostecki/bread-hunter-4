@@ -6,11 +6,13 @@ import { changePlayerPos, setPlayerDirection, setBoardPos } from '../../redux/ac
 //Import configs
 import gameConfig from '../configs/gameConfig';
 
+
 let currKeyDown = undefined;
 let wasPressed = false;
 let firstIteration = false;
 
 let stepInterval = undefined;
+
 
 export const keyDownHandler = key => {
     const isRunGame = store.getState().game.isRunGame;
@@ -32,6 +34,7 @@ export const keyDownHandler = key => {
 
     firstIteration = true;
 }
+
 
 export const keyUpHandler = key => {
     if (!currKeyDown === key.keyCode) return;

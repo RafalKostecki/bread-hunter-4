@@ -14,10 +14,16 @@ import buffDispatcher from '../assets/scripts/buffs';
 import charKostek from '../assets/images/charKostek.png';
 import charMarek from '../assets/images/charMarek.png';
 import charMati from '../assets/images/charMati.png';
+import charPiotr from '../assets/images/charPiotr.png';
 
 
+let currDirection = 'down';
 const Player = ({ currentChar, playerPosition, playerDirection }) => {
     let currentCharPic;
+    let bgPos = {
+        x: -50,
+        y: 0
+    }
 
     switch(currentChar.name) {
         case 'Kostek':
@@ -30,7 +36,7 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
             currentCharPic = charMati;
         break;
         case 'Piotr':
-            currentCharPic = charMati;
+            currentCharPic = charPiotr;
         break;
         default:
             currentCharPic = charKostek;
@@ -42,8 +48,8 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
         width: `${gameConfig.boardFieldSize}px`,
         height: `${gameConfig.boardFieldSize}px`,
         backgroundImage: `url(${currentCharPic})`,
-        backgroundPositionX: "-50px",
-        backgroundPositionY: "0"
+        backgroundPositionX: `${bgPos.x}px`,
+        backgroundPositionY: `${bgPos.y}px`
     }
 
     useEffect(() => {
@@ -54,7 +60,21 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
         body.addEventListener("keydown", chooseBread);
         body.addEventListener("keydown", buffDispatcher);
         body.addEventListener("keyup", keyUpHandler);
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        console.log('enter', currDirection, playerDirection);
+        if (currDirection !== playerDirection) {
+            console.log('return', currDirection, playerDirection);
+            currDirection = playerDirection;
+            return;
+        } 
+        else {
+            console.log(playerDirection)
+        }
+
+        
+    })
 
     
     return (

@@ -28,10 +28,8 @@ export const setStartPosition = (clear=false) => {
 
 
 export const clearBoard = () => {
-    const boardMatrix = store.getState().game.board.matrix.map((row, rowIndex) => {
-        return row.map((field, fieldIndex) => {
-            const boardField = document.getElementById(`${fieldIndex}.${rowIndex}`);
-           // boardField.style.backgroundImage = '';
+    const boardMatrix = store.getState().game.board.matrix.map(row => {
+        return row.map(field => {
             return field = 0;
         })
     });
@@ -39,5 +37,5 @@ export const clearBoard = () => {
     const board = document.getElementById("board");
     board.innerHTML = '';
 
-    store.dispatch(changeBoardMatrix(boardMatrix))
+    store.dispatch(changeBoardMatrix(boardMatrix));
 }

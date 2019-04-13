@@ -47,7 +47,6 @@ export const chooseBread = key => {
         if (boardMatrix[pos.y][pos.x] === 1) {
             const id = `bread-${pos.x}.${pos.y}`;
             const bread = document.getElementById(id);
-            console.log(bread);
             const breadQuantity = storeData.ui.gameInfoItems[1].value;
             const stats = [...storeData.ui.gameInfoItems];
 

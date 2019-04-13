@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 //Import other components
-import BoardField from './BoardField';
 import Player from '../Player';
 import EndStats from '../EndStats';
 
