@@ -16,6 +16,22 @@
         }
     }
 
+    &__help {
+        flex: 1;
+        margin: 20px 15px;
+
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: right;
+        cursor: pointer;
+        transition: 200ms;
+
+        &:hover {
+            color: $fontColor1;
+        }
+    }
+
     &__hidder {
         position: absolute;
         right: -7px;

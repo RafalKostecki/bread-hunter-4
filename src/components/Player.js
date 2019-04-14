@@ -17,13 +17,8 @@ import charMati from '../assets/images/charMati.png';
 import charPiotr from '../assets/images/charPiotr.png';
 
 
-let currDirection = 'down';
 const Player = ({ currentChar, playerPosition, playerDirection }) => {
     let currentCharPic;
-    const bgPos = {
-        x: -50,
-        y: 0
-    }
 
     switch(currentChar.name) {
         case 'Kostek':

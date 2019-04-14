@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -6,7 +7,8 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import Credits from './Credits';
 import Characters from './Characters';
-import Button from '../Button.js';
+import Button from '../Button';
+import Help from './Help';
 
 //Import actions
 import { runGame } from '../../redux/actions/gameActions';
@@ -15,6 +17,7 @@ import { runGame } from '../../redux/actions/gameActions';
 const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
     const cpVisibility = document.body.clientWidth < 750 ? false : true;
     const [cpIsActive, setCpIsActive] = useState(cpVisibility);
+    const [helpIsActive, setHelpIsActive] = useState(false);
 
     const bgStyle = {
         backgroundImage: `url(${uiBgPic})`
@@ -26,8 +29,12 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
         runGame();
     }
 
+
     return (
         <React.Fragment>
+            { 
+                helpIsActive ? ReactDOM.createPortal(<Help closeHelp={() => setHelpIsActive(false)}/>, document.body) : null
+            }
             {
                 cpIsActive ? (
                     <aside className="controlPanel" style={bgStyle}>
@@ -36,6 +43,11 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
                         <Header />
                         <Characters />
                         <Button text='start' modifier='start' click={runGameHandler} disable={isRunGame}></Button>
+                        <div role="button" 
+                            className="controlPanel__help" 
+                            onClick={() => setHelpIsActive(!helpIsActive)}>
+                            Help
+                        </div>
                         <Credits />
                         <aside className="controlPanel__version">
                             <span>beta 1.0.0</span>
