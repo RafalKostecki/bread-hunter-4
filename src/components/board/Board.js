@@ -8,7 +8,7 @@ import Player from '../Player';
 import EndStats from '../EndStats';
 
 //Import actions
-import { setBoardPos, changeBoardMatrix } from '../../redux/actions/gameActions';
+import { changeBoardMatrix } from '../../redux/actions/gameActions';
 
 //Import configs
 import gameConfig from '../../assets/configs/gameConfig.json';
@@ -24,7 +24,7 @@ import { setStartPosition } from '../../assets/scripts/board';
 
 let firstIteration = true;
 
-export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, changeBoardMatrix }) => {
+export const Board = ({ boardPosition , isRunGame, endStats, changeBoardMatrix }) => {
 
     const body = document.body;
 
@@ -38,7 +38,7 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();
-        if (firstIteration) setStartPosition();   
+        if (firstIteration) setStartPosition(true, true);   
         if (!isRunGame) clearInterval(breadInterval);
 
         if (!isRunGame) firstIteration = true;
@@ -81,7 +81,6 @@ export const Board = ({ boardPosition , isRunGame, endStats, setBoardPos, change
 Board.propTypes = {
     boardPosition: PropTypes.object.isRequired,
     isRunGame: PropTypes.bool.isRequired,
-    setBoardPos: PropTypes.func,
     createBoardMatrix: PropTypes.func
 }
 
@@ -96,7 +95,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setBoardPos: position => { dispatch(setBoardPos(position)) },
         changeBoardMatrix: matrix => { dispatch(changeBoardMatrix(matrix)) }
     }
 }

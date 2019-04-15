@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,6 +9,9 @@ import Credits from './Credits';
 import Characters from './Characters';
 import Button from '../Button';
 import Help from './Help';
+
+//Import scripts
+import { setStartPosition } from '../../assets/scripts/board';
 
 //Import actions
 import { runGame } from '../../redux/actions/gameActions';
@@ -28,6 +31,10 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
 
         runGame();
     }
+
+    useEffect(() => {
+        setStartPosition(true, false);
+    }, [cpIsActive])
 
 
     return (

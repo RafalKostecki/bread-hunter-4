@@ -7,11 +7,18 @@ import gameConfig from '../configs/gameConfig';
 import { setBoardStartPos, changeBoardMatrix } from '../../redux/actions/gameActions';
 
 
-
+let firstPlayerPos = {};
+let firstPlayerPosSwitch = true;
 let boardSwitch = true;
-export const setStartPosition = (clear=false) => {
-    if (clear) boardSwitch = true;
+export const setStartPosition = (clearBoardSwitch=false, clearPosSwitch=false) => {
+    if (clearBoardSwitch) boardSwitch = true;
+    if (clearPosSwitch) firstPlayerPosSwitch = true;
     if (!boardSwitch) return;
+
+    if (firstPlayerPosSwitch) {
+        firstPlayerPosSwitch = false;
+        firstPlayerPos = store.getState().game.player.position;
+    }
 
     const boardWindow = document.getElementById("boardWindow");
     const boardWindowStyles = window.getComputedStyle(boardWindow);
@@ -19,11 +26,21 @@ export const setStartPosition = (clear=false) => {
     const boardWindowHeight = parseInt(boardWindowStyles.getPropertyValue('height'));
     const boardWidth = gameConfig.boardSize.x*gameConfig.boardFieldSize;
     const boardHeight = gameConfig.boardSize.y*gameConfig.boardFieldSize;
-    const top = (boardWindowHeight - boardHeight) / 2;
-    const left = (boardWindowWidth - boardWidth) / 2;
+    const top = ((boardWindowHeight - boardHeight) / 2) + deltaPlayer().y;
+    const left = ((boardWindowWidth - boardWidth) / 2) + deltaPlayer().x;
 
     store.dispatch(setBoardStartPos({top: top, left: left}));
     boardSwitch = false;
+}
+
+
+const deltaPlayer = () => {
+    const currentPos = store.getState().game.player.position;
+
+    return {
+        x: (firstPlayerPos.x - currentPos.x) * gameConfig.boardFieldSize,
+        y: (firstPlayerPos.y - currentPos.y) * gameConfig.boardFieldSize
+    }
 }
 
 

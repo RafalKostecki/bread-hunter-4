@@ -112,7 +112,6 @@ const checkCollisions = keyCode => {
 const movementAnimation = keyCode => {
     const player = document.getElementById('playerBg');
 
-    console.log(player);
     switch(keyCode) {
         case 87: //up
             player.style.backgroundPositionY = '-150px';             
@@ -132,9 +131,9 @@ const movementAnimation = keyCode => {
 
     player.style.backgroundPositionX = '0px';   
     setTimeout(() => {
-        player.style.backgroundPositionX = '-100px'; 
+        if (player) player.style.backgroundPositionX = '-100px'; 
     }, 200 / 3);
     setTimeout(() => {
-        player.style.backgroundPositionX = '-50px'; 
+        if (player) player.style.backgroundPositionX = '-50px'; 
     }, 200 / 2);
 }
