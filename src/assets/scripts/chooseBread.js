@@ -24,7 +24,8 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 
 
 export const chooseBread = key => {
-    if (key.keyCode !== 32) return; //space button only
+    key = key.keyCode ? key.keyCode : key;
+    if (key !== 32) return; //space button only
 
     const storeData = store.getState();
     const playerPos = storeData.game.player.position;

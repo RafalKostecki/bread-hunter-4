@@ -6,7 +6,6 @@ import piotrCharPic from '../../assets/images/piotrCharIcon.png';
 
 import uiBgPic from '../../assets/images/settingsTexture.png';
 import healthIcon from '../../assets/images/healthIcon.png';
-import accuracyIcon from '../../assets/images/accuracyIcon.png';
 import breadStatIcon from '../../assets/images/breadStatIcon.png';
 import greekyKosteIcon from '../../assets/images/greekyKosteIcon.png';
 import slowDownBuffIcon from '../../assets/images/slowDownBuffIcon.png';

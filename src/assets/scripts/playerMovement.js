@@ -16,19 +16,20 @@ let stepInterval = undefined;
 
 export const keyDownHandler = key => {
     const isRunGame = store.getState().game.isRunGame;
+    key = key.keyCode ? key.keyCode : key;
 
     if (!isRunGame) return;
     const playerStepTime = gameConfig.playerStepTime;
 
-    if (!wasPressed) currKeyDown = key.keyCode;
+    if (!wasPressed) currKeyDown = key;
     wasPressed = true;
 
     if (!firstIteration) {
-        changePlayerPosition(key.keyCode);
+        changePlayerPosition(key);
         stepInterval = setInterval(() => {
             if (!wasPressed) return;
 
-            changePlayerPosition(key.keyCode);
+            changePlayerPosition(key);
         }, playerStepTime);
     }
 
@@ -37,6 +38,7 @@ export const keyDownHandler = key => {
 
 
 export const keyUpHandler = key => {
+    key = key.keyCode ? key.keyCode : key;
     if (!currKeyDown === key.keyCode) return;
     
     wasPressed = false;

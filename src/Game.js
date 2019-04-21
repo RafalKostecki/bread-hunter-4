@@ -15,9 +15,12 @@ import GameInfo from './components/gameInfo/GameInfo';
 export const store = createStore(rootReducer);
 
 export const Game = () => {
+  const disableSelection = () => {
+    return false;
+  }
   return (
     <Provider store={store}>
-      <main className="game">
+      <main className="game noSelect" onSelect={disableSelection}>
         <div className="game__wrapper">
           <ConfigPanel />
           <Board />
