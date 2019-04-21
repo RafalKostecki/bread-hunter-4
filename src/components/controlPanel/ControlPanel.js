@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import Credits from './Credits';
 import Characters from './Characters';
-import Button from '../Button';
+import Button from '../Button.js';
 import Help from './Help';
 
 //Import scripts

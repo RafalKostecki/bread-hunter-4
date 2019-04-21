@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 //Import other components
 import Player from '../Player';
 import EndStats from '../EndStats';
+import ManualMovementPanel from '../ManualMovementPanel';
 
 //Import actions
 import { changeBoardMatrix } from '../../redux/actions/gameActions';
@@ -70,6 +71,7 @@ export const Board = ({ boardPosition , isRunGame, endStats, changeBoardMatrix }
                 endStats ? ReactDOM.createPortal(<EndStats />, body) : null
             }
             <div id="boardWindow" className="boardWindow">
+                <ManualMovementPanel/>
                 <div id="board" className="board" style={boardStyles}>
                     { isRunGame ? <Player /> : null }
                 </div>

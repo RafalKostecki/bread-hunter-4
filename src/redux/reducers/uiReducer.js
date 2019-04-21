@@ -52,11 +52,6 @@ const initState = {
             name: "Rusks",
             value: 2,
             pic: greekyKosteIcon
-        },
-        {
-            name: "Accuracy",
-            value: 0,
-            pic: accuracyIcon
         }
     ]
 }
