@@ -35,7 +35,7 @@
     &__hidder {
         position: absolute;
         right: -7px;
-        top: calc(50% - 40px);
+        top: calc(50% + 80px);
         height: 70px;
         width: 42px;
         z-index: 2;
@@ -45,7 +45,7 @@
 
     &__hideCpBtn, &__showCpBtn {
         position: absolute;
-        top: calc(50% - 33px);
+        top: calc(50% + 90px);
         right: 0;
         width: 30px;
         height: 50px;
@@ -90,7 +90,7 @@
     }
 
     &__showCpBtn {
-        top: calc(50% - 50px);
+        top: calc(50% + 50px);
         right: auto;
         left: 0;
 

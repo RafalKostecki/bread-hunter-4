@@ -34,7 +34,7 @@ export const generateBreads = (clearFirstIteration) => {
         const id = `bread-${idX}.${idY}`;
         const board = document.getElementById("board");
 
-        if (boardMatrix[idY][idX] === 2) return; //cannot set bread at barrier
+        if (boardMatrix[idY][idX] !== 0) return; //cannot set bread at barrier
 
         const bread = createBread(id, {x: idX, y: idY});
         board.appendChild(bread);

@@ -9,10 +9,10 @@
     },
     "boardFieldSize": 50,
     "playerStepTime": 200,
-    "requiredBreads": 50,
+    "requiredBreads": 99,
     "greekyKosteBuff": {
         "time": 5000,
         "increase": 3
     },
-    "breadsAddingTime": 750
+    "breadsAddingTime": 850
 }

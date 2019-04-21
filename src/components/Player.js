@@ -17,7 +17,7 @@ import charMati from '../assets/images/charMati.png';
 import charPiotr from '../assets/images/charPiotr.png';
 
 
-const Player = ({ currentChar, playerPosition, playerDirection }) => {
+const Player = ({ currentChar, playerPosition }) => {
     let currentCharPic;
 
     switch(currentChar.name) {
@@ -68,15 +68,13 @@ const Player = ({ currentChar, playerPosition, playerDirection }) => {
 
 Player.propTypes = {
     playerPosition: PropTypes.object.isRequired,
-    currentChar: PropTypes.object.isRequired,
-    playerDirection: PropTypes.string.isRequired
+    currentChar: PropTypes.object.isRequired
 }
 
 
 const mapStateToProps = state => {
     return {
         playerPosition: state.game.player.position,
-        playerDirection: state.game.player.direction,
         currentChar: state.game.currentChar
     }
 }

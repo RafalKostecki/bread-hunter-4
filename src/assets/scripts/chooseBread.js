@@ -11,18 +11,6 @@ import { setStat } from '../../redux/actions/uiActions';
 import { setStartPosition, clearBoard } from './board';
 
 
-Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-}
-NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-    for(var i = this.length - 1; i >= 0; i--) {
-        if(this[i] && this[i].parentElement) {
-            this[i].parentElement.removeChild(this[i]);
-        }
-    }
-}
-
-
 export const chooseBread = key => {
     key = key.keyCode ? key.keyCode : key;
     if (key !== 32) return; //space button only
@@ -47,14 +35,15 @@ export const chooseBread = key => {
 
         if (boardMatrix[pos.y][pos.x] === 1) {
             const id = `bread-${pos.x}.${pos.y}`;
+            console.log(id)
             const bread = document.getElementById(id);
             const breadQuantity = storeData.ui.gameInfoItems[1].value;
             const stats = [...storeData.ui.gameInfoItems];
 
             stats[1].value = breadQuantity + storeData.game.pickingQuantity;
+            boardMatrix[pos.y][pos.x] = 0;    
 
-            boardMatrix[pos.y][pos.x] = 0;       
-                 
+            bread.style.backgroundImage = 'none !important';
             bread.remove();
             store.dispatch(changeBoardMatrix(boardMatrix));
             store.dispatch(setStat(stats));

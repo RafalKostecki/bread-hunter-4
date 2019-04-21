@@ -1,5 +1,6 @@
 {
   "name": "bread-hunter-4",
+  "homepage" : "http://poyters.pl/breadhunter4",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
