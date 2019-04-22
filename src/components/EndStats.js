@@ -18,6 +18,7 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
 
 		return statsToRender;
     }
+
     
     const closeStats = () => {
         const statsBasicValues = [5, 0, 3, 2, 0];
@@ -33,6 +34,18 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
         setEndStatsBool(false);
     }
 
+
+    const getScore = () => {
+        const time = document.getElementById('tmr').innerHTML.split(":");
+        const min = parseInt(time[0]) * 6000 ;
+        const sec = parseInt(time[1]) * 100;
+        const msec = parseInt(time[2]) + min + sec;
+        const points = msec * 1.67;
+
+        return points;
+    }
+
+
 	return (
     <div className="endStats" onClick={closeStats}>
         <div className="endStatsWindow">
@@ -42,6 +55,7 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
                 <ul>
                     { generateStats() }
                 </ul>
+                <p>Your score: { getScore() } </p>
             </div>
             <div className="endStatsWindow__info">
                 *To close the window, click anywhere.
