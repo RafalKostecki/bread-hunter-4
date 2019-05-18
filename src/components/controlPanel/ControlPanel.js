@@ -16,6 +16,9 @@ import { setStartPosition } from '../../assets/scripts/board';
 //Import actions
 import { runGame } from '../../redux/actions/gameActions';
 
+//Import configs
+import gameConfig from '../../assets/configs/gameConfig';
+
 
 const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
     const cpVisibility = document.body.clientWidth < 750 ? false : true;
@@ -57,7 +60,7 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
                         </div>
                         <Credits />
                         <aside className="controlPanel__version">
-                            <span>beta 1.0.0</span>
+                            <span> { gameConfig.gameVersion } </span>
                         </aside>
                     </aside>
                 ) : (

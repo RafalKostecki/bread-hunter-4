@@ -1,20 +1,12 @@
 .help {
-    position: absolute;
     display: flex;
     flex-direction: column;
     z-index: 99;
-    top: 20vh;
-    left: 15%;
     max-width: 70%;
     padding: 20px 30px 50px 30px;
     box-sizing: border-box;
 
     background-color: rgba(0, 0, 0, 0.6);
-
-    @media (max-width: 750px) {
-        left: 5%;
-        max-width: 90%;
-    }
 
     &__header {
         flex: 1;
@@ -37,4 +29,15 @@
             margin-top: 5px;
         }
     }
+}
+
+.helpWrapper {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

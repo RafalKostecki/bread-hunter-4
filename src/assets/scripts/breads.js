@@ -47,6 +47,7 @@ export const generateBreads = (clearFirstIteration) => {
 
 
 const createBread = (id, coordinates) => {
+    console.log(coordinates);
     const fieldSize = gameConfig.boardFieldSize;
     const bread = document.createElement('div');
 
