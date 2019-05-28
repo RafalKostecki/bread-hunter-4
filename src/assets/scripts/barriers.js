@@ -35,6 +35,8 @@ export const generateBarriers = () => {
 }
 
 const createBarrier = coordinates => {
+    if (!coordinates.x || !coordinates.y) return;
+
     const fieldSize = gameConfig.boardFieldSize;
     const id = `barrier-${coordinates.x}.${coordinates.y}`;
     const barrier = document.createElement('div');
@@ -60,9 +62,7 @@ const generatePlace = () => {
     const yAxis = getRandomNum(0, boardY-1);
 
     if (playerPos.x === xAxis && playerPos.y === yAxis) { //prevent set barrier at player
-        generatePlace();
-
-        return;
+        return generatePlace();
     }
 
     return {
