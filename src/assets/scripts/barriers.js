@@ -23,11 +23,9 @@ export const generateBarriers = () => {
     for (let i = 0; i <= barriersQuantity; i++) {
         const coordinates = generatePlace();
         const board = document.getElementById("board");
-
         const barrier = createBarrier(coordinates);
-        
-        board.appendChild(barrier);
 
+        board.appendChild(barrier);
         boardMatrix[coordinates.y][coordinates.x] = 2;
         store.dispatch(changeBoardMatrix(boardMatrix))
     }
@@ -35,8 +33,6 @@ export const generateBarriers = () => {
 }
 
 const createBarrier = coordinates => {
-    if (!coordinates.x || !coordinates.y) return;
-
     const fieldSize = gameConfig.boardFieldSize;
     const id = `barrier-${coordinates.x}.${coordinates.y}`;
     const barrier = document.createElement('div');
