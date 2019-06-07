@@ -27,7 +27,6 @@ const greekyKoste = () => {
 
     if (stats[3].value < 1) return;
     else stats[3].value--;
-    console.log(stats[3].value)
 
     store.dispatch(setPickingQuantity(pq));
     store.dispatch(setStat(stats));

@@ -34,17 +34,28 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
         setEndStatsBool(false);
     }
 
+    const getSpecificStat = requiredStat => {
+        const statValue = stats.filter(stat => {
+            if (stat.name.toLowerCase() === requiredStat.toLowerCase()) return stat;
+
+            return null;
+        });
+
+        return statValue[0];
+    }
 
     const getScore = () => {
         const time = document.getElementById('tmr').innerHTML.split(":");
+        const initialPoints = 80000;
         const min = parseInt(time[0]) * 6000 ;
         const sec = parseInt(time[1]) * 100;
-        const msec = parseInt(time[2]) + min + sec;
-        const points = msec * 1.67;
+        const msec = parseInt(time[2]);
+        const lifes = getSpecificStat("Lifes");
+        const rusksBuff = getSpecificStat("Rusks");
+        const points = initialPoints - min - sec - msec + (500*lifes.value) + (100*rusksBuff.value); 
 
         return points;
     }
-
 
 	return (
     <div className="endStats" onClick={closeStats}>
