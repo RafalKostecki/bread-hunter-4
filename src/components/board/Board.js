@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 //Import other components
 import Player from '../Player';
+import Mob from '../Mob';
 import EndStats from '../EndStats';
 import ManualMovementPanel from '../ManualMovementPanel';
 
@@ -74,6 +75,8 @@ export const Board = ({ boardPosition , isRunGame, endStats, changeBoardMatrix }
                 <ManualMovementPanel/>
                 <div id="board" className="board" style={boardStyles}>
                     { isRunGame ? <Player /> : null }
+                    { isRunGame ? <Mob /> : null }
+                    { isRunGame ? <Mob /> : null }
                 </div>
             </div>
         </Fragment>
