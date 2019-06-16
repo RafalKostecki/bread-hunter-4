@@ -15,5 +15,6 @@
         "time": 5000,
         "increase": 3
     },
-    "breadsAddingTime": 950
+    "breadsAddingTime": 950,
+    "autoBreadGainingDelay": 375
 }
