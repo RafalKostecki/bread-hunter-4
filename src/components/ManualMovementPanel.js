@@ -31,11 +31,6 @@ const ManualMovementPanel = () => {
             >
                 <div className="arrow arrow--left"> </div>
             </div>
-            <div className="manualMovement__pickUp"
-                onTouchStart={() => chooseBread(32)}
-            >
-                <span> pick up </span>
-            </div>
         </div>
     )
 }

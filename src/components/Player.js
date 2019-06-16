@@ -53,9 +53,18 @@ const Player = ({ currentChar, playerPosition }) => {
 
         if (!body) return;
         body.addEventListener("keydown", keyDownHandler);
-        body.addEventListener("keydown", chooseBread);
         body.addEventListener("keydown", buffDispatcher);
         body.addEventListener("keyup", keyUpHandler);
+
+        if (document.body.clientWidth < 750) {
+            setInterval(() => {
+                chooseBread(32); //32 is a space button key code
+            }, gameConfig.autoBreadGainingDelay);
+        }
+        else {
+            body.addEventListener("keydown", chooseBread);
+        }
+
     }, []);
 
     
