@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Import actions 
 import { setCurrentCharacter } from '../../redux/actions/gameActions';
@@ -9,12 +9,18 @@ import { setCurrentCharacter } from '../../redux/actions/gameActions';
 import Char from './Char';
 
 
-const Characters = ({currentChar, characters, setCurrentChar, isRunGame}) => {
+const Characters = () => {
+    const dispatch = useDispatch();
+    const isRunGame = useSelector(state => state.game.isRunGame);
+    const currentChar = useSelector(state => state.game.currentChar);
+    const characters = useSelector(state => state.ui.characters);
+    
+
     const chooseChar = char => {
         if (isRunGame || char.name === currentChar.name) return; 
         //cannot change char during the game || cannot change char at the same
 
-        setCurrentChar(char);
+        dispatch(setCurrentCharacter(char));
     }
  
     return (
@@ -41,19 +47,4 @@ Characters.propTypes = {
 }
 
 
-const mapStateToProps = state => {
-    return {
-        isRunGame: state.game.isRunGame,
-        currentChar: state.game.currentChar,
-        characters: state.ui.characters
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        setCurrentChar: char => {dispatch(setCurrentCharacter(char))}
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Characters);
+export default Characters;
