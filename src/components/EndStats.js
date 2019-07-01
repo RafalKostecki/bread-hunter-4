@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Import actions
 import { setEndStatsBool } from '../redux/actions/gameActions';
@@ -8,7 +7,9 @@ import { setStat } from '../redux/actions/uiActions';
 import { getSpecificStat } from '../assets/scripts/buffs';
 
 
-const EndStats = ({ setEndStatsBool, stats, setStat }) => {
+const EndStats = () => {
+    const stats =  useSelector(state => state.ui.gameInfoItems);
+    const dispatch = useDispatch();
 
 	const generateStats = () => {
 		const statsToRender = stats.map((item, index) => {
@@ -31,8 +32,8 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
             }
         })
         
-        setStat(clearStats);
-        setEndStatsBool(false);
+        dispatch(setStat(clearStats));
+        dispatch(setEndStatsBool(false))
     }
 
     const getScore = () => {
@@ -68,25 +69,4 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
 }
 
 
-EndStats.propTypes = {
-    setEndStatsBool: PropTypes.func.isRequired,
-    stats: PropTypes.array.isRequired
-}
-
-
-
-const mapStateToProps = state => {
-    return {
-        stats: state.ui.gameInfoItems
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        setEndStatsBool: bool => {dispatch(setEndStatsBool(bool))},
-        setStat: stat => {dispatch(setStat(stat))}
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(EndStats);
+export default EndStats;

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 //Import configs
 import mobsConfig from '../assets/configs/mobsConfig.json';
@@ -57,9 +56,4 @@ const Mob = () => {
 Mob.propTypes = {}
 
 
-const mapStateToProps = state => {
-    return {}
-}
-
-
-export default connect(mapStateToProps)(Mob);
+export default Mob;

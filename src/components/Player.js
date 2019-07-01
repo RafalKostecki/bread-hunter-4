@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //Import configs
 import gameConfig from '../assets/configs/gameConfig.json';
@@ -17,7 +16,9 @@ import charMati from '../assets/images/charMati.png';
 import charPiotr from '../assets/images/charPiotr.png';
 
 
-const Player = ({ currentChar, playerPosition }) => {
+const Player = () => {
+    const playerPosition = useSelector(state => state.game.player.position);
+    const currentChar = useSelector(state => state.game.currentChar);
     let currentCharPic;
 
     switch(currentChar.name) {
@@ -75,18 +76,5 @@ const Player = ({ currentChar, playerPosition }) => {
     )
 }
 
-Player.propTypes = {
-    playerPosition: PropTypes.object.isRequired,
-    currentChar: PropTypes.object.isRequired
-}
 
-
-const mapStateToProps = state => {
-    return {
-        playerPosition: state.game.player.position,
-        currentChar: state.game.currentChar
-    }
-}
-
-
-export default connect(mapStateToProps)(Player);
+export default Player;
