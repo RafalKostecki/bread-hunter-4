@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Import actions 
@@ -38,12 +37,6 @@ const Characters = () => {
             })}
         </div>
     )
-}
-
-
-Characters.propTypes = {
-    currentChar: PropTypes.object.isRequired,
-    characters: PropTypes.array.isRequired
 }
 
 
