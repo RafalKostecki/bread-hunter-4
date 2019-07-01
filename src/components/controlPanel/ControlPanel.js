@@ -20,7 +20,7 @@ import { runGame } from '../../redux/actions/gameActions';
 import gameConfig from '../../assets/configs/gameConfig';
 
 
-const ControlPanel = ({ runGame }) => {
+const ControlPanel = () => {
     const cpVisibility = document.body.clientWidth < 750 ? false : true;
     const [cpIsActive, setCpIsActive] = useState(cpVisibility);
     const [helpIsActive, setHelpIsActive] = useState(false);
@@ -36,7 +36,7 @@ const ControlPanel = ({ runGame }) => {
     const runGameHandler = () => {
         if (isRunGame || endStats) return; //Cannot run game twice or more times
 
-        dispatch(runGame())
+        dispatch(runGame());
     }
 
     useEffect(() => {

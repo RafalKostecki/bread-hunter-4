@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Import other components
 import Player from '../Player';
@@ -26,7 +25,11 @@ import { setStartPosition } from '../../assets/scripts/board';
 
 let firstIteration = true;
 
-export const Board = ({ boardPosition , isRunGame, endStats, changeBoardMatrix }) => {
+export const Board = () => {
+    const dispatch = useDispatch();
+    const boardPosition = useSelector(state => state.game.board.position);
+    const isRunGame = useSelector(state => state.game.isRunGame);
+    const endStats = useSelector(state => state.game.endStats);
 
     const body = document.body;
 
@@ -60,7 +63,7 @@ export const Board = ({ boardPosition , isRunGame, endStats, changeBoardMatrix }
             boardMatrix.push(yAxis);
         }
 
-        changeBoardMatrix(boardMatrix); //0
+        dispatch(changeBoardMatrix(boardMatrix)) //0
         generateBarriers(); //1
         generateBreads(true); //2
     }
@@ -83,25 +86,5 @@ export const Board = ({ boardPosition , isRunGame, endStats, changeBoardMatrix }
     )
 }
 
-Board.propTypes = {
-    boardPosition: PropTypes.object.isRequired,
-    isRunGame: PropTypes.bool.isRequired,
-    createBoardMatrix: PropTypes.func
-}
 
-const mapStateToProps = state => {
-    return {
-        boardPosition: state.game.board.position,
-        isRunGame: state.game.isRunGame,
-        playerPosition: state.game.player.position,
-        endStats: state.game.endStats
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        changeBoardMatrix: matrix => { dispatch(changeBoardMatrix(matrix)) }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Board);
+export default Board;
