@@ -70,8 +70,8 @@ const Player = () => {
 
     
     return (
-        <div className='player' style={playerStyles}> 
-            <div id='playerBg' className='player__bg' style={playerBgStyles}> </div>
+        <div className='mob' style={playerStyles}> 
+            <div id='playerBg' className='mob__bg' style={playerBgStyles}> </div>
         </div>
     )
 }

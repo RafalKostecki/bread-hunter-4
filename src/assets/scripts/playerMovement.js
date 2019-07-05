@@ -6,6 +6,9 @@ import { changePlayerPos, setPlayerDirection, setBoardPos } from '../../redux/ac
 //Import configs
 import gameConfig from '../configs/gameConfig';
 
+//Import scripts
+import { checkCollisions } from './movement';
+
 
 let currKeyDown = undefined;
 let wasPressed = false;
@@ -48,7 +51,10 @@ export const keyUpHandler = key => {
 
 
 const changePlayerPosition = keyCode => {
-    if(checkCollisions(keyCode)) return;
+    const storeData = store.getState();
+    const playerPosition = storeData.game.player.position;
+
+    if(checkCollisions(keyCode, playerPosition)) return;
 
     let coordinateChange = {x: 0, y: 0};
     let boardMove = {top: 0, left: 0};
@@ -83,31 +89,6 @@ const changePlayerPosition = keyCode => {
     store.dispatch(changePlayerPos(coordinateChange));
     store.dispatch(setPlayerDirection(direction));;
     store.dispatch(setBoardPos(boardMove));
-}
-
-
-const checkCollisions = keyCode => {
-    const storeData = store.getState();
-    const playerPosition = storeData.game.player.position;
-    const boardSize = gameConfig.boardSize;
-    const boardMatrix = storeData.game.board.matrix;
-
-    switch(keyCode) {
-        case 87: //up
-            if (playerPosition.y === 0 || boardMatrix[playerPosition.y - 1][playerPosition.x] === 2) return true;
-        break;
-        case 68: //right
-            if (playerPosition.x === boardSize.x-1 || boardMatrix[playerPosition.y][playerPosition.x + 1] === 2) return true;
-        break;
-        case 83: //down
-            if (playerPosition.y === boardSize.y-1 || boardMatrix[playerPosition.y + 1][playerPosition.x] === 2) return true;
-        break;
-        case 65: //left
-            if (playerPosition.x === 0 || boardMatrix[playerPosition.y][playerPosition.x - 1] === 2) return true;
-        break;
-        default:
-            return;
-    }
 }
 
 

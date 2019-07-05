@@ -16,6 +16,8 @@ import gameConfig from '../../assets/configs/gameConfig.json';
 
 //Import images
 import bgPicPath from '../../assets/images/concreteFloor.jpg';
+import charMonster1 from '../../assets/images/charMonster1.png'; //TODO: replace it via cashiers sprites
+import charMonster2 from '../../assets/images/charMonster1.png';
 
 //Import scripts
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
@@ -78,8 +80,7 @@ export const Board = () => {
                 <ManualMovementPanel/>
                 <div id="board" className="board" style={boardStyles}>
                     { isRunGame ? <Player /> : null }
-                    { isRunGame ? <Mob /> : null }
-                    { isRunGame ? <Mob /> : null }
+                    { isRunGame ? <Mob sprite={charMonster1} position={{x: 0, y: 0}} /> : null }
                 </div>
             </div>
         </Fragment>

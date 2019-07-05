@@ -8,25 +8,21 @@ import gameConfig from '../assets/configs/gameConfig.json';
 //Import scripts
 import { getRandomNum } from '../assets/scripts/maths';
 
-//Import images
-import charKostek from '../assets/images/charKostek.png'; //TODO: replace it via cashiers sprites
-import charMarek from '../assets/images/charMarek.png';
-import charMati from '../assets/images/charMati.png';
-
-
 const usedNames = [];
 
-const Mob = () => {
+const Mob = ({ sprite, position }) => {
     const mobData = {
         name: '',
         speed: -1,
-        preferSide: {x: '', y: ''}
+        preferSide: {x: '', y: ''},
+        sprite: sprite
     }
 
     useEffect(() => {
         let availableNames = mobsConfig.names;
         availableNames = availableNames.filter(name => {
             if (!usedNames.includes(name)) return name;
+            return new Error('A lack of available mob names');
         });
 
         const randomIndex = getRandomNum(0, availableNames.length);
@@ -36,14 +32,14 @@ const Mob = () => {
     }, [])
 
     const mobStyles = {
-        // top: `${mobPosition[mobIndex].y*gameConfig.boardFieldSize}px`,
-        // left: `${mobPosition[mobIndex].x*gameConfig.boardFieldSize}px`,
-        // width: `${gameConfig.boardFieldSize}px`,
-        // height: `${gameConfig.boardFieldSize}px`
+        top: `${position.y*gameConfig.boardFieldSize}px`,
+        left: `${position.x*gameConfig.boardFieldSize}px`,
+        width: `${gameConfig.boardFieldSize}px`,
+        height: `${gameConfig.boardFieldSize}px`
     }
 
     const mobBgStyles = {
-        // backgroundImage: `url(${currentCharPic})`
+        backgroundImage: `url(${mobData.sprite})`
     }
     
     return (
@@ -53,7 +49,9 @@ const Mob = () => {
     )
 }
 
-Mob.propTypes = {}
+Mob.propTypes = {
+    position: PropTypes.object.isRequired
+}
 
 
 export default Mob;
