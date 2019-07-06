@@ -23,6 +23,21 @@ const createProximityPlaceholder = () => {
 
 const setNeighborhoods = () => {
     for (let vertex = 0; vertex < verticesQuantity; vertex++) {
-        //set neigborhoods
+        
+        if ((vertex + 1) % boardSize.x === 0) { //graniczny wierzchołek do prawej rkawedzi planszy
+
+        }
+        else if ((vertex - boardSize.x) % boardSize.x === 0) { //graniczny wierzchołek z lewej strony
+
+        }
+        else if (vertex < boardSize.x) { //wierzchołek granczny z góry
+
+        }
+        else if (vertex < verticesQuantity && vertex > verticesQuantity - boardSize.x) { //wierzchołek graniczny z dołu
+
+        }
+        else { //wierzchołek srodkowy (niegraniczny)
+
+        }
     }
 }
