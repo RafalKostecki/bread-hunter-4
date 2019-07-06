@@ -54,7 +54,7 @@ const changePlayerPosition = keyCode => {
     const storeData = store.getState();
     const playerPosition = storeData.game.player.position;
 
-    if(checkCollisions(keyCode, playerPosition)) return;
+    if (checkCollisions(keyCode, playerPosition)) return;
 
     let coordinateChange = {x: 0, y: 0};
     let boardMove = {top: 0, left: 0};

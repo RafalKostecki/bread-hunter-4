@@ -23,6 +23,7 @@ import charMonster2 from '../../assets/images/charMonster1.png';
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
 import { setStartPosition } from '../../assets/scripts/board';
+import { createNeighborhoodMatrix } from '../../assets/scripts/neighborhoodMatrix';
 
 
 let firstIteration = true;
@@ -34,6 +35,7 @@ export const Board = () => {
     const endStats = useSelector(state => state.game.endStats);
 
     const body = document.body;
+    let neighborhoodMatrix
 
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
@@ -42,6 +44,11 @@ export const Board = () => {
         left: `${boardPosition.left}px`,
         backgroundImage: `url(${bgPicPath})`
     }
+
+    useEffect(() => {
+        neighborhoodMatrix = createNeighborhoodMatrix();
+        console.log(neighborhoodMatrix);
+    }, [])
 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();
