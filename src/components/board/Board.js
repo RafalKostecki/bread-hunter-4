@@ -23,7 +23,7 @@ import charMonster2 from '../../assets/images/charMonster1.png';
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
 import { setStartPosition } from '../../assets/scripts/board';
-import { createNeighborhoodCollection } from '../../assets/scripts/neighborhoodCollection';
+import { dijkstra } from '../../assets/scripts/dijkstra';
 
 
 let firstIteration = true;
@@ -35,7 +35,7 @@ export const Board = () => {
     const endStats = useSelector(state => state.game.endStats);
 
     const body = document.body;
-    let neighborhoodCollection;
+    let boardGraph;
 
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
@@ -46,8 +46,8 @@ export const Board = () => {
     }
 
     useEffect(() => {
-        neighborhoodCollection = createNeighborhoodCollection();
-        console.log(neighborhoodCollection);
+        const xd = dijkstra(0);
+        console.log(xd);
     }, [])
 
     useEffect(()=> { //create boardMatrix

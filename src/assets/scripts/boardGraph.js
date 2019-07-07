@@ -1,28 +1,30 @@
-//Import configs
+//mport configs
 import gameConfig from '../configs/gameConfig.json';
+import { getRandomNum } from './maths';
 
 
 const boardSize = gameConfig.boardSize;
 const verticesQuantity = boardSize.x*boardSize.y;
-let neighborhoodCollection = new Set();
 
-export const createNeighborhoodCollection = () => {
+export const createBoardGrahp = () => {
+    const graph = new Map();
+
     for (let i = 0; i < verticesQuantity; i++) {
         const vertexData = {
             id: i,
             proximity: setNeighborhoods(i),
-            weight: 0
+            weight: getRandomNum(1, 5)
         }
 
-        neighborhoodCollection.add(vertexData);
+        graph.set(i, vertexData);
     }
     
 
-    return neighborhoodCollection;
+    return graph;
 }
 
 
-const setNeighborhoods = (vertex) => {
+const setNeighborhoods = vertex => {
     //corner vertex
 
     if (vertex === 0) { //top left
@@ -40,7 +42,7 @@ const setNeighborhoods = (vertex) => {
             vertex - 1, vertex - boardSize.x
         ]
     }
-    else if (vertex + 1 === verticesQuantity - boardSize.x) {
+    else if (vertex === verticesQuantity - boardSize.x) { //bottom left
         return [
             vertex + 1, vertex - boardSize.x
         ]
@@ -72,4 +74,6 @@ const setNeighborhoods = (vertex) => {
             vertex - 1, vertex + 1, vertex - boardSize.x, vertex + boardSize.x
         ];
     }
+
+    //TODO: need to delete barriers vertex from vertices and proximity vertices
 }
