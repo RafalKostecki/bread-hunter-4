@@ -7,10 +7,10 @@ const verticesQuantity = boardSize.x*boardSize.y;
 let neighborhoodCollection = new Set();
 
 export const createNeighborhoodCollection = () => {
-    for (const vertex of verticesQuantity) {
+    for (let i = 0; i < verticesQuantity; i++) {
         const vertexData = {
-            id: vertex,
-            proximity: setNeighborhoods(vertex),
+            id: i,
+            proximity: setNeighborhoods(i),
             weight: 0
         }
 
@@ -23,6 +23,30 @@ export const createNeighborhoodCollection = () => {
 
 
 const setNeighborhoods = (vertex) => {
+    //corner vertex
+
+    if (vertex === 0) { //top left
+        return [
+            vertex + 1, vertex + boardSize.x
+        ]
+    }
+    else if (vertex + 1 === boardSize.x) { // top right
+        return [
+            vertex - 1, vertex + boardSize.x
+        ]
+    }
+    else if (vertex + 1 === verticesQuantity) { //bottom right
+        return [
+            vertex - 1, vertex - boardSize.x
+        ]
+    }
+    else if (vertex + 1 === verticesQuantity - boardSize.x) {
+        return [
+            vertex + 1, vertex - boardSize.x
+        ]
+    }
+
+    //other vertex
     if ((vertex + 1) % boardSize.x === 0) { //graniczny wierzchołek do prawej rkawedzi planszy
         return [
             vertex - 1, vertex - boardSize.x, vertex + boardSize.x

@@ -23,7 +23,7 @@ import charMonster2 from '../../assets/images/charMonster1.png';
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
 import { setStartPosition } from '../../assets/scripts/board';
-import { createNeighborhoodCollection } from '../../assets/scripts/createNeighborhoodCollection';
+import { createNeighborhoodCollection } from '../../assets/scripts/neighborhoodCollection';
 
 
 let firstIteration = true;
