@@ -12,8 +12,9 @@ import { setStartPosition, clearBoard } from './board';
 
 
 export const chooseBread = key => {
-    key = key.keyCode ? key.keyCode : key;
-    if (key !== 32) return; //space button only
+    console.log(key.code)
+    key = key.code ? key.code : key;
+    if (key !== 'Space') return; //space button only
 
     const storeData = store.getState();
     const playerPos = storeData.game.player.position;

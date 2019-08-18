@@ -9,8 +9,9 @@ import gameConfig from '../configs/gameConfig';
 
 
 const buffDispatcher = key => {
-    switch (key.keyCode) {
-        case 49: 
+    console.log(key)
+    switch (key.code) {
+        case 'Digit1':
             greekyKoste();
         break;
         default:

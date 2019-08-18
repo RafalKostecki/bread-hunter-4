@@ -16,7 +16,7 @@ let stepInterval = undefined;
 
 export const keyDownHandler = key => {
     const isRunGame = store.getState().game.isRunGame;
-    key = key.keyCode ? key.keyCode : key;
+    key = key.code ? key.code : key;
 
     if (!isRunGame) return;
     const playerStepTime = gameConfig.playerStepTime;
@@ -38,8 +38,9 @@ export const keyDownHandler = key => {
 
 
 export const keyUpHandler = key => {
-    key = key.keyCode ? key.keyCode : key;
-    if (!currKeyDown === key.keyCode) return;
+    console.log(key.code)
+    key = key.code ? key.code : key;
+    if (!currKeyDown === key.code) return;
     
     wasPressed = false;
     firstIteration = false;
@@ -55,22 +56,22 @@ const changePlayerPosition = keyCode => {
     let direction = 'down';
 
     switch(keyCode) {
-        case 87: //up
+        case 'KeyW': //up
             coordinateChange = {x: 0, y: -1};
             boardMove = {top: 50, left: 0};
             direction = 'up';
         break;
-        case 68: //right
+        case 'KeyD': //right
             coordinateChange = {x: 1, y: 0};
             boardMove = {top: 0, left: -50};
             direction = 'right';
         break;
-        case 83: //down
+        case 'KeyS': //down
             coordinateChange = {x: 0, y: 1};
             boardMove = {top: -50, left: 0};
             direction = 'down';
         break;
-        case 65: //left
+        case 'KeyA': //left
             coordinateChange = {x: -1, y: 0};
             boardMove = {top: 0, left: 50};
             direction = 'left'
@@ -93,16 +94,16 @@ const checkCollisions = keyCode => {
     const boardMatrix = storeData.game.board.matrix;
 
     switch(keyCode) {
-        case 87: //up
+        case 'KeyW': //up
             if (playerPosition.y === 0 || boardMatrix[playerPosition.y - 1][playerPosition.x] === 2) return true;
         break;
-        case 68: //right
+        case 'KeyD': //right
             if (playerPosition.x === boardSize.x-1 || boardMatrix[playerPosition.y][playerPosition.x + 1] === 2) return true;
         break;
-        case 83: //down
+        case 'KeyS': //down
             if (playerPosition.y === boardSize.y-1 || boardMatrix[playerPosition.y + 1][playerPosition.x] === 2) return true;
         break;
-        case 65: //left
+        case 'KeyA': //left
             if (playerPosition.x === 0 || boardMatrix[playerPosition.y][playerPosition.x - 1] === 2) return true;
         break;
         default:
@@ -115,16 +116,16 @@ const movementAnimation = keyCode => {
     const player = document.getElementById('playerBg');
 
     switch(keyCode) {
-        case 87: //up
+        case 'KeyW': //up
             player.style.backgroundPositionY = '-150px';             
         break;
-        case 68: //right
+        case 'KeyD': //right
             player.style.backgroundPositionY = '100px';   
         break;
-        case 83: //down
+        case 'KeyS': //down
             player.style.backgroundPositionY = '0px';   
         break;
-        case 65: //left
+        case 'KeyA': //left
             player.style.backgroundPositionY = '-50px';   
         break;
         default:
