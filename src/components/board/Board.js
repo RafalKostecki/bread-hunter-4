@@ -24,6 +24,7 @@ import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
 import { setStartPosition } from '../../assets/scripts/board';
 import { dijkstra } from '../../assets/scripts/dijkstra';
+import { createBoardGrahp } from '../../assets/scripts/boardGraph';
 
 
 let firstIteration = true;
@@ -46,7 +47,9 @@ export const Board = () => {
     }
 
     useEffect(() => {
-        const xd = dijkstra(0);
+        console.log('here')
+        boardGraph = createBoardGrahp();
+        const xd = dijkstra(boardGraph, boardGraph.get(0));
         console.log(xd);
     }, [])
 

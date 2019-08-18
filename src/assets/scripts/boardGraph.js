@@ -77,3 +77,7 @@ const setNeighborhoods = vertex => {
 
     //TODO: need to delete barriers vertex from vertices and proximity vertices
 }
+
+const isBarrier = vertex => {
+
+}
