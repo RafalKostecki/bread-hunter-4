@@ -34,6 +34,7 @@ export const Board = () => {
     const boardPosition = useSelector(state => state.game.board.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
     const endStats = useSelector(state => state.game.endStats);
+    const playerPosition = useSelector(state => state.game.player.position);
 
     const body = document.body;
     let boardGraph;
@@ -52,7 +53,7 @@ export const Board = () => {
         boardGraph = createBoardGrahp();
         const xd = dijkstra(boardGraph, boardGraph.get(0));
         console.log(xd);    
-    }, [isRunGame])
+    }, [playerPosition])
 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();

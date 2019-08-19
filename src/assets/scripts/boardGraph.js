@@ -15,7 +15,7 @@ export const createBoardGrahp = () => {
         const vertexData = {
             id: i,
             proximity: setNeighborhoods(i),
-            weight: setTimeout(() => isBarrier(i), 1500)
+            weight: isBarrier(i)
         }
 
         graph.set(i, vertexData);
@@ -85,8 +85,8 @@ const isBarrier = vertex => {
     const boardMatrix = storeData.game.board.matrix;
     const coordinates = vertexIdToFieldCoords(vertex);
 
-    const result = boardMatrix[coordinates.y][coordinates.x] === 2 ? 9999 : getRandomNum(1, 5);
-    if (result === 9999) console.log(coordinates)
+    const result = boardMatrix[coordinates.y][coordinates.x] === 2 ? 99999 : getRandomNum(1, 3);
+    if (result === 99999) console.log('berrier', vertex, coordinates)
 
     return result;
 }
