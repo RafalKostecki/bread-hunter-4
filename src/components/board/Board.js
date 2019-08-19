@@ -47,11 +47,12 @@ export const Board = () => {
     }
 
     useEffect(() => {
-        console.log('here')
+        if (!isRunGame) return;
+        
         boardGraph = createBoardGrahp();
         const xd = dijkstra(boardGraph, boardGraph.get(0));
-        console.log(xd);
-    }, [])
+        console.log(xd);    
+    }, [isRunGame])
 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();

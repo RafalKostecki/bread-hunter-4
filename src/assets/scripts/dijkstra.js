@@ -16,6 +16,7 @@ let counter = 0;
 
 
 export const dijkstra = (graph, startVertex) => {
+  console.log(graph)
   // Init helper variables that we will need for Dijkstra algorithm.
   const distances = {};
   const visitedVertices = {};
@@ -49,18 +50,15 @@ export const dijkstra = (graph, startVertex) => {
     // Iterate over every unvisited neighbor of the current vertex.
     currentVertex.proximity.forEach((neighbor) => {
       // Don't visit already visited vertices.
-      console.log(neighbor)
       if (!visitedVertices[neighbor]) {
         // Update distances to every neighbor from current vertex.
         const edge = currentVertex.weight;
 
         const existingDistanceToNeighbor = distances[neighbor];
         const distanceToNeighborFromCurrent = distances[currentVertex.id] + edge;
-        console.log(existingDistanceToNeighbor, distanceToNeighborFromCurrent)
 
         // If we've found shorter path to the neighbor - update it.
         if (distanceToNeighborFromCurrent < existingDistanceToNeighbor) {
-          console.log('here')
           distances[neighbor] = distanceToNeighborFromCurrent;
 
           // Change priority of the neighbor in a queue since it might have became closer.

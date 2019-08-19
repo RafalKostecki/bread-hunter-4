@@ -1,6 +1,8 @@
-//mport configs
+import { store } from '../../Game';
+
+//Import configs
 import gameConfig from '../configs/gameConfig.json';
-import { getRandomNum } from './maths';
+import { getRandomNum, vertexIdToFieldCoords } from './maths';
 
 
 const boardSize = gameConfig.boardSize;
@@ -13,7 +15,7 @@ export const createBoardGrahp = () => {
         const vertexData = {
             id: i,
             proximity: setNeighborhoods(i),
-            weight: getRandomNum(1, 5)
+            weight: setTimeout(() => isBarrier(i), 1500)
         }
 
         graph.set(i, vertexData);
@@ -79,5 +81,12 @@ const setNeighborhoods = vertex => {
 }
 
 const isBarrier = vertex => {
+    const storeData = store.getState();
+    const boardMatrix = storeData.game.board.matrix;
+    const coordinates = vertexIdToFieldCoords(vertex);
 
+    const result = boardMatrix[coordinates.y][coordinates.x] === 2 ? 9999 : getRandomNum(1, 5);
+    if (result === 9999) console.log(coordinates)
+
+    return result;
 }
