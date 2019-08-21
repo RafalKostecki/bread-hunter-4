@@ -8,6 +8,7 @@ import gameConfig from '../configs/gameConfig';
 
 //Import scripts
 import { checkCollisions } from './movement';
+import { movementAnimation } from './movementAnimation';
 
 
 let currKeyDown = undefined;
@@ -85,38 +86,8 @@ const changePlayerPosition = keyCode => {
             coordinateChange = {x: 0, y: 0};
     }
 
-    movementAnimation(keyCode);
+    movementAnimation(keyCode, 'playerBg');
     store.dispatch(changePlayerPos(coordinateChange));
     store.dispatch(setPlayerDirection(direction));;
     store.dispatch(setBoardPos(boardMove));
-}
-
-
-const movementAnimation = keyCode => {
-    const player = document.getElementById('playerBg');
-
-    switch(keyCode) {
-        case 87: //up
-            player.style.backgroundPositionY = '-150px';             
-        break;
-        case 68: //right
-            player.style.backgroundPositionY = '100px';   
-        break;
-        case 83: //down
-            player.style.backgroundPositionY = '0px';   
-        break;
-        case 65: //left
-            player.style.backgroundPositionY = '-50px';   
-        break;
-        default:
-            return;
-    }
-
-    player.style.backgroundPositionX = '0px';   
-    setTimeout(() => {
-        if (player) player.style.backgroundPositionX = '-100px'; 
-    }, 200 / 3);
-    setTimeout(() => {
-        if (player) player.style.backgroundPositionX = '-50px'; 
-    }, 200 / 2);
 }

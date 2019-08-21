@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -23,8 +23,6 @@ import charMonster2 from '../../assets/images/charMonster1.png';
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
 import { generateBarriers } from '../../assets/scripts/barriers';
 import { setStartPosition } from '../../assets/scripts/board';
-import { dijkstra } from '../../assets/scripts/dijkstra';
-import { createBoardGrahp } from '../../assets/scripts/boardGraph';
 
 
 let firstIteration = true;
@@ -34,10 +32,9 @@ export const Board = () => {
     const boardPosition = useSelector(state => state.game.board.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
     const endStats = useSelector(state => state.game.endStats);
-    const playerPosition = useSelector(state => state.game.player.position);
+    
 
     const body = document.body;
-    let boardGraph;
 
     const boardStyles = {
         width: `${gameConfig.boardSize.x*gameConfig.boardFieldSize}px`,
@@ -46,14 +43,6 @@ export const Board = () => {
         left: `${boardPosition.left}px`,
         backgroundImage: `url(${bgPicPath})`
     }
-
-    useEffect(() => {
-        if (!isRunGame) return;
-        
-        boardGraph = createBoardGrahp();
-        const xd = dijkstra(boardGraph, boardGraph.get(0));
-        console.log(xd);    
-    }, [playerPosition])
 
     useEffect(()=> { //create boardMatrix
         if (isRunGame) generateBoardMatrix();
