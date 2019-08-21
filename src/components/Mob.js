@@ -10,7 +10,8 @@ import gameConfig from '../assets/configs/gameConfig.json';
 import { getRandomNum } from '../assets/scripts/maths';
 import { dijkstra } from '../assets/scripts/dijkstra';
 import { createBoardGrahp } from '../assets/scripts/boardGraph';
-import { createBoardGrahp } from '../assets/scripts/boardGraph';
+import { cordsToVertexId } from '../assets/scripts/maths';
+import { mobMovement } from '../assets/scripts/mobMovement';
 
 const usedNames = [];
 
@@ -18,6 +19,7 @@ const Mob = ({ sprite, position }) => {
     const [mobPosition, setMobPosition] = useState(position);
     const playerPosition = useSelector(state => state.game.player.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
+    const boardMatrix = useSelector(state => state.game.board.matrix);
 
     const mobData = {
         name: '',
@@ -40,10 +42,17 @@ const Mob = ({ sprite, position }) => {
     }, [])
 
     useEffect(() => {
-        if (!isRunGame) return;
+        if (!isRunGame || boardMatrix.length <= 0) return;
+        
 
+        const startVertex = cordsToVertexId(mobPosition);
+        const playerVertex = cordsToVertexId(playerPosition)
         const boardGraph = createBoardGrahp();
-        const theShortestPaths = dijkstra(boardGraph, boardGraph.get(0));   
+        const theShortestPaths = dijkstra(boardGraph, boardGraph.get(startVertex));  
+        
+        mobMovement(theShortestPaths, playerVertex)
+
+        console.log(theShortestPaths)
     }, [playerPosition])
 
     const mobStyles = {

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,7 +17,6 @@ import gameConfig from '../../assets/configs/gameConfig.json';
 //Import images
 import bgPicPath from '../../assets/images/concreteFloor.jpg';
 import charMonster1 from '../../assets/images/charMonster1.png'; //TODO: replace it via cashiers sprites
-import charMonster2 from '../../assets/images/charMonster1.png';
 
 //Import scripts
 import { generateBreads, breadInterval } from '../../assets/scripts/breads';
@@ -32,8 +31,6 @@ export const Board = () => {
     const boardPosition = useSelector(state => state.game.board.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
     const endStats = useSelector(state => state.game.endStats);
-    
-
     const body = document.body;
 
     const boardStyles = {

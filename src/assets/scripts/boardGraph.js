@@ -85,7 +85,7 @@ const isBarrier = vertex => {
     const boardMatrix = storeData.game.board.matrix;
     const coordinates = vertexIdToFieldCoords(vertex);
 
-    const result = boardMatrix[coordinates.y][coordinates.x] === 2 ? 99999 : getRandomNum(1, 3);
+    const result = boardMatrix[coordinates.y][coordinates.x] === 2 ? 99999 : getRandomNum(1, 1);
     if (result === 99999) console.log('berrier', vertex, coordinates)
 
     return result;

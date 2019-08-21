@@ -19,3 +19,10 @@ export const vertexIdToFieldCoords = vertexId => {
     
     return coordinates;
 }
+
+
+export const cordsToVertexId = coords => {
+    const boardSize = gameConfig.boardSize;
+
+    return coords.y * boardSize.x + coords.x;
+}
