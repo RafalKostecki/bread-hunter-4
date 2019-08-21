@@ -6,6 +6,10 @@ import { changePlayerPos, setPlayerDirection, setBoardPos } from '../../redux/ac
 //Import configs
 import gameConfig from '../configs/gameConfig';
 
+//Import scripts
+import { checkCollisions } from './movement';
+import { movementAnimation } from './movementAnimation';
+
 
 let currKeyDown = undefined;
 let wasPressed = false;
@@ -49,7 +53,10 @@ export const keyUpHandler = key => {
 
 
 const changePlayerPosition = keyCode => {
-    if(checkCollisions(keyCode)) return;
+    const storeData = store.getState();
+    const playerPosition = storeData.game.player.position;
+
+    if (checkCollisions(keyCode, playerPosition)) return;
 
     let coordinateChange = {x: 0, y: 0};
     let boardMove = {top: 0, left: 0};
@@ -80,63 +87,8 @@ const changePlayerPosition = keyCode => {
             coordinateChange = {x: 0, y: 0};
     }
 
-    movementAnimation(keyCode);
+    movementAnimation(keyCode, 'playerBg', gameConfig.playerStepTime);
     store.dispatch(changePlayerPos(coordinateChange));
     store.dispatch(setPlayerDirection(direction));;
     store.dispatch(setBoardPos(boardMove));
-}
-
-
-const checkCollisions = keyCode => {
-    const storeData = store.getState();
-    const playerPosition = storeData.game.player.position;
-    const boardSize = gameConfig.boardSize;
-    const boardMatrix = storeData.game.board.matrix;
-
-    switch(keyCode) {
-        case 'KeyW': //up
-            if (playerPosition.y === 0 || boardMatrix[playerPosition.y - 1][playerPosition.x] === 2) return true;
-        break;
-        case 'KeyD': //right
-            if (playerPosition.x === boardSize.x-1 || boardMatrix[playerPosition.y][playerPosition.x + 1] === 2) return true;
-        break;
-        case 'KeyS': //down
-            if (playerPosition.y === boardSize.y-1 || boardMatrix[playerPosition.y + 1][playerPosition.x] === 2) return true;
-        break;
-        case 'KeyA': //left
-            if (playerPosition.x === 0 || boardMatrix[playerPosition.y][playerPosition.x - 1] === 2) return true;
-        break;
-        default:
-            return;
-    }
-}
-
-
-const movementAnimation = keyCode => {
-    const player = document.getElementById('playerBg');
-
-    switch(keyCode) {
-        case 'KeyW': //up
-            player.style.backgroundPositionY = '-150px';             
-        break;
-        case 'KeyD': //right
-            player.style.backgroundPositionY = '100px';   
-        break;
-        case 'KeyS': //down
-            player.style.backgroundPositionY = '0px';   
-        break;
-        case 'KeyA': //left
-            player.style.backgroundPositionY = '-50px';   
-        break;
-        default:
-            return;
-    }
-
-    player.style.backgroundPositionX = '0px';   
-    setTimeout(() => {
-        if (player) player.style.backgroundPositionX = '-100px'; 
-    }, 200 / 3);
-    setTimeout(() => {
-        if (player) player.style.backgroundPositionX = '-50px'; 
-    }, 200 / 2);
 }

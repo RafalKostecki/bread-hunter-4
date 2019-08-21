@@ -22,7 +22,13 @@ const initState = {
         direction: 'down'
     },
     pickingQuantity: 1,
-    "endStats": false
+    endStats: false,
+    mob: {
+        position: {
+            x: 0,
+            y: 0
+        }
+    }
 };
 
 
@@ -111,6 +117,17 @@ const gameReducer = (state = initState, action) => {
                     position: {
                         top: action.position.top,
                         left: action.position.left
+                    }
+                }
+            }
+        case 'SET_MOB_POSITION':
+            return {
+                ...state,
+                mob: {
+                    ...state.mob,
+                    position: {
+                        x: action.position.x,
+                        y: action.position.y
                     }
                 }
             }
