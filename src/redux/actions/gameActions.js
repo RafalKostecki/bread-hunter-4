@@ -72,3 +72,10 @@ export const setEndStatsBool= bool => {
         bool
     }
 }
+
+export const setMobPos = position => {
+    return {
+        type: 'SET_MOB_POSITION',
+        position
+    }
+}

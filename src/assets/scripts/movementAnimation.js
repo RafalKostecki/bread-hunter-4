@@ -1,4 +1,4 @@
-export const movementAnimation = (keyCode, charDOMBg) => {
+export const movementAnimation = (keyCode, charDOMBg, speed) => {
     const char = document.getElementById(charDOMBg);
 
     switch(keyCode) {
@@ -21,8 +21,8 @@ export const movementAnimation = (keyCode, charDOMBg) => {
     char.style.backgroundPositionX = '0px';   
     setTimeout(() => {
         if (char) char.style.backgroundPositionX = '-100px'; 
-    }, 200 / 3);
+    }, speed / 3);
     setTimeout(() => {
         if (char) char.style.backgroundPositionX = '-50px'; 
-    }, 200 / 2);
+    }, speed / 2);
 }

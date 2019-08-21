@@ -16,7 +16,6 @@ let counter = 0;
 
 
 export const dijkstra = (graph, startVertex) => {
-  console.log(graph)
   // Init helper variables that we will need for Dijkstra algorithm.
   const distances = {};
   const visitedVertices = {};
@@ -46,7 +45,6 @@ export const dijkstra = (graph, startVertex) => {
 
     if (typeof currentVertex === 'number') currentVertex = graph.get(currentVertex);
 
-    //console.log(currentVertex)
     // Iterate over every unvisited neighbor of the current vertex.
     currentVertex.proximity.forEach((neighbor) => {
       // Don't visit already visited vertices.

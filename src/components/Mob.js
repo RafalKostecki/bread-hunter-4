@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 //Import configs
@@ -12,11 +12,13 @@ import { dijkstra } from '../assets/scripts/dijkstra';
 import { createBoardGrahp } from '../assets/scripts/boardGraph';
 import { cordsToVertexId } from '../assets/scripts/maths';
 import { mobMovement } from '../assets/scripts/mobMovement';
+import { generatePathToDestination } from '../assets/scripts/pathToDestination';
 
 const usedNames = [];
+let canMove = true;
 
-const Mob = ({ sprite, position }) => {
-    const [mobPosition, setMobPosition] = useState(position);
+const Mob = ({ sprite }) => {
+    const mobPosition = useSelector(state => state.game.mob.position);
     const playerPosition = useSelector(state => state.game.player.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
     const boardMatrix = useSelector(state => state.game.board.matrix);
@@ -42,17 +44,23 @@ const Mob = ({ sprite, position }) => {
     }, [])
 
     useEffect(() => {
-        if (!isRunGame || boardMatrix.length <= 0) return;
+        if (!isRunGame || boardMatrix.length <= 0 || !canMove) return;
+        canMove = false;
+        console.log('Dijkstra have runned');
         
-
         const startVertex = cordsToVertexId(mobPosition);
-        const playerVertex = cordsToVertexId(playerPosition)
+        const playerVertex = cordsToVertexId(playerPosition);
         const boardGraph = createBoardGrahp();
+        console.log(startVertex)
         const theShortestPaths = dijkstra(boardGraph, boardGraph.get(startVertex));  
         
-        mobMovement(theShortestPaths, playerVertex)
+        mobMovement(theShortestPaths, playerVertex);
 
-        console.log(theShortestPaths)
+        const pathToDestination = generatePathToDestination(theShortestPaths, playerVertex);
+        setTimeout(() => {
+            canMove = true;
+        }, pathToDestination.length * mobsConfig.speed)
+        
     }, [playerPosition])
 
     const mobStyles = {

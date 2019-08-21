@@ -86,7 +86,7 @@ const changePlayerPosition = keyCode => {
             coordinateChange = {x: 0, y: 0};
     }
 
-    movementAnimation(keyCode, 'playerBg');
+    movementAnimation(keyCode, 'playerBg', gameConfig.playerStepTime);
     store.dispatch(changePlayerPos(coordinateChange));
     store.dispatch(setPlayerDirection(direction));;
     store.dispatch(setBoardPos(boardMove));
