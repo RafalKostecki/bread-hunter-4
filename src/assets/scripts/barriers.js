@@ -57,7 +57,7 @@ const generatePlace = () => {
     const xAxis = getRandomNum(0, boardX-1);
     const yAxis = getRandomNum(0, boardY-1);
 
-    if (playerPos.x === xAxis && playerPos.y === yAxis) { //prevent set barrier at player
+    if ((playerPos.x === xAxis && playerPos.y === yAxis) || (xAxis === 0 && yAxis === 0)) { //prevent set barrier at player or mob
         return generatePlace();
     }
 
