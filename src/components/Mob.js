@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 //Import configs
@@ -14,6 +14,10 @@ import { cordsToVertexId } from '../assets/scripts/maths';
 import { mobMovement } from '../assets/scripts/mobMovement';
 import { generatePathToDestination } from '../assets/scripts/pathToDestination';
 
+//Import actions
+import { setMobPos } from '../redux/actions/gameActions';
+
+
 const usedNames = [];
 let canMove = true;
 
@@ -22,6 +26,7 @@ const Mob = ({ sprite }) => {
     const playerPosition = useSelector(state => state.game.player.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
     const boardMatrix = useSelector(state => state.game.board.matrix);
+    const dispatch = useDispatch();
 
     const mobData = {
         name: '',
@@ -31,6 +36,8 @@ const Mob = ({ sprite }) => {
     }
 
     useEffect(() => {
+        dispatch(setMobPos({x: 0, y: 0}))
+
         let availableNames = mobsConfig.names;
         availableNames = availableNames.filter(name => {
             if (!usedNames.includes(name)) return name;
@@ -46,7 +53,6 @@ const Mob = ({ sprite }) => {
     useEffect(() => {
         if (!isRunGame || boardMatrix.length <= 0 || !canMove) return;
         canMove = false;
-        //console.log('Dijkstra have runned');
         
         const startVertex = cordsToVertexId(mobPosition);
         const playerVertex = cordsToVertexId(playerPosition);

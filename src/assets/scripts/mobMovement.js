@@ -5,6 +5,7 @@ import { movementAnimation } from './movementAnimation';
 import { cordsToVertexId } from './maths';
 import { generatePathToDestination } from './pathToDestination';
 import { getSpecificStat } from './getSpecificStat';
+import { clearGame } from './clearGame';
 
 //Import configs
 import gameConfig from '../configs/gameConfig';
@@ -23,17 +24,18 @@ export const mobMovement = (shortestPath, destination) => {
         setTimeout(() => {
             const storeData = store.getState();
             const mobPosition = storeData.game.mob.position;
+            const isRunGame = storeData.game.isRunGame;
             const mobPositionVertex = cordsToVertexId(mobPosition);
             let moveCode;
 
+            if (!isRunGame) return;
             if (index === pathToDestination.length - 1) isCaught(mobPositionVertex);
-
 
             if (mobPositionVertex - boardSize.x === vertexId) moveCode = 'KeyW'; //up
             else if (mobPositionVertex + 1 === vertexId) moveCode = 'KeyD'; //right
             else if (mobPositionVertex + boardSize.x === vertexId) moveCode = 'KeyS'; //down
             else if (mobPositionVertex - 1 === vertexId) moveCode = 'KeyA'; //left
-            else throw new Error(`Invalid moveCode determination! mobPositionVertex: ${mobPositionVertex}, vertexId: ${vertexId}, pathToDestination: ${pathToDestination}, destination: ${destination}`);
+            else console.warn(`Invalid moveCode determination! mobPositionVertex: ${mobPositionVertex}, vertexId: ${vertexId}, pathToDestination: ${pathToDestination}, destination: ${destination}`);
 
             changeMobPosition(moveCode, mobPosition);
         }, mobsConfig.speed * (index + 1))
@@ -87,12 +89,10 @@ const isCaught = mobPositionVertex => {
         const stats = [...storeData.ui.gameInfoItems];
         const lifes = getSpecificStat(stats, "lifes");
     
-        if (lifes.value <= 1) console.log('PRZEGRANA')
+        if (lifes.value <= 1) clearGame();
         else lifes.value--;
-    
-        console.log(stats)
     
         store.dispatch(setStat(stats));
     }
-        
+
 }

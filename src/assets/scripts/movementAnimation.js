@@ -1,6 +1,8 @@
 export const movementAnimation = (keyCode, charDOMBg, speed) => {
     const char = document.getElementById(charDOMBg);
 
+    if (!char) return;
+
     switch(keyCode) {
         case 'KeyW': //up
             char.style.backgroundPositionY = '-150px';             

@@ -59,7 +59,7 @@ const Player = () => {
 
         if (document.body.clientWidth < 750) {
             setInterval(() => {
-                chooseBread(32); //32 is a space button key code
+                chooseBread('Space'); //Space is a space button key code
             }, gameConfig.autoBreadGainingDelay);
         }
         else {

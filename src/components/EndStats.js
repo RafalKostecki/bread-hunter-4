@@ -38,13 +38,16 @@ const EndStats = () => {
 
     const getScore = () => {
         const time = document.getElementById('tmr').innerHTML.split(":");
-        const initialPoints = 80000;
+        const initialPoints = 40000;
         const min = parseInt(time[0]) * 6000 ;
         const sec = parseInt(time[1]) * 100;
         const msec = parseInt(time[2]);
         const lifes = getSpecificStat(stats, "Lifes");
         const rusksBuff = getSpecificStat(stats, "Rusks");
-        const points = initialPoints - min - sec - msec + (500*lifes.value) + (100*rusksBuff.value); 
+        const breads = getSpecificStat(stats, "Breads");
+        let points = initialPoints - min - sec - msec + (12879*lifes.value) + (800*rusksBuff.value) + (240*breads.value);
+        
+        if (points <= 0 ) points('too little to count')
 
         return points;
     }
