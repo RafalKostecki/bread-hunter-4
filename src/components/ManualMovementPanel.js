@@ -8,33 +8,28 @@ const ManualMovementPanel = () => {
     return (
         <div className="manualMovement noSelect">
             <div className="manualMovement__top" 
-                onTouchStart={() => keyDownHandler(87)}
-                onTouchEnd={() => keyUpHandler(87)}
+                onTouchStart={() => keyDownHandler('KeyW')}
+                onTouchEnd={() => keyUpHandler('KeyW')}
             >
                 <div className="arrow"> </div>
             </div>
             <div className="manualMovement__right" 
-                onTouchStart={() => keyDownHandler(68)}
-                onTouchEnd={() => keyUpHandler(68)}
+                onTouchStart={() => keyDownHandler('KeyD')}
+                onTouchEnd={() => keyUpHandler('KeyD')}
             >
                 <div className="arrow arrow--right"> </div>
             </div>
             <div className="manualMovement__down" 
-                onTouchStart={() => keyDownHandler(83)}
-                onTouchEnd={() => keyUpHandler(83)}
+                onTouchStart={() => keyDownHandler('KeyS')}
+                onTouchEnd={() => keyUpHandler('KeyS')}
             >
                 <div className="arrow arrow--down"> </div>
             </div>
             <div className="manualMovement__left" 
-                onTouchStart={() => keyDownHandler(65)}
-                onTouchEnd={() => keyUpHandler(65)}
+                onTouchStart={() => keyDownHandler('KeyA')}
+                onTouchEnd={() => keyUpHandler('KeyA')}
             >
                 <div className="arrow arrow--left"> </div>
-            </div>
-            <div className="manualMovement__pickUp"
-                onTouchStart={() => chooseBread(32)}
-            >
-                <span> pick up </span>
             </div>
         </div>
     )

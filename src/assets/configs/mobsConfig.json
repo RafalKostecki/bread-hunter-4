@@ -1,0 +1,6 @@
+{
+    "names": ["Angela", "Justine", "Martha"],
+    "speed": 300,
+    "preferSideX": ["left", "right"],
+    "preferSideY": ["top", "left"]
+}

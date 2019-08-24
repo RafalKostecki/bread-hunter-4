@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //Import configs
 import gameConfig from '../assets/configs/gameConfig.json';
@@ -17,7 +16,9 @@ import charMati from '../assets/images/charMati.png';
 import charPiotr from '../assets/images/charPiotr.png';
 
 
-const Player = ({ currentChar, playerPosition }) => {
+const Player = () => {
+    const playerPosition = useSelector(state => state.game.player.position);
+    const currentChar = useSelector(state => state.game.currentChar);
     let currentCharPic;
 
     switch(currentChar.name) {
@@ -53,31 +54,27 @@ const Player = ({ currentChar, playerPosition }) => {
 
         if (!body) return;
         body.addEventListener("keydown", keyDownHandler);
-        body.addEventListener("keydown", chooseBread);
         body.addEventListener("keydown", buffDispatcher);
         body.addEventListener("keyup", keyUpHandler);
+
+        if (document.body.clientWidth < 750) {
+            setInterval(() => {
+                chooseBread('Space'); //Space is a space button key code
+            }, gameConfig.autoBreadGainingDelay);
+        }
+        else {
+            body.addEventListener("keydown", chooseBread);
+        }
+
     }, []);
 
     
     return (
-        <div className='player' style={playerStyles}> 
-            <div id='playerBg' className='player__bg' style={playerBgStyles}> </div>
+        <div className='mob' style={playerStyles}> 
+            <div id='playerBg' className='mob__bg' style={playerBgStyles}> </div>
         </div>
     )
 }
 
-Player.propTypes = {
-    playerPosition: PropTypes.object.isRequired,
-    currentChar: PropTypes.object.isRequired
-}
 
-
-const mapStateToProps = state => {
-    return {
-        playerPosition: state.game.player.position,
-        currentChar: state.game.currentChar
-    }
-}
-
-
-export default connect(mapStateToProps)(Player);
+export default Player;

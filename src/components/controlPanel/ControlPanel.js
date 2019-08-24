@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Import components
 import Header from './Header';
@@ -20,10 +20,14 @@ import { runGame } from '../../redux/actions/gameActions';
 import gameConfig from '../../assets/configs/gameConfig';
 
 
-const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
+const ControlPanel = () => {
     const cpVisibility = document.body.clientWidth < 750 ? false : true;
     const [cpIsActive, setCpIsActive] = useState(cpVisibility);
     const [helpIsActive, setHelpIsActive] = useState(false);
+    const isRunGame = useSelector(state => state.game.isRunGame);
+    const uiBgPic = useSelector(state => state.ui.panelBg);
+    const endStats = useSelector(state => state.game.endStats);
+    const dispatch = useDispatch();
 
     const bgStyle = {
         backgroundImage: `url(${uiBgPic})`
@@ -32,7 +36,7 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
     const runGameHandler = () => {
         if (isRunGame || endStats) return; //Cannot run game twice or more times
 
-        runGame();
+        dispatch(runGame());
     }
 
     useEffect(() => {
@@ -72,26 +76,4 @@ const ControlPanel = ({uiBgPic, isRunGame, runGame, endStats }) => {
 }
 
 
-ControlPanel.propTypes = {
-    uiBgPic: PropTypes.string.isRequired,
-    isRunGame: PropTypes.bool.isRequired,
-    runGame: PropTypes.func.isRequired
-}
-
-
-const mapStateToProps = state => {
-    return {
-        isRunGame: state.game.isRunGame,
-        uiBgPic: state.ui.panelBg,
-        endStats: state.game.endStats
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        runGame: () => {dispatch(runGame())}
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(ControlPanel);
+export default ControlPanel;

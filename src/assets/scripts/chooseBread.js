@@ -4,16 +4,16 @@ import { store } from '../../Game';
 import gameConfig from '../configs/gameConfig';
 
 //Import actions
-import { changeBoardMatrix, setEndStatsBool, setPlayerPos, stopGame } from '../../redux/actions/gameActions';
+import { changeBoardMatrix } from '../../redux/actions/gameActions';
 import { setStat } from '../../redux/actions/uiActions';
 
 //Import scripts
-import { setStartPosition, clearBoard } from './board';
+import { clearGame } from './clearGame';
 
 
 export const chooseBread = key => {
-    key = key.keyCode ? key.keyCode : key;
-    if (key !== 32) return; //space button only
+    key = key.code ? key.code : key;
+    if (key !== 'Space') return; //space button only
 
     const storeData = store.getState();
     const playerPos = storeData.game.player.position;
@@ -54,15 +54,3 @@ export const chooseBread = key => {
     }
 }
 
-
-const clearGame = () => {
-    store.dispatch(setEndStatsBool(true));
-    setStartPosition(true);
-    store.dispatch(setPlayerPos({x: 6, y: 5}))
-    store.dispatch(stopGame());
-    clearBoard();
-
-    setTimeout(() => {
-        
-    }, 500)
-}

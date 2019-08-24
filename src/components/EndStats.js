@@ -1,13 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Import actions
 import { setEndStatsBool } from '../redux/actions/gameActions';
 import { setStat } from '../redux/actions/uiActions';
+import { getSpecificStat } from '../assets/scripts/getSpecificStat';
 
 
-const EndStats = ({ setEndStatsBool, stats, setStat }) => {
+const EndStats = () => {
+    const stats =  useSelector(state => state.ui.gameInfoItems);
+    const dispatch = useDispatch();
 
 	const generateStats = () => {
 		const statsToRender = stats.map((item, index) => {
@@ -30,29 +32,22 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
             }
         })
         
-        setStat(clearStats);
-        setEndStatsBool(false);
-    }
-
-    const getSpecificStat = requiredStat => {
-        const statValue = stats.filter(stat => {
-            if (stat.name.toLowerCase() === requiredStat.toLowerCase()) return stat;
-
-            return null;
-        });
-
-        return statValue[0];
+        dispatch(setStat(clearStats));
+        dispatch(setEndStatsBool(false))
     }
 
     const getScore = () => {
         const time = document.getElementById('tmr').innerHTML.split(":");
-        const initialPoints = 80000;
+        const initialPoints = 40000;
         const min = parseInt(time[0]) * 6000 ;
         const sec = parseInt(time[1]) * 100;
         const msec = parseInt(time[2]);
-        const lifes = getSpecificStat("Lifes");
-        const rusksBuff = getSpecificStat("Rusks");
-        const points = initialPoints - min - sec - msec + (500*lifes.value) + (100*rusksBuff.value); 
+        const lifes = getSpecificStat(stats, "Lifes");
+        const rusksBuff = getSpecificStat(stats, "Rusks");
+        const breads = getSpecificStat(stats, "Breads");
+        let points = initialPoints - min - sec - msec + (12879*lifes.value) + (800*rusksBuff.value) + (240*breads.value);
+        
+        if (points <= 0 ) points('too little to count')
 
         return points;
     }
@@ -77,25 +72,4 @@ const EndStats = ({ setEndStatsBool, stats, setStat }) => {
 }
 
 
-EndStats.propTypes = {
-    setEndStatsBool: PropTypes.func.isRequired,
-    stats: PropTypes.array.isRequired
-}
-
-
-
-const mapStateToProps = state => {
-    return {
-        stats: state.ui.gameInfoItems
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        setEndStatsBool: bool => {dispatch(setEndStatsBool(bool))},
-        setStat: stat => {dispatch(setStat(stat))}
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(EndStats);
+export default EndStats;

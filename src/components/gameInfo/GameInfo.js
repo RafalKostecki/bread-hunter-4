@@ -1,13 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //Import other components
 import Item from './Item';
 import Timer from './Timer';
 
 
-const GameInfo = ({ uiBgPic, gameInfoItems, isRunGame }) => {
+const GameInfo = () => {
+  const uiBgPic = useSelector(state => state.ui.panelBg);
+  const gameInfoItems = useSelector(state => state.ui.gameInfoItems);
+  const isRunGame = useSelector(state => state.game.isRunGame);
+
   const styles = {
     backgroundImage: `url(${uiBgPic})`
   }
@@ -25,20 +28,4 @@ const GameInfo = ({ uiBgPic, gameInfoItems, isRunGame }) => {
 }
 
 
-GameInfo.propTypes = {
-  uiBgPic: PropTypes.string.isRequired,
-  gameInfoItems: PropTypes.array.isRequired,
-  isRunGame: PropTypes.bool.isRequired
-}
-
-
-const mapStateToProps = state => {
-  return {
-    uiBgPic: state.ui.panelBg,
-    gameInfoItems: state.ui.gameInfoItems,
-    isRunGame: state.game.isRunGame
-  }
-}
-
-
-export default connect(mapStateToProps)(GameInfo);
+export default GameInfo;

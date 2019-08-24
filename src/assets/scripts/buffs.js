@@ -7,10 +7,13 @@ import { setStat } from '../../redux/actions/uiActions';
 //Import congifs
 import gameConfig from '../configs/gameConfig';
 
+//Import scripts
+import { getSpecificStat } from './getSpecificStat';
+
 
 const buffDispatcher = key => {
-    switch (key.keyCode) {
-        case 49: 
+    switch (key.code) {
+        case 'Digit1':
             greekyKoste();
         break;
         default:
@@ -24,9 +27,10 @@ const greekyKoste = () => {
     const gkTime = gameConfig.greekyKosteBuff.time;
     const storeData = store.getState();
     const stats = [...storeData.ui.gameInfoItems];
+    const rusks = getSpecificStat(stats, "rusks");
 
-    if (stats[3].value < 1) return;
-    else stats[3].value--;
+    if (rusks.value < 1) return;
+    else rusks.value--;
 
     store.dispatch(setPickingQuantity(pq));
     store.dispatch(setStat(stats));
