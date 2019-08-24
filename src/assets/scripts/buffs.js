@@ -7,9 +7,11 @@ import { setStat } from '../../redux/actions/uiActions';
 //Import congifs
 import gameConfig from '../configs/gameConfig';
 
+//Import scripts
+import { getSpecificStat } from './getSpecificStat';
+
 
 const buffDispatcher = key => {
-    console.log(key)
     switch (key.code) {
         case 'Digit1':
             greekyKoste();
@@ -17,17 +19,6 @@ const buffDispatcher = key => {
         default:
             return;
     }
-}
-
-
-export const getSpecificStat = (stats, requiredStat) => {
-    const statValue = stats.filter(stat => {
-        if (stat.name.toLowerCase() === requiredStat.toLowerCase()) return stat;
-
-        return null;
-    });
-
-    return statValue[0];
 }
 
 

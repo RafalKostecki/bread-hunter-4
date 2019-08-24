@@ -46,12 +46,11 @@ const Mob = ({ sprite }) => {
     useEffect(() => {
         if (!isRunGame || boardMatrix.length <= 0 || !canMove) return;
         canMove = false;
-        console.log('Dijkstra have runned');
+        //console.log('Dijkstra have runned');
         
         const startVertex = cordsToVertexId(mobPosition);
         const playerVertex = cordsToVertexId(playerPosition);
         const boardGraph = createBoardGrahp();
-        console.log(startVertex)
         const theShortestPaths = dijkstra(boardGraph, boardGraph.get(startVertex));  
         
         mobMovement(theShortestPaths, playerVertex);

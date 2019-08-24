@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 //Import actions
 import { setEndStatsBool } from '../redux/actions/gameActions';
 import { setStat } from '../redux/actions/uiActions';
-import { getSpecificStat } from '../assets/scripts/buffs';
+import { getSpecificStat } from '../assets/scripts/getSpecificStat';
 
 
 const EndStats = () => {

@@ -12,7 +12,6 @@ import { setStartPosition, clearBoard } from './board';
 
 
 export const chooseBread = key => {
-    console.log(key.code)
     key = key.code ? key.code : key;
     if (key !== 'Space') return; //space button only
 

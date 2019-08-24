@@ -42,7 +42,6 @@ export const keyDownHandler = key => {
 
 
 export const keyUpHandler = key => {
-    console.log(key.code)
     key = key.code ? key.code : key;
     if (!currKeyDown === key.code) return;
     

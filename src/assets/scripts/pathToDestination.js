@@ -7,9 +7,10 @@ export const generatePathToDestination = (shortestPath, destination) => {
         
         previousVertex = shortestPath.previousVertices[previousVertex].id
     }
-
+    
     pathToDestination.pop(); //delete startVertex
     pathToDestination = pathToDestination.reverse();
+    pathToDestination.push(destination); //set mob at the same field as player
 
     return pathToDestination;
 }
