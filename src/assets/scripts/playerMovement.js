@@ -63,21 +63,25 @@ const changePlayerPosition = keyCode => {
 
     switch(keyCode) {
         case 'KeyW': //up
+        case 'ArrowUp':
             coordinateChange = {x: 0, y: -1};
             boardMove = {top: 50, left: 0};
             direction = 'up';
         break;
         case 'KeyD': //right
+        case 'ArrowRight':
             coordinateChange = {x: 1, y: 0};
             boardMove = {top: 0, left: -50};
             direction = 'right';
         break;
         case 'KeyS': //down
+        case 'ArrowDown':
             coordinateChange = {x: 0, y: 1};
             boardMove = {top: -50, left: 0};
             direction = 'down';
         break;
         case 'KeyA': //left
+        case 'ArrowLeft':
             coordinateChange = {x: -1, y: 0};
             boardMove = {top: 0, left: 50};
             direction = 'left'

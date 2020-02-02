@@ -14,6 +14,4 @@ export const clearGame = () => {
     store.dispatch(setMobPos({x: 0, y: 0}))
     store.dispatch(stopGame());
     clearBoard();
-
-    console.log(store.getState().game.mob.position)
 }

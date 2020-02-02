@@ -49,15 +49,19 @@ const changeMobPosition = (moveCode, mobPosition) => {
 
     switch(moveCode) {
         case 'KeyW': //up
+        case 'ArrowUp':
             coordinateChange = {x: 0, y: -1};
         break;
         case 'KeyD': //right
+        case 'ArrowRight':
             coordinateChange = {x: 1, y: 0};
         break;
         case 'KeyS': //down
+        case 'ArrowDown':
             coordinateChange = {x: 0, y: 1};
         break;
         case 'KeyA': //left
+        case 'ArrowLeft':
             coordinateChange = {x: -1, y: 0};
         break;
         default:

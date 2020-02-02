@@ -5,15 +5,19 @@ export const movementAnimation = (keyCode, charDOMBg, speed) => {
 
     switch(keyCode) {
         case 'KeyW': //up
+        case 'ArrowUp':
             char.style.backgroundPositionY = '-150px';             
         break;
         case 'KeyD': //right
+        case 'ArrowRight':
             char.style.backgroundPositionY = '100px';   
         break;
         case 'KeyS': //down
+        case 'ArrowDown':
             char.style.backgroundPositionY = '0px';   
         break;
         case 'KeyA': //left
+        case 'ArrowLeft':
             char.style.backgroundPositionY = '-50px';   
         break;
         default:
