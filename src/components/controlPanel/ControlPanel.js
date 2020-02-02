@@ -42,6 +42,12 @@ const ControlPanel = () => {
         setStartPosition(true, false);
     }, [cpIsActive])
 
+    useEffect(() => {
+        if (cpVisibility) return;
+
+        setCpIsActive(false);
+    }, [isRunGame])
+
 
     return (
         <React.Fragment>
