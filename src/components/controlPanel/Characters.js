@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Import actions 
@@ -24,13 +25,13 @@ const Characters = () => {
  
     return (
         <div role="presentation" className="characters">
-            {characters.map((char, index) => {
+            {characters.map(char => {
                 return (
                     <Char 
                         name={char.name} 
                         pic={char.pic}
                         selected={currentChar.name}
-                        key={index}
+                        key={uuid()}
                         chooseChar={chooseChar}
                     />
                 )

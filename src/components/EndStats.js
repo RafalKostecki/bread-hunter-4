@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Import actions
@@ -12,9 +13,9 @@ const EndStats = () => {
     const dispatch = useDispatch();
 
 	const generateStats = () => {
-		const statsToRender = stats.map((item, index) => {
+		const statsToRender = stats.map(item => {
 			return (
-				<li key={index}>{`${item.name}: ${item.value}`}</li>
+				<li key={uuid()}>{`${item.name}: ${item.value}`}</li>
 			)
 		});
 
