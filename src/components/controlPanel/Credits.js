@@ -10,7 +10,9 @@ const Credits = () => {
             <img src={poytersLogo} alt="Poyters" />
         </div>
         <div role="presentation" className="credits__desc">
-            <span>Created by Poyters @2019</span>
+            <a href="http://poyters.pl" target="blank">
+              Created by Poyters @2019
+            </a>
         </div>
     </footer>
   )
