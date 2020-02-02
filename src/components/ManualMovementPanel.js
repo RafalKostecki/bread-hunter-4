@@ -2,7 +2,7 @@ import React from 'react';
 
 //Import scripts
 import { keyDownHandler, keyUpHandler } from '../assets/scripts/playerMovement';
-import { chooseBread } from '../assets/scripts/chooseBread';
+
 
 const ManualMovementPanel = () => {
     return (

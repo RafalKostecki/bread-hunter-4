@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Import components
@@ -53,7 +52,7 @@ const ControlPanel = () => {
                 cpIsActive ? (
                     <aside className="controlPanel" style={bgStyle}>
                         <div className="controlPanel__hidder" style={bgStyle}></div>
-                        <div className="controlPanel__hideCpBtn" onMouseOver={() => setCpIsActive(!cpIsActive)}></div>
+                        <div className="controlPanel__hideCpBtn" onClick={() => setCpIsActive(!cpIsActive)}></div>
                         <Header />
                         <Characters />
                         <Button text='start' modifier='start' click={runGameHandler} disable={isRunGame}></Button>
