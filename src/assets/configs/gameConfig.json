@@ -16,5 +16,6 @@
         "increase": 3
     },
     "breadsAddingTime": 1150,
-    "autoBreadGainingDelay": 395
+    "autoBreadGainingDelay": 395,
+    "startGameDelay": 3000
 }
