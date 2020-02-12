@@ -1,11 +1,11 @@
 import { store } from '../../Game';
 
 //Import actions
-import { setPickingQuantity } from '../../redux/actions/gameActions';
+import { setPickingQuantity, setPlayerSpeed } from '../../redux/actions/gameActions';
 import { setStat } from '../../redux/actions/uiActions';
 
 //Import congifs
-import gameConfig from '../configs/gameConfig';
+import buffConfig from '../configs/buffConfig';
 
 //Import scripts
 import { getSpecificStat } from './getSpecificStat';
@@ -16,6 +16,9 @@ const buffDispatcher = key => {
         case 'Digit1':
             greekyKoste();
         break;
+        case 'Digit2':
+            juiceSpeed();
+        break;
         default:
             return;
     }
@@ -23,8 +26,8 @@ const buffDispatcher = key => {
 
 
 const greekyKoste = () => {
-    const pq = gameConfig.greekyKosteBuff.increase;
-    const gkTime = gameConfig.greekyKosteBuff.time;
+    const pq = buffConfig.greekyKoste.increase;
+    const gkTime = buffConfig.greekyKoste.time;
     const storeData = store.getState();
     const stats = [...storeData.ui.gameInfoItems];
     const rusks = getSpecificStat(stats, "rusks");
@@ -38,6 +41,25 @@ const greekyKoste = () => {
     setTimeout(() => {
         store.dispatch(setPickingQuantity(1));
     }, gkTime)
+}
+
+
+const juiceSpeed = () => {
+    const juiceSpeed = buffConfig.juice.speed;
+    const storeData = store.getState();
+    const stats = [...storeData.ui.gameInfoItems];
+    const juice = getSpecificStat(stats, "juice");
+    const playerSpeedCopy = storeData.game.playerSpeed;
+
+    if (juice.value < 1) return;
+    else juice.value--;
+
+    store.dispatch(setPlayerSpeed(juiceSpeed))
+    store.dispatch(setStat(stats));
+
+    setTimeout(() => {
+        store.dispatch(setPlayerSpeed(playerSpeedCopy))
+    }, buffConfig.juice.time)
 }
 
 export default buffDispatcher;

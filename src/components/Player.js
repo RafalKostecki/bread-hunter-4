@@ -19,6 +19,7 @@ import charPiotr from '../assets/images/charPiotr.png';
 const Player = () => {
     const playerPosition = useSelector(state => state.game.player.position);
     const currentChar = useSelector(state => state.game.currentChar);
+    const playerSpeed = useSelector(state => state.game.playerSpeed);
     let currentCharPic;
 
     switch(currentChar.name) {
@@ -42,7 +43,8 @@ const Player = () => {
         top: `${playerPosition.y*gameConfig.boardFieldSize}px`,
         left: `${playerPosition.x*gameConfig.boardFieldSize}px`,
         width: `${gameConfig.boardFieldSize}px`,
-        height: `${gameConfig.boardFieldSize}px`
+        height: `${gameConfig.boardFieldSize}px`,
+        transition: `all ${playerSpeed + 100}ms linear`
     }
 
     const playerBgStyles = {

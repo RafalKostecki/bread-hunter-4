@@ -3,9 +3,6 @@ import { store } from '../../Game';
 //Import actions
 import { changePlayerPos, setPlayerDirection, setBoardPos } from '../../redux/actions/gameActions';
 
-//Import configs
-import gameConfig from '../configs/gameConfig';
-
 //Import scripts
 import { checkCollisions } from './movement';
 import { movementAnimation } from './movementAnimation';
@@ -20,10 +17,10 @@ let stepInterval = undefined;
 
 export const keyDownHandler = key => {
     const isRunGame = store.getState().game.isRunGame;
+    const playerSpeed = store.getState().game.playerSpeed;
     key = key.code ? key.code : key;
 
     if (!isRunGame) return;
-    const playerStepTime = gameConfig.playerStepTime;
 
     if (!wasPressed) currKeyDown = key;
     wasPressed = true;
@@ -34,7 +31,7 @@ export const keyDownHandler = key => {
             if (!wasPressed) return;
 
             changePlayerPosition(key);
-        }, playerStepTime);
+        }, playerSpeed);
     }
 
     firstIteration = true;
@@ -53,6 +50,7 @@ export const keyUpHandler = key => {
 
 const changePlayerPosition = keyCode => {
     const storeData = store.getState();
+    const playerSpeed = storeData.game.playerSpeed;
     const playerPosition = storeData.game.player.position;
 
     if (checkCollisions(keyCode, playerPosition)) return;
@@ -90,7 +88,7 @@ const changePlayerPosition = keyCode => {
             coordinateChange = {x: 0, y: 0};
     }
 
-    movementAnimation(keyCode, 'playerBg', gameConfig.playerStepTime);
+    movementAnimation(keyCode, 'playerBg', playerSpeed);
     store.dispatch(changePlayerPos(coordinateChange));
     store.dispatch(setPlayerDirection(direction));;
     store.dispatch(setBoardPos(boardMove));

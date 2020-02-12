@@ -24,6 +24,13 @@ export const changePlayerPos = position => {
     }
 }
 
+export const setPlayerSpeed = speed => {
+    return {
+        type: 'SET_PLAYER_SPEED',
+        speed
+    }
+}
+
 export const setPlayerPos = position => {
     return {
         type: 'SET_PLAYER_POSITION',

@@ -28,7 +28,8 @@ const initState = {
             x: 0,
             y: 0
         }
-    }
+    },
+    playerSpeed: 200
 };
 
 
@@ -102,6 +103,11 @@ const gameReducer = (state = initState, action) => {
             return {
                 ...state,
                 pickingQuantity: action.value
+            }
+        case 'SET_PLAYER_SPEED': 
+            return {
+                ...state,
+                playerSpeed: action.speed
             }
         case 'SET_END_STATS_BOOL':
             return {

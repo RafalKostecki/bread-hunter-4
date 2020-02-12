@@ -2,6 +2,7 @@ import React from 'react';
 
 //Import configs
 import gameConfig from '../../assets/configs/gameConfig.json';
+import buffConfig from '../../assets/configs/buffConfig.json';
 
 
 const Help = ({ closeHelp }) => {
@@ -27,7 +28,8 @@ const Help = ({ closeHelp }) => {
                 <section className="help__box">
                     <h3>Buffs description</h3>
                     <ul>
-                        <li>{`Greeky Koste (1) - increase by 3 count of gained loaf of breads (${gameConfig.greekyKosteBuff.time})ms`}</li>
+                        <li>{`Greeky Koste (1) - increase by 3 count of gained loaf of breads (${buffConfig.greekyKoste.time / 1000} sec)`}</li>
+                        <li>{`Bannana juice (2) - increase player speed (${buffConfig.juice.time / 1000} sec)`}</li>
                     </ul>
                 </section>
             </article>

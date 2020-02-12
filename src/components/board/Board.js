@@ -31,6 +31,7 @@ export const Board = () => {
     const boardPosition = useSelector(state => state.game.board.position);
     const isRunGame = useSelector(state => state.game.isRunGame);
     const endStats = useSelector(state => state.game.endStats);
+    const playerSpeed = useSelector(state => state.game.playerSpeed);
     const body = document.body;
 
     const boardStyles = {
@@ -38,7 +39,8 @@ export const Board = () => {
         height: `${gameConfig.boardSize.y*gameConfig.boardFieldSize}px`,
         top: `${boardPosition.top}px`,
         left: `${boardPosition.left}px`,
-        backgroundImage: `url(${bgPicPath})`
+        backgroundImage: `url(${bgPicPath})`,
+        transition: `all ${playerSpeed + 50}ms linear`
     }
 
     useEffect(()=> { //create boardMatrix

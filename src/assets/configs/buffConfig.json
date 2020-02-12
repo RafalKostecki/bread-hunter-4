@@ -1,0 +1,10 @@
+{
+  "juice": {
+    "time": 2000,
+    "speed": 150
+  },
+  "greekyKoste": {
+    "time": 5000,
+    "increase": 3
+  }
+}
